@@ -47,7 +47,7 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<
         <div style={{ fontWeight: 'bold', marginBottom: '8px', color: data.color }}>
           {data.model}
         </div>
-        <div style={{ color: '#666', marginBottom: '6px' }}>{data.provider}</div>
+        <div style={{ color: '#5c5552', marginBottom: '6px' }}>{data.provider}</div>
         <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
           TCI Score: {data.tci}
         </div>
@@ -141,7 +141,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
 
   if (loading) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center', color: '#666' }}>
+      <div style={{ padding: '40px', textAlign: 'center', color: '#5c5552' }}>
         Loading leaderboard data...
       </div>
     );
@@ -168,7 +168,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
       </h2>
       <p style={{
         fontSize: '14px',
-        color: '#6b7280',
+        color: '#5c5552',
         marginBottom: '20px',
         lineHeight: '1.5',
       }}>
@@ -189,7 +189,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
           zIndex: 10,
           boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
         }}>
-          <div style={{ fontSize: '9px', color: '#888', marginBottom: '6px' }}>
+          <div style={{ fontSize: '9px', color: '#5c5552', marginBottom: '6px' }}>
             {chartData.length} Results
           </div>
           <div style={{ fontSize: '10px', fontWeight: '600', marginBottom: '8px', color: '#333' }}>
@@ -219,7 +219,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
               domain={[23, 0]}
               reversed={true}
               ticks={[20, 15, 10, 5, 1]}
-              tick={{ fontSize: 11, fill: '#666' }}
+              tick={{ fontSize: 11, fill: '#5c5552' }}
               axisLine={false}
               tickLine={false}
             >
@@ -227,7 +227,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
                 value="Leaderboard rank"
                 offset={-5}
                 position="bottom"
-                style={{ fontSize: '12px', fill: '#666' }}
+                style={{ fontSize: '12px', fill: '#5c5552' }}
               />
             </XAxis>
             <YAxis
@@ -236,7 +236,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
               name="Score"
               domain={yAxisDomain}
               ticks={yAxisTicks}
-              tick={{ fontSize: 11, fill: '#666' }}
+              tick={{ fontSize: 11, fill: '#5c5552' }}
               axisLine={false}
               tickLine={false}
             >
@@ -245,7 +245,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
                 angle={0}
                 position="top"
                 offset={10}
-                style={{ fontSize: '12px', fill: '#666' }}
+                style={{ fontSize: '12px', fill: '#5c5552' }}
               />
             </YAxis>
             <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3' }} />

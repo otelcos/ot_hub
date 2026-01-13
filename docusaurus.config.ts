@@ -135,12 +135,6 @@ const config: Config = {
           position: 'left',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
-          position: 'left',
-          label: 'Documentation',
-        },
-        {
           href: 'https://github.com/gsma-research/open_telco',
           label: 'GitHub',
           position: 'right',
