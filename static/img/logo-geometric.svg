@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Dark background with subtle rounded corners -->
+  <rect x="0" y="0" width="400" height="400" rx="24" fill="#1a1a1a"/>
+
+  <!-- Theta (Θ): ellipse with horizontal bar - representing "Open" -->
+  <ellipse cx="137" cy="200" rx="75" ry="100" stroke="#faf9f5" stroke-width="25" fill="none"/>
+  <line x1="62" y1="200" x2="212" y2="200" stroke="#faf9f5" stroke-width="19"/>
+
+  <!-- T: horizontal top + vertical stem - representing "Telco" -->
+  <line x1="206" y1="112" x2="344" y2="112" stroke="#faf9f5" stroke-width="25"/>
+  <line x1="275" y1="112" x2="275" y2="300" stroke="#faf9f5" stroke-width="25"/>
+</svg>

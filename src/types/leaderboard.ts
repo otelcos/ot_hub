@@ -61,6 +61,7 @@ export interface TCIDataPoint {
   telelogs: number | null;
   telemath: number | null;
   tsg: number | null;
+  releaseDate: number; // Unix timestamp for chart X-axis
 }
 
 /**
