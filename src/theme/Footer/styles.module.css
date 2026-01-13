@@ -1,0 +1,39 @@
+.footerWrapper {
+  position: relative;
+}
+
+.gsmaLogo {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  z-index: 10;
+}
+
+.gsmaLogo a {
+  display: block;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.gsmaLogo a:hover {
+  opacity: 1;
+}
+
+.gsmaLogo img {
+  width: 80px;
+  height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .gsmaLogo {
+    position: static;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .gsmaLogo img {
+    width: 60px;
+  }
+}
