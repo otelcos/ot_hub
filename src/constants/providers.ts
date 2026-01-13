@@ -6,27 +6,27 @@
  * Color palette for each provider (used in charts and visualizations)
  */
 export const PROVIDER_COLORS: Record<string, string> = {
-  'Google': '#4DB6AC',
-  'OpenAI': '#F48FB1',
-  'Meta': '#FFAB91',
-  'Anthropic': '#B39DDB',
-  'Claude': '#B39DDB',
-  'Grok': '#5C6BC0',
-  'Qwen': '#81C784',
-  'Mistral': '#FF8A65',
-  'NetoAI': '#4DD0E1',
-  'IBM': '#64B5F6',
-  'IBM Granite': '#64B5F6',
-  'DeepSeek': '#CE93D8',
-  'LiquidAI': '#FFB74D',
-  'Microsoft': '#4FC3F7',
-  'Swiss AI': '#E57373',
-  'ByteDance': '#AED581',
-  'Amazon': '#FF9800',
-  'NVIDIA': '#76B900',
-  'Cohere': '#FF6B6B',
-  'Hugging Face': '#FFD54F',
-  'Other': '#A1887F',
+  'Google': '#1A73E8',      // Google Blue (official, bold)
+  'OpenAI': '#10A37F',      // OpenAI Green (official)
+  'Meta': '#0866FF',        // Meta Blue (official)
+  'Anthropic': '#D97706',   // Anthropic Orange/Coral
+  'Claude': '#D97706',
+  'Grok': '#1D9BF0',        // X/Twitter Blue
+  'Qwen': '#6366F1',        // Indigo
+  'Mistral': '#FF6B35',     // Mistral Orange (bold)
+  'NetoAI': '#06B6D4',      // Cyan
+  'IBM': '#0F62FE',         // IBM Blue (official)
+  'IBM Granite': '#0F62FE',
+  'DeepSeek': '#8B5CF6',    // Purple
+  'LiquidAI': '#F59E0B',    // Amber
+  'Microsoft': '#00BCF2',   // Microsoft Cyan
+  'Swiss AI': '#EF4444',    // Red
+  'ByteDance': '#22C55E',   // Green
+  'Amazon': '#FF9900',      // AWS Orange (official)
+  'NVIDIA': '#76B900',      // NVIDIA Green (official)
+  'Cohere': '#EF4444',      // Red
+  'Hugging Face': '#FFB800', // HuggingFace Yellow
+  'Other': '#6B7280',       // Neutral gray
 };
 
 /**

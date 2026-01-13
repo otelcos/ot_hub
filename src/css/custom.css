@@ -754,19 +754,38 @@ code {
   text-align: left;
 }
 
-/* Leaderboard Card - Dark Theme */
+/* Leaderboard Card - Sophisticated Dark Theme */
 .leaderboard-card {
-  background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
-  border-radius: 12px;
+  background: #0D0D12;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
   padding: 24px;
   color: #ffffff;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 4px 24px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease;
 }
 
 .leaderboard-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* TCI Hero Card - Special treatment */
+.tci-hero-card {
+  background: linear-gradient(135deg, #0D1117 0%, #161B22 100%);
+  border: 1px solid rgba(77, 182, 172, 0.15);
+}
+
+.tci-hero-card:hover {
+  border-color: rgba(77, 182, 172, 0.3);
 }
 
 .leaderboard-card-header {
@@ -810,21 +829,75 @@ code {
 .leaderboard-rankings {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
+}
+
+/* Staggered row entry animation */
+@keyframes rowSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .leaderboard-ranking-row {
   display: grid;
-  grid-template-columns: 28px 1fr 1fr auto;
+  grid-template-columns: 32px 1.2fr 1fr 110px;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  animation: rowSlideIn 0.3s ease-out both;
+  border-radius: 0;
+  margin: 0;
+  transition: background 0.15s ease, margin 0.15s ease, padding 0.15s ease;
 }
 
+.leaderboard-ranking-row:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-ranking-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  margin: 0 -12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+/* Staggered animation delays */
+.leaderboard-ranking-row:nth-child(1) { animation-delay: 0.05s; }
+.leaderboard-ranking-row:nth-child(2) { animation-delay: 0.1s; }
+.leaderboard-ranking-row:nth-child(3) { animation-delay: 0.15s; }
+.leaderboard-ranking-row:nth-child(4) { animation-delay: 0.2s; }
+.leaderboard-ranking-row:nth-child(5) { animation-delay: 0.25s; }
+.leaderboard-ranking-row:nth-child(6) { animation-delay: 0.3s; }
+.leaderboard-ranking-row:nth-child(7) { animation-delay: 0.35s; }
+.leaderboard-ranking-row:nth-child(8) { animation-delay: 0.4s; }
+.leaderboard-ranking-row:nth-child(9) { animation-delay: 0.45s; }
+.leaderboard-ranking-row:nth-child(10) { animation-delay: 0.5s; }
+
 .ranking-position {
-  font-size: 14px;
-  font-weight: 600;
-  color: #9ca3af;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: rgba(255, 255, 255, 0.5);
   text-align: center;
+  min-width: 24px;
+}
+
+/* Gold, Silver, Bronze for top 3 */
+.leaderboard-ranking-row:nth-child(1) .ranking-position {
+  color: #FFD700;
+}
+.leaderboard-ranking-row:nth-child(2) .ranking-position {
+  color: #C0C0C0;
+}
+.leaderboard-ranking-row:nth-child(3) .ranking-position {
+  color: #CD7F32;
 }
 
 .ranking-model-info {
@@ -843,9 +916,10 @@ code {
 }
 
 .ranking-model-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  color: #ffffff;
+  color: #F3F4F6;
+  letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -864,74 +938,55 @@ code {
   border-radius: 4px;
 }
 
-/* Ranking Bars */
+/* Ranking Bars - Crisp, clean rendering */
+@keyframes barGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .ranking-bar-container {
   position: relative;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.08);
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .ranking-bar {
   height: 100%;
   border-radius: 4px;
   position: relative;
-  transition: width 0.3s ease;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+  animation: barGrow 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-/* Error Bar - Horizontal, proportional to error value */
-.error-bar {
-  position: absolute;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.6);
-  top: 50%;
-  transform: translateY(-50%);
-  left: 100%;
-  width: var(--error-width, 10%);
-}
-
-/* Left cap */
-.error-bar::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.6);
-}
-
-/* Right cap */
-.error-bar-whisker {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.6);
-}
-
-/* Score Display */
+/* Score Display - Monospace for data alignment */
 .ranking-score {
   display: flex;
   align-items: baseline;
-  gap: 4px;
-  min-width: 90px;
+  gap: 6px;
+  min-width: 100px;
   justify-content: flex-end;
+  font-family: var(--font-display);
 }
 
 .score-value {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  color: #ffffff;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
 }
 
 .score-error {
-  font-size: 11px;
-  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  font-variant-numeric: tabular-nums;
 }
 
 /* View Full Ranking Button */
@@ -1028,7 +1083,8 @@ code {
   }
 
   .leaderboard-ranking-row {
-    grid-template-columns: 24px 1fr 0.8fr auto;
+    grid-template-columns: 28px 1fr 0.8fr 100px;
+    gap: 12px;
   }
 }
 
@@ -1054,11 +1110,17 @@ code {
   }
 
   .leaderboard-ranking-row {
-    grid-template-columns: 24px 1fr auto;
+    grid-template-columns: 28px 1fr 90px;
+    gap: 8px;
   }
 
   .ranking-bar-container {
     display: none;
+  }
+
+  .leaderboard-ranking-row:hover {
+    margin: 0 -8px;
+    padding: 10px 8px;
   }
 
   .ranking-model-name {
