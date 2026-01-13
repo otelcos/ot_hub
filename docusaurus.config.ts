@@ -31,6 +31,8 @@ const config: Config = {
 
   // Multi-instance docs plugins for tab-based organization
   plugins: [
+    // Root redirect plugin (redirects / to /ot_hub/)
+    './plugins/root-redirect.js',
     [
       '@docusaurus/plugin-content-docs',
       {

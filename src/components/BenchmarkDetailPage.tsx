@@ -122,7 +122,7 @@ export default function BenchmarkDetailPage({
 
   const difficultyColor = benchmark.difficulty && benchmark.difficulty !== 'composite'
     ? getDifficultyColor(benchmark.difficulty)
-    : '#6b7280';
+    : '#8a8582';
 
   return (
     <Layout title={`${benchmark.title} | Leaderboard`} description={benchmark.description}>

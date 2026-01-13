@@ -118,8 +118,8 @@ export function getDifficultyColor(difficulty: 'easy' | 'medium' | 'hard'): stri
  * Get TCI color based on score tier
  */
 export function getTCIColor(tci: number | null): string {
-  if (tci === null) return '#999';
-  if (tci >= 135) return '#4DB6AC'; // High - teal
+  if (tci === null) return '#8a8582';
+  if (tci >= 135) return '#d4a574'; // High - gold accent
   if (tci >= 125) return '#81C784'; // Good - green
   if (tci >= 115) return '#FFB74D'; // Medium - amber
   return '#FFAB91'; // Lower - coral
