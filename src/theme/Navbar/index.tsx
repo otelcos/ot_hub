@@ -103,12 +103,10 @@ export default function Navbar(): JSX.Element {
       <div className={styles.navbarInner}>
         {/* Logo & Brand */}
         <Link to="/" className={styles.brand}>
-          <img
-            src="/ot_hub/img/GSMA.jpeg"
-            alt="GSMA Logo"
-            className={styles.logo}
-          />
-          <span className={styles.title}>Open Telco</span>
+          <div className={styles.brandText}>
+            <span className={styles.title}>Open Telco</span>
+            <span className={styles.subtitle}>by GSMA</span>
+          </div>
         </Link>
 
         {/* Nav Items */}
