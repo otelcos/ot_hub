@@ -139,11 +139,6 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          to: '/blog',
-          label: 'Blog',
-          position: 'left',
-        },
-        {
           href: 'https://github.com/gsma-research/open_telco',
           label: 'GitHub',
           position: 'right',

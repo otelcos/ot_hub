@@ -82,7 +82,7 @@ export function getProviderLogo(provider: string): string | undefined {
 /**
  * Base path for logo images
  */
-export const LOGO_BASE_PATH = '/open_telco/img/logos/';
+export const LOGO_BASE_PATH = '/ot_hub/img/logos/';
 
 /**
  * Get full logo URL for a provider (case-insensitive lookup)

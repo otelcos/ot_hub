@@ -161,7 +161,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
   }
 
   return (
-    <div style={{ width: '100%', padding: '20px 0' }}>
+    <div style={{ width: '100%', padding: '10px 0' }}>
       <h2 style={{
         fontSize: '20px',
         fontWeight: 'bold',

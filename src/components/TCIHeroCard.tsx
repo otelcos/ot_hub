@@ -25,12 +25,6 @@ export default function TCIHeroCard({
   return (
     <div className={`leaderboard-card tci-hero-card ${expanded ? 'expanded' : ''}`}>
       <div className="leaderboard-card-header">
-        <span className="leaderboard-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 3V21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M7 14L11 10L15 14L21 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
         <div className="leaderboard-card-title-section">
           <h3 className="leaderboard-card-title">Telco Capability Index (TCI)</h3>
           <p className="leaderboard-card-description">

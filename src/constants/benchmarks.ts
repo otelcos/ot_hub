@@ -11,8 +11,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
   {
     key: 'teleqna',
     title: 'TeleQnA',
-    description: '10,000 Q&A pairs testing telecom knowledge across lexicon, research, and standards.',
-    icon: '📚',
+    description: 'Evaluating telecommunications general knowledge.',
     samples: '10,000',
     difficulty: 'medium',
     paperLink: 'https://arxiv.org/abs/2310.15051',
@@ -21,8 +20,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
   {
     key: 'telemath',
     title: 'TeleMath',
-    description: 'Mathematical reasoning in telecommunications: signal processing, network optimization.',
-    icon: '🧮',
+    description: 'Evaluating mathematical reasoning in signal processing, network optimisation, and performance analysis.',
     samples: '500',
     difficulty: 'hard',
     paperLink: 'https://arxiv.org/abs/2506.10674',
@@ -31,8 +29,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
   {
     key: 'telelogs',
     title: 'TeleLogs',
-    description: 'Root cause analysis for 5G network throughput degradation across 8 failure modes.',
-    icon: '🔍',
+    description: 'Evaluating root cause analysis capabilities for 5G network.',
     samples: '1,000+',
     difficulty: 'hard',
     paperLink: 'https://arxiv.org/abs/2507.21974',
@@ -41,8 +38,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
   {
     key: 'tsg',
     title: '3GPP-TSG',
-    description: 'Classification of technical documents by 3GPP working group (RAN, SA, CT).',
-    icon: '📋',
+    description: 'Evaluating 3GPP protocols knowledge.',
     samples: '5,000+',
     difficulty: 'medium',
     datasetLink: 'https://huggingface.co/datasets/eaguaida/gsma_sample',
@@ -56,7 +52,6 @@ export const LEADERBOARD_BENCHMARKS = BENCHMARKS.map(b => ({
   key: b.key,
   title: b.title,
   description: b.description,
-  icon: b.icon,
 }));
 
 /**

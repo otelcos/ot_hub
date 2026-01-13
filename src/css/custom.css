@@ -1,11 +1,11 @@
 /**
  * GSMA Open Telco Custom Styles
  * Primary brand color: GSMA Hero Red #DC002B (Pantone 185C)
- * Typography: Inter (GSMA primary typeface)
+ * Typography: JetBrains Mono (display) + Source Sans 3 (body)
  */
 
-/* GSMA Brand Font - Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Fonts - JetBrains Mono for technical headlines, Source Sans 3 for body */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
 
 /* Infima CSS variable overrides */
 :root {
@@ -42,9 +42,10 @@
   --ifm-link-color: #DC002B;
   --ifm-link-hover-color: #E11C3B;
 
-  /* Font - Inter (GSMA primary typeface) */
-  --ifm-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --ifm-heading-font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Typography - JetBrains Mono for display, Source Sans 3 for body */
+  --ifm-font-family-base: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --ifm-heading-font-family: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'JetBrains Mono', 'SF Mono', Monaco, 'Andale Mono', monospace;
 
   /* Footer */
   --ifm-footer-background-color: #f8f9fa;
@@ -217,7 +218,7 @@ html, body {
 .markdown > p:first-of-type {
   font-size: 1.125rem;
   color: #6b7280;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* Section headings */

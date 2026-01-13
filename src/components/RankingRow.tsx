@@ -34,7 +34,6 @@ export default function RankingRow({
         )}
         <span className="ranking-model-name">
           {model}
-          {isNew && <span className="new-badge">NEW</span>}
         </span>
       </div>
       <div className="ranking-bar-container">

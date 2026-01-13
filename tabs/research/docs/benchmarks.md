@@ -21,28 +21,28 @@ Explore evaluations across 5 distinct benchmarks, covering telecommunications kn
 
 <BenchmarkCard
   title="TeleQnA"
-  description="10,000 multiple-choice questions testing LLM telecom knowledge across 5 categories: Lexicon, Research Overview, Research Publications, Standards Overview, and Standards Specifications."
+  description="Evaluating telecommunications general knowledge."
   paperLink="https://arxiv.org/abs/2310.15051"
   datasetLink="https://huggingface.co/datasets/netop/TeleQnA"
 />
 
 <BenchmarkCard
   title="TeleLogs"
-  description="A synthetic dataset for root cause analysis (RCA) in 5G networks. Given network configuration parameters and user-plane data, models must identify which of 8 predefined root causes explain throughput degradation."
+  description="Evaluating root cause analysis capabilities for 5G network."
   paperLink="https://arxiv.org/abs/2507.21974"
   datasetLink="https://huggingface.co/datasets/netop/TeleLogs"
 />
 
 <BenchmarkCard
   title="TeleMath"
-  description="500 mathematically intensive problems covering signal processing, network optimization, and performance analysis. Models must solve domain-specific mathematical computations step-by-step."
+  description="Evaluating mathematical reasoning in signal processing, network optimisation, and performance analysis."
   paperLink="https://arxiv.org/abs/2506.10674"
   datasetLink="https://huggingface.co/datasets/netop/TeleMath"
 />
 
 <BenchmarkCard
   title="3GPP-TSG"
-  description="Classifies 3GPP technical documents by working group. Models must identify the correct TSG group (e.g., RAN1, SA2, CT4) for a given technical text from specifications."
+  description="Evaluating 3GPP protocols knowledge."
   datasetLink="https://huggingface.co/datasets/eaguaida/gsma_sample"
 />
 

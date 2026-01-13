@@ -45,6 +45,7 @@ export default function LeaderboardCard({
             error={entry.error}
             barWidth={getBarWidth(entry.score)}
             isNew={entry.isNew}
+            showProviderIcon={true}
           />
         ))}
       </div>
