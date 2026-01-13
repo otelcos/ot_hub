@@ -11,9 +11,9 @@ const config: Config = {
     v4: true,
   },
 
-  // GitHub Pages deployment config
-  url: 'https://otelcos.github.io',
-  baseUrl: '/ot_hub/',
+  // Custom domain deployment config
+  url: 'https://opentelco.io',
+  baseUrl: '/',
 
   organizationName: 'otelcos',
   projectName: 'ot_hub',
