@@ -98,7 +98,6 @@ export default function LeaderboardPage(): JSX.Element {
                 key={benchmark.key}
                 title={benchmark.title}
                 description={benchmark.description}
-                icon={benchmark.icon}
                 rankings={rankings}
                 benchmarkKey={benchmark.key}
               />
