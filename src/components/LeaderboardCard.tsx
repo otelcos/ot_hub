@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import type { RankingEntry } from '../types/leaderboard';
 import RankingRow from './RankingRow';
 
@@ -10,7 +11,7 @@ interface LeaderboardCardProps {
   icon?: string;
   rankings: RankingEntry[];
   maxScore?: number;
-  onViewFullRanking?: () => void;
+  benchmarkKey: string;
 }
 
 export default function LeaderboardCard({
@@ -19,7 +20,7 @@ export default function LeaderboardCard({
   icon,
   rankings,
   maxScore = 100,
-  onViewFullRanking,
+  benchmarkKey,
 }: LeaderboardCardProps): JSX.Element {
   const topScore = rankings.length > 0 ? Math.max(...rankings.map(r => r.score)) : maxScore;
   const getBarWidth = (score: number) => Math.max(5, (score / topScore) * 100);
@@ -35,7 +36,7 @@ export default function LeaderboardCard({
       </div>
 
       <div className="leaderboard-rankings">
-        {rankings.slice(0, 5).map((entry, index) => (
+        {rankings.slice(0, 3).map((entry, index) => (
           <RankingRow
             key={`${entry.model}-${index}`}
             rank={entry.rank}
@@ -50,11 +51,9 @@ export default function LeaderboardCard({
         ))}
       </div>
 
-      {onViewFullRanking && (
-        <button className="view-full-ranking" onClick={onViewFullRanking}>
-          View Full Ranking <span className="arrow">&rarr;</span>
-        </button>
-      )}
+      <Link to={`/leaderboard/${benchmarkKey}`} className="view-full-ranking">
+        View Full Ranking <span className="arrow">&rarr;</span>
+      </Link>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Layout from '@theme/Layout';
 import LeaderboardCard from '../components/LeaderboardCard';
 import TCIHeroCard from '../components/TCIHeroCard';
@@ -9,7 +9,6 @@ import { LEADERBOARD_BENCHMARKS } from '../constants/benchmarks';
 
 export default function LeaderboardPage(): JSX.Element {
   const { data, loading, error } = useLeaderboardData();
-  const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   // Calculate TCI rankings
   const tciRankings = useMemo((): TCIEntry[] => {
@@ -50,10 +49,6 @@ export default function LeaderboardPage(): JSX.Element {
       .map((entry, index) => ({ ...entry, rank: index + 1 }));
   };
 
-  const handleViewFullRanking = (cardKey: string) => {
-    setExpandedCard(expandedCard === cardKey ? null : cardKey);
-  };
-
   if (loading) {
     return (
       <Layout title="Leaderboard" description="Open Telco LLM Leaderboard">
@@ -84,11 +79,7 @@ export default function LeaderboardPage(): JSX.Element {
 
         {/* TCI Hero Card - Full Width */}
         <div className="tci-hero-wrapper">
-          <TCIHeroCard
-            rankings={tciRankings}
-            expanded={expandedCard === 'tci'}
-            onViewFullRanking={() => handleViewFullRanking('tci')}
-          />
+          <TCIHeroCard rankings={tciRankings} />
         </div>
 
         {/* Spacer */}
@@ -112,8 +103,8 @@ export default function LeaderboardPage(): JSX.Element {
                 title={benchmark.title}
                 description={benchmark.description}
                 icon={benchmark.icon}
-                rankings={expandedCard === benchmark.key ? rankings : rankings.slice(0, 5)}
-                onViewFullRanking={() => handleViewFullRanking(benchmark.key)}
+                rankings={rankings}
+                benchmarkKey={benchmark.key}
               />
             );
           })}

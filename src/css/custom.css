@@ -792,7 +792,7 @@ code {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .leaderboard-card-icon {
@@ -819,10 +819,10 @@ code {
 }
 
 .leaderboard-card-description {
-  font-size: 13px;
+  font-size: 12px;
   color: #9ca3af;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 /* Rankings */
@@ -2285,4 +2285,253 @@ code {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
+}
+
+/* ============================================
+   BENCHMARK DETAIL PAGE (Scale.com Inspired)
+   ============================================ */
+
+.benchmark-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* Back Navigation */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #4DB6AC;
+  text-decoration: none;
+}
+
+.back-arrow {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Two-Column Grid Layout */
+.benchmark-detail-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Left Column - Benchmark Info Panel */
+.benchmark-info-panel {
+  position: sticky;
+  top: 100px;
+}
+
+.benchmark-info-card {
+  background: #0D0D12;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 28px;
+  color: #ffffff;
+}
+
+.benchmark-info-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.benchmark-info-description {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.65;
+  margin: 0 0 24px 0;
+  white-space: pre-line;
+}
+
+/* Benchmark Metadata */
+.benchmark-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 20px;
+}
+
+.benchmark-meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-label {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.meta-value {
+  font-size: 13px;
+  color: #F3F4F6;
+  font-weight: 600;
+}
+
+/* Difficulty Badge */
+.difficulty-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #0f0f1a;
+  border-radius: 4px;
+}
+
+/* External Links */
+.benchmark-links {
+  display: flex;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.benchmark-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #F3F4F6;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.benchmark-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #4DB6AC;
+  text-decoration: none;
+}
+
+.benchmark-link svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Right Column - Full Leaderboard */
+.benchmark-full-leaderboard {
+  min-width: 0;
+}
+
+.full-ranking-card {
+  padding: 24px 28px;
+}
+
+.full-ranking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ranking-count {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Not Found State */
+.benchmark-not-found {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.benchmark-not-found h1 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.benchmark-not-found p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+/* Loading and Error States */
+.benchmark-loading,
+.benchmark-error {
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.benchmark-error {
+  color: #DC002B;
+}
+
+/* Responsive - Benchmark Detail Page */
+@media (max-width: 992px) {
+  .benchmark-detail-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+  }
+
+  .benchmark-info-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .benchmark-detail-page {
+    padding: 24px 16px 60px;
+  }
+
+  .benchmark-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .benchmark-info-card {
+    padding: 20px;
+  }
+
+  .benchmark-info-title {
+    font-size: 1.25rem;
+  }
+
+  .benchmark-links {
+    flex-wrap: wrap;
+  }
+
+  .full-ranking-card {
+    padding: 20px;
+  }
+
+  .full-ranking-card .leaderboard-ranking-row {
+    grid-template-columns: 28px 1fr 90px;
+  }
+
+  .full-ranking-card .ranking-bar-container {
+    display: none;
+  }
 }

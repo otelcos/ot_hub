@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import type { TCIEntry } from '../types/leaderboard';
 import RankingRow from './RankingRow';
 
@@ -6,24 +7,20 @@ export type { TCIEntry };
 
 interface TCIHeroCardProps {
   rankings: TCIEntry[];
-  onViewFullRanking?: () => void;
-  expanded?: boolean;
 }
 
 export default function TCIHeroCard({
   rankings,
-  onViewFullRanking,
-  expanded = false,
 }: TCIHeroCardProps): JSX.Element {
   const minTCI = 90;
   const maxTCI = Math.max(...rankings.map(r => r.tci), 150);
   const range = maxTCI - minTCI;
   const getBarWidth = (tci: number) => Math.max(5, ((tci - minTCI) / range) * 100);
 
-  const displayRankings = expanded ? rankings : rankings.slice(0, 5);
+  const displayRankings = rankings.slice(0, 3);
 
   return (
-    <div className={`leaderboard-card tci-hero-card ${expanded ? 'expanded' : ''}`}>
+    <div className="leaderboard-card tci-hero-card">
       <div className="leaderboard-card-header">
         <div className="leaderboard-card-title-section">
           <h3 className="leaderboard-card-title">Telco Capability Index (TCI)</h3>
@@ -50,11 +47,9 @@ export default function TCIHeroCard({
         ))}
       </div>
 
-      {onViewFullRanking && !expanded && (
-        <button className="view-full-ranking" onClick={onViewFullRanking}>
-          View Full Ranking <span className="arrow">&rarr;</span>
-        </button>
-      )}
+      <Link to="/leaderboard/tci" className="view-full-ranking">
+        View Full Ranking <span className="arrow">&rarr;</span>
+      </Link>
     </div>
   );
 }
