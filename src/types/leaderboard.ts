@@ -103,6 +103,11 @@ export type BenchmarkQuestion =
   | TextClassificationQuestion;
 
 /**
+ * Benchmark category type
+ */
+export type BenchmarkCategory = 'overall' | 'knowledge' | 'network-optimisation' | 'self-healing';
+
+/**
  * Benchmark configuration
  */
 export interface BenchmarkConfig {
@@ -111,6 +116,7 @@ export interface BenchmarkConfig {
   description: string;
   icon?: string;
   samples?: string;
+  category?: BenchmarkCategory;
   paperLink?: string;
   datasetLink?: string;
   questions?: BenchmarkQuestion[];

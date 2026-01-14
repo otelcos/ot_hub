@@ -910,41 +910,186 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   margin: 0;
 }
 
-/* Filter Tabs */
+/* Filter Tabs - LM Arena Inspired */
 .leaderboard-tabs {
-  display: inline-flex;
-  gap: 0;
+  display: flex;
+  gap: 4px;
   margin-bottom: 32px;
-  border: 1px solid #e5e0d8;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #faf9f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.leaderboard-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .leaderboard-tab {
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
   font-size: 14px;
   font-weight: 500;
   color: #8a8582;
   background: transparent;
   border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
   transition: all 0.2s ease;
-  border-right: 1px solid #e5e0d8;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: -1px;
 }
 
-.leaderboard-tab:last-child {
-  border-right: none;
+.leaderboard-tab-icon {
+  font-size: 18px;
+  line-height: 1;
 }
 
-.leaderboard-tab:hover {
-  color: #2d2926;
-  background: #f8f6f2;
+.leaderboard-tab-label {
+  font-family: var(--font-display);
+}
+
+.leaderboard-tab:hover:not(.active) {
+  color: #ffffff;
 }
 
 .leaderboard-tab.active {
-  background: #2d2926;
+  color: #d4a574;
+  border-bottom-color: #d4a574;
+}
+
+/* Leaderboard Content Area */
+.leaderboard-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Category Section */
+.category-section {
+  text-align: left;
+}
+
+.category-benchmarks {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.category-empty {
+  text-align: center;
+  color: #8a8582;
+  padding: 48px 24px;
+}
+
+/* Coming Soon Wrapper */
+.benchmark-coming-soon-wrapper {
+  position: relative;
+}
+
+.benchmark-coming-soon {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.benchmark-coming-soon .leaderboard-rankings {
+  min-height: 160px;
+}
+
+.coming-soon-placeholder {
+  position: relative;
+}
+
+.coming-soon-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.coming-soon-row {
+  height: 40px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #a61d2d 0%, #8b1825 100%);
   color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(166, 29, 45, 0.4);
+  z-index: 10;
+}
+
+/* TCI Full Table */
+.tci-full-table {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tci-full-table .tci-hero-card {
+  max-width: none;
+}
+
+.tci-full-rankings {
+  max-height: none;
+}
+
+/* TCI Info Link */
+.tci-info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  color: #d4a574;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.tci-info-link:hover {
+  color: #e8c099;
+  text-decoration: underline;
+}
+
+.tci-info-link::after {
+  content: '\2192';
+}
+
+/* Mobile Responsive Tabs */
+@media (max-width: 768px) {
+  .leaderboard-tabs {
+    gap: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .leaderboard-tab {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .leaderboard-tab-icon {
+    font-size: 16px;
+  }
+
+  .category-benchmarks {
+    gap: 16px;
+  }
 }
 
 /* TCI Hero Wrapper - Full Width */

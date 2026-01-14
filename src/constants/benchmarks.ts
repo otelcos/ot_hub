@@ -2,7 +2,19 @@
  * Benchmark configurations and metadata
  */
 
-import type { BenchmarkConfig } from '../types/leaderboard';
+import type { BenchmarkConfig, BenchmarkCategory } from '../types/leaderboard';
+
+export type { BenchmarkCategory };
+
+/**
+ * Category tab definitions for leaderboard navigation
+ */
+export const BENCHMARK_CATEGORIES = [
+  { id: 'overall', label: 'Overall', icon: '🏆' },
+  { id: 'knowledge', label: 'Knowledge', icon: '📚' },
+  { id: 'network-optimisation', label: 'Network Optimisation', icon: '⚙️' },
+  { id: 'self-healing', label: 'Self-Healing', icon: '🔧' },
+] as const;
 
 /**
  * Full benchmark configurations with metadata
@@ -13,6 +25,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
     title: 'TeleQnA',
     description: 'Evaluating telecommunications general knowledge.',
     samples: '10,000',
+    category: 'knowledge',
     paperLink: 'https://arxiv.org/abs/2310.15051',
     datasetLink: 'https://huggingface.co/datasets/netop/TeleQnA',
     questions: [
@@ -44,6 +57,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
     title: 'TeleMath',
     description: 'Evaluating mathematical reasoning in signal processing, network optimisation, and performance analysis.',
     samples: '500',
+    category: 'knowledge',
     paperLink: 'https://arxiv.org/abs/2506.10674',
     datasetLink: 'https://huggingface.co/datasets/netop/TeleMath',
     questions: [
@@ -62,6 +76,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
     title: 'TeleLogs',
     description: 'Evaluating root cause analysis capabilities for 5G network.',
     samples: '1,000+',
+    category: 'self-healing',
     paperLink: 'https://arxiv.org/abs/2507.21974',
     datasetLink: 'https://huggingface.co/datasets/netop/TeleLogs',
     questions: [
@@ -96,6 +111,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
     title: '3GPP-TSG',
     description: 'Evaluating 3GPP protocols knowledge.',
     samples: '5,000+',
+    category: 'knowledge',
     datasetLink: 'https://huggingface.co/datasets/eaguaida/gsma_sample',
     questions: [
       {
@@ -115,6 +131,7 @@ export const BENCHMARKS: BenchmarkConfig[] = [
     title: 'TeleTables',
     description: 'Evaluating table understanding and reasoning in telecommunications contexts.',
     samples: 'TBD',
+    category: 'knowledge',
     comingSoon: true,
     questions: [
       {
@@ -134,16 +151,34 @@ export const BENCHMARKS: BenchmarkConfig[] = [
       },
     ],
   },
+  {
+    key: 'teleyaml',
+    title: 'TeleYAML',
+    description: 'Evaluating network configuration generation and YAML understanding.',
+    samples: 'TBD',
+    category: 'network-optimisation',
+    comingSoon: true,
+    questions: [],
+  },
 ];
 
 /**
- * Leaderboard page benchmark cards (simpler version)
+ * Leaderboard page benchmark cards (simpler version with category)
  */
 export const LEADERBOARD_BENCHMARKS = BENCHMARKS.map(b => ({
   key: b.key,
   title: b.title,
   description: b.description,
+  category: b.category,
+  comingSoon: b.comingSoon,
 }));
+
+/**
+ * Get benchmarks filtered by category
+ */
+export function getBenchmarksByCategory(category: BenchmarkCategory): typeof LEADERBOARD_BENCHMARKS {
+  return LEADERBOARD_BENCHMARKS.filter(b => b.category === category);
+}
 
 /**
  * TCI calculation parameters

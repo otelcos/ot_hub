@@ -1,14 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Layout from '@theme/Layout';
-import LeaderboardCard from '../components/LeaderboardCard';
-import TCIHeroCard from '../components/TCIHeroCard';
+import LeaderboardTabs from '../components/LeaderboardTabs';
+import TCIFullTable from '../components/TCIFullTable';
+import CategorySection from '../components/CategorySection';
 import type { LeaderboardEntry, RankingEntry, TCIEntry } from '../types/leaderboard';
+import type { BenchmarkCategory } from '../constants/benchmarks';
 import { useLeaderboardData } from '../hooks/useLeaderboardData';
 import { calculateError } from '../utils/calculateTCI';
-import { LEADERBOARD_BENCHMARKS } from '../constants/benchmarks';
 
 export default function LeaderboardPage(): JSX.Element {
   const { data, loading, error } = useLeaderboardData();
+  const [activeTab, setActiveTab] = useState<string>('overall');
 
   // Calculate TCI rankings (TCI is pre-calculated from HuggingFace)
   const tciRankings = useMemo((): TCIEntry[] => {
@@ -20,7 +22,7 @@ export default function LeaderboardPage(): JSX.Element {
         provider: entry.provider,
         tci: entry.tci as number,
         error: entry.tci_stderr ?? calculateError(entry.tci as number, 'tci'),
-        isNew: entry.rank <= 3, // Mark top 3 as "new" for demo
+        isNew: entry.rank <= 3,
       }))
       .sort((a, b) => b.tci - a.tci)
       .map((entry, index) => ({ ...entry, rank: index + 1 }));
@@ -65,6 +67,19 @@ export default function LeaderboardPage(): JSX.Element {
     );
   }
 
+  const renderTabContent = () => {
+    if (activeTab === 'overall') {
+      return <TCIFullTable rankings={tciRankings} />;
+    }
+
+    return (
+      <CategorySection
+        category={activeTab as BenchmarkCategory}
+        getRankings={getBenchmarkRankings}
+      />
+    );
+  };
+
   return (
     <Layout title="Leaderboard" description="Open Telco LLM Leaderboard">
       <div className="leaderboard-page">
@@ -73,36 +88,10 @@ export default function LeaderboardPage(): JSX.Element {
           <p>Track the performance of language models across Open Telco evaluations.</p>
         </div>
 
-        {/* TCI Hero Card - Full Width */}
-        <div className="tci-hero-wrapper">
-          <TCIHeroCard rankings={tciRankings} />
-        </div>
+        <LeaderboardTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-        {/* Spacer */}
-        <div className="leaderboard-section-divider" />
-
-        {/* Section Header */}
-        <div className="leaderboard-section-header">
-          <h2>Individual Benchmarks</h2>
-          <p>Performance breakdown across specific evaluation tasks</p>
-        </div>
-
-        {/* Benchmark Cards Grid - 3 columns */}
-        <div className="leaderboard-benchmarks-grid">
-          {LEADERBOARD_BENCHMARKS.map(benchmark => {
-            const rankings = getBenchmarkRankings(benchmark.key);
-            if (rankings.length === 0) return null;
-
-            return (
-              <LeaderboardCard
-                key={benchmark.key}
-                title={benchmark.title}
-                description={benchmark.description}
-                rankings={rankings}
-                benchmarkKey={benchmark.key}
-              />
-            );
-          })}
+        <div className="leaderboard-content">
+          {renderTabContent()}
         </div>
 
         <div className="leaderboard-footer">
