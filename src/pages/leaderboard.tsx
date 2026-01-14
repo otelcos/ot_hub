@@ -93,10 +93,9 @@ export default function LeaderboardPage(): JSX.Element {
           <div className="leaderboard-footer">
             <h3>Submission Guidelines</h3>
             <p>
-              Want to add your model to the leaderboard? Run the full evaluation suite,
-              document your setup, and submit via{' '}
-              <a href="https://github.com/otelcos/open_telco/issues" target="_blank" rel="noopener noreferrer">
-                GitHub Issues
+              Want your model to be included? Guidelines{' '}
+              <a href="https://github.com/otelcos/ot_leaderboard" target="_blank" rel="noopener noreferrer">
+                here
               </a>.
             </p>
           </div>
