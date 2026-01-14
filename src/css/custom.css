@@ -2827,6 +2827,9 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 /* Full Width Content */
 .benchmark-content {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 /* Legacy grid support (for any remaining uses) */
@@ -2885,6 +2888,7 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 
 .full-ranking-card {
   padding: 24px 28px;
+  flex-shrink: 0;
 }
 
 .full-ranking-header {
