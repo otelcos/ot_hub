@@ -82,22 +82,24 @@ export default function LeaderboardPage(): JSX.Element {
 
   return (
     <Layout title="Leaderboard" description="Open Telco LLM Leaderboard">
-      <div className="leaderboard-page">
+      <div className="leaderboard-layout">
         <LeaderboardTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-        <div className="leaderboard-content">
-          {renderTabContent()}
-        </div>
+        <div className="leaderboard-page">
+          <div className="leaderboard-content">
+            {renderTabContent()}
+          </div>
 
-        <div className="leaderboard-footer">
-          <h3>Submission Guidelines</h3>
-          <p>
-            Want to add your model to the leaderboard? Run the full evaluation suite,
-            document your setup, and submit via{' '}
-            <a href="https://github.com/otelcos/open_telco/issues" target="_blank" rel="noopener noreferrer">
-              GitHub Issues
-            </a>.
-          </p>
+          <div className="leaderboard-footer">
+            <h3>Submission Guidelines</h3>
+            <p>
+              Want to add your model to the leaderboard? Run the full evaluation suite,
+              document your setup, and submit via{' '}
+              <a href="https://github.com/otelcos/open_telco/issues" target="_blank" rel="noopener noreferrer">
+                GitHub Issues
+              </a>.
+            </p>
+          </div>
         </div>
       </div>
     </Layout>

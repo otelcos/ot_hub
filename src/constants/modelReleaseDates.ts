@@ -5,10 +5,10 @@
 
 export const MODEL_RELEASE_DATES: Record<string, string> = {
   // OpenAI models
-  'gpt-5.2': '2025-09-15',
-  'gpt-5-mini': '2025-07-01',
-  'gpt-oss-120b': '2025-08-01',
-  'gpt-oss-20b': '2025-08-01',
+  'gpt-5.2': '2025-12-11',
+  'gpt-5-mini': '2025-08-07',
+  'gpt-oss-120b': '2025-08-04',
+  'gpt-oss-20b': '2025-08-05',
   'gpt-4o': '2024-05-13',
   'gpt-4o-mini': '2024-07-18',
   'gpt-4-turbo': '2024-04-09',
@@ -22,9 +22,9 @@ export const MODEL_RELEASE_DATES: Record<string, string> = {
   'o4-mini': '2025-04-16',
 
   // Anthropic models
-  'claude-opus-4.5': '2025-02-24',
+  'claude-opus-4.5': '2025-11-24',
   'claude-sonnet-4': '2025-05-22',
-  'claude-haiku-4.5': '2025-04-15',
+  'claude-haiku-4.5': '2025-10-15',
   'claude-3.5-sonnet': '2024-06-20',
   'claude-3.5-haiku': '2024-11-04',
   'claude-3-opus': '2024-03-04',
@@ -32,7 +32,7 @@ export const MODEL_RELEASE_DATES: Record<string, string> = {
   'claude-3-haiku': '2024-03-13',
 
   // Google models
-  'gemini-3-flash-preview': '2025-06-01',
+  'gemini-3-flash-preview': '2025-12-17',
   'gemini-2.5-pro': '2025-03-25',
   'gemini-2.5-flash': '2025-04-17',
   'gemini-2.0-flash': '2024-12-11',
@@ -42,14 +42,14 @@ export const MODEL_RELEASE_DATES: Record<string, string> = {
   'gemini-1.0-pro': '2023-12-06',
 
   // DeepSeek models
-  'deepseek-v3.2': '2025-06-15',
+  'deepseek-v3.2': '2025-09-29',
   'deepseek-v3': '2024-12-26',
   'deepseek-r1': '2025-01-20',
   'deepseek-r1-lite': '2024-11-20',
   'deepseek-v2.5': '2024-09-05',
 
   // Mistral models
-  'ministral-8b-2512': '2025-01-15',
+  'ministral-8b-2512': '2025-12-03',
   'mistral-large': '2024-02-26',
   'mistral-medium': '2023-12-11',
   'mistral-small': '2024-02-26',

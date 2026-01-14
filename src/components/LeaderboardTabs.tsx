@@ -20,8 +20,8 @@ export default function LeaderboardTabs({
           className={`leaderboard-tab ${activeTab === category.id ? 'active' : ''}`}
           onClick={() => onTabChange(category.id)}
         >
-          {'icon' in category && (
-            <span className="leaderboard-tab-icon">
+          <span className="leaderboard-tab-icon">
+            {'icon' in category ? (
               <img
                 src={category.icon}
                 alt=""
@@ -29,9 +29,11 @@ export default function LeaderboardTabs({
                 width={18}
                 height={18}
               />
-            </span>
-          )}
-          {category.label}
+            ) : (
+              'emoji' in category && category.emoji
+            )}
+          </span>
+          <span className="leaderboard-tab-label">{category.label}</span>
         </button>
       ))}
     </nav>

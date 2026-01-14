@@ -22,6 +22,7 @@ Explore evaluations across 5 distinct benchmarks, covering telecommunications kn
 <BenchmarkCard
   title="TeleQnA"
   description="Evaluating telecommunications general knowledge."
+  link="/leaderboard/teleqna"
   paperLink="https://arxiv.org/abs/2310.15051"
   datasetLink="https://huggingface.co/datasets/netop/TeleQnA"
 />
@@ -29,6 +30,7 @@ Explore evaluations across 5 distinct benchmarks, covering telecommunications kn
 <BenchmarkCard
   title="TeleLogs"
   description="Evaluating root cause analysis capabilities for 5G network."
+  link="/leaderboard/telelogs"
   paperLink="https://arxiv.org/abs/2507.21974"
   datasetLink="https://huggingface.co/datasets/netop/TeleLogs"
 />
@@ -36,6 +38,7 @@ Explore evaluations across 5 distinct benchmarks, covering telecommunications kn
 <BenchmarkCard
   title="TeleMath"
   description="Evaluating mathematical reasoning in signal processing, network optimisation, and performance analysis."
+  link="/leaderboard/telemath"
   paperLink="https://arxiv.org/abs/2506.10674"
   datasetLink="https://huggingface.co/datasets/netop/TeleMath"
 />
@@ -43,6 +46,7 @@ Explore evaluations across 5 distinct benchmarks, covering telecommunications kn
 <BenchmarkCard
   title="3GPP-TSG"
   description="Evaluating 3GPP protocols knowledge."
+  link="/leaderboard/tsg"
   datasetLink="https://huggingface.co/datasets/eaguaida/gsma_sample"
 />
 

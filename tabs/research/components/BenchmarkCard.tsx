@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 
 interface BenchmarkCardProps {
   title: string;
@@ -29,8 +30,8 @@ export default function BenchmarkCard({
   paperLink,
   datasetLink,
 }: BenchmarkCardProps): JSX.Element {
-  return (
-    <div className="benchmark-card-enhanced">
+  const cardContent = (
+    <>
       <div className="benchmark-card-header">
         {icon && (
           <div className="benchmark-card-icon">
@@ -50,23 +51,8 @@ export default function BenchmarkCard({
             )}
           </div>
         </div>
-        {(paperLink || datasetLink) && (
-          <div style={{ display: 'flex', gap: '8px' }}>
-            {paperLink && (
-              <a
-                href={paperLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: '#008080',
-                  fontSize: '14px',
-                }}
-                title="Paper"
-              >
-                ↗
-              </a>
-            )}
-          </div>
+        {link && (
+          <span className="benchmark-card-arrow">→</span>
         )}
       </div>
       <p className="benchmark-card-description">{description}</p>
@@ -77,6 +63,7 @@ export default function BenchmarkCard({
               href={paperLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
             >
               Paper
             </a>
@@ -86,12 +73,27 @@ export default function BenchmarkCard({
               href={datasetLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
             >
               Dataset
             </a>
           )}
         </div>
       )}
+    </>
+  );
+
+  if (link) {
+    return (
+      <Link to={link} className="benchmark-card-enhanced benchmark-card-clickable">
+        {cardContent}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="benchmark-card-enhanced">
+      {cardContent}
     </div>
   );
 }

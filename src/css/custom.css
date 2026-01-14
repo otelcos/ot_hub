@@ -888,8 +888,10 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 .leaderboard-page {
   max-width: 1200px;
   margin: 0 auto;
+  margin-left: 200px; /* Sidebar width */
   padding: 40px 24px 80px;
   text-align: center;
+  flex: 1;
 }
 
 .leaderboard-header {
@@ -910,16 +912,26 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   margin: 0;
 }
 
-/* Filter Tabs - LM Arena Inspired */
-.leaderboard-tabs {
+/* Leaderboard Layout with Vertical Sidebar */
+.leaderboard-layout {
   display: flex;
-  justify-content: flex-start;
-  gap: 0;
-  width: 900px;
-  margin: 0 auto 32px;
-  border-bottom: 1px solid #e5e0d8;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  min-height: calc(100vh - var(--ifm-navbar-height));
+}
+
+/* Vertical Sidebar Tabs */
+.leaderboard-tabs {
+  position: fixed;
+  left: 0;
+  top: calc(var(--ifm-navbar-height) + 30px);
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 12px;
+  background: var(--ifm-background-color, #faf9f5);
+  height: calc(100vh - var(--ifm-navbar-height) - 30px);
+  z-index: 100;
+  overflow-y: auto;
   scrollbar-width: none;
 }
 
@@ -931,44 +943,51 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 24px;
+  gap: 10px;
+  padding: 12px 16px;
   font-size: 14px;
   font-weight: 500;
-  color: #2d2926;
+  color: #5c5552;
   background: transparent;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
-  flex-shrink: 0;
+  text-align: left;
+  width: 100%;
 }
 
-.leaderboard-tab::after {
+.leaderboard-tab::before {
   content: '';
   position: absolute;
-  bottom: -1px;
   left: 0;
-  right: 0;
-  height: 2px;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
   background: transparent;
+  border-radius: 0 2px 2px 0;
   transition: background 0.2s ease;
 }
 
 .leaderboard-tab-icon {
   font-size: 18px;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .leaderboard-tab:hover:not(.active) {
-  color: #1a1714;
+  color: #2d2926;
+  background: rgba(166, 29, 45, 0.04);
 }
 
 .leaderboard-tab.active {
   color: #a61d2d;
+  background: rgba(166, 29, 45, 0.08);
+  font-weight: 600;
 }
 
-.leaderboard-tab.active::after {
+.leaderboard-tab.active::before {
   background: #a61d2d;
 }
 
@@ -1078,23 +1097,73 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   content: '\2192';
 }
 
-/* Mobile Responsive Tabs */
-@media (max-width: 768px) {
+/* Tablet Responsive - Sidebar becomes narrower */
+@media (max-width: 996px) {
   .leaderboard-tabs {
-    gap: 0;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin-left: -16px;
-    margin-right: -16px;
+    width: 160px;
+  }
+
+  .leaderboard-page {
+    margin-left: 160px;
   }
 
   .leaderboard-tab {
-    padding: 12px 16px;
+    padding: 10px 12px;
     font-size: 13px;
   }
+}
 
+/* Mobile Responsive - Icon-Only Top Bar */
+@media (max-width: 768px) {
+  .leaderboard-layout {
+    flex-direction: column;
+  }
+
+  .leaderboard-tabs {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 12px 0;
+    gap: 24px;
+    background: var(--ifm-background-color, #faf9f5);
+    z-index: auto;
+  }
+
+  .leaderboard-page {
+    margin-left: 0;
+    padding: 24px 16px 60px;
+  }
+
+  /* Hide text labels - show icons only */
+  .leaderboard-tab-label {
+    display: none;
+  }
+
+  .leaderboard-tab {
+    padding: 8px;
+    min-width: 44px;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .leaderboard-tab::before {
+    display: none;
+  }
+
+  .leaderboard-tab.active {
+    background: rgba(166, 29, 45, 0.08);
+  }
+
+  /* Larger icons on mobile */
   .leaderboard-tab-icon {
-    font-size: 16px;
+    font-size: 24px;
+  }
+
+  .leaderboard-tab-icon img {
+    width: 24px;
+    height: 24px;
   }
 
   .category-benchmarks {
