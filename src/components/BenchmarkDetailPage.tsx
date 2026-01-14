@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import katex from 'katex';
@@ -32,7 +32,6 @@ interface BenchmarkDetailPageProps {
 const TCI_CONFIG = {
   key: 'tci',
   title: 'Telco Capability Index (TCI)',
-  description: 'A unified measure of AI model performance across telecommunications-specific tasks, using IRT-inspired methodology for meaningful cross-model comparisons.',
   longDescription: `The Telco Capability Index (TCI) provides a standardized score for comparing AI model performance across telecommunications domains. Using Item Response Theory (IRT) inspired methodology, TCI weighs each benchmark by its difficulty and discrimination power, producing scores on a normalized scale centered at 115.
 
 Models must complete at least 3 of 4 benchmarks to receive a TCI score. This ensures meaningful comparisons even when some benchmark results are missing.`,
@@ -151,6 +150,8 @@ function TextClassificationQuestionCard({ question, index }: { question: TextCla
 }
 
 function QuestionCard({ question, index, isExpanded, onToggle }: QuestionCardProps) {
+  const accordionRef = useRef<HTMLDivElement>(null);
+
   const getQuestionPreview = () => {
     let text = '';
     if (question.type === 'mcq') text = question.question;
@@ -174,7 +175,7 @@ function QuestionCard({ question, index, isExpanded, onToggle }: QuestionCardPro
   };
 
   return (
-    <div className={`question-accordion ${isExpanded ? 'expanded' : 'collapsed'}`}>
+    <div ref={accordionRef} className={`question-accordion ${isExpanded ? 'expanded' : 'collapsed'}`}>
       <button className="accordion-toggle" onClick={onToggle}>
         <div className="accordion-header">
           <span className="accordion-number">Q{index + 1}</span>
@@ -250,8 +251,7 @@ export default function BenchmarkDetailPage({
       const range = maxTCI - minTCI;
       return Math.max(5, ((score - minTCI) / range) * 100);
     } else {
-      const topScore = Math.max(...rankings.map(r => r.score));
-      return Math.max(5, (score / topScore) * 100);
+      return Math.max(5, score);
     }
   };
 
@@ -305,7 +305,7 @@ export default function BenchmarkDetailPage({
   const hasQuestions = !isTCI && 'questions' in benchmark && benchmark.questions && benchmark.questions.length > 0;
 
   return (
-    <Layout title={`${benchmark.title} | Leaderboard`} description={benchmark.description}>
+    <Layout title={`${benchmark.title} | Leaderboard`} description={'description' in benchmark ? benchmark.description : benchmark.longDescription}>
       <div className="benchmark-detail-page">
         <Link to="/leaderboard" className="back-link">
           <span className="back-arrow">&larr;</span> Back to Leaderboard
@@ -313,10 +313,18 @@ export default function BenchmarkDetailPage({
 
         {/* Page Header */}
         <div className="benchmark-page-header">
-          <h1 className="benchmark-page-title">
-            {benchmark.title}
-            {isComingSoon && <span className="coming-soon-badge">Coming Soon</span>}
-          </h1>
+          <div className="benchmark-title-group">
+            <h1 className="benchmark-page-title">
+              {benchmark.title}
+              {isComingSoon && <span className="coming-soon-badge">Coming Soon</span>}
+            </h1>
+            <p className="benchmark-page-subtitle">
+              Want to add your model to the leaderboard?{' '}
+              <a href="https://github.com/gsma-research/ot_leaderboard" target="_blank" rel="noopener noreferrer">
+                Go here
+              </a>
+            </p>
+          </div>
           {!isTCI && ('paperLink' in benchmark || 'datasetLink' in benchmark || hasQuestions) && (
             <div className="benchmark-header-links">
               {'paperLink' in benchmark && benchmark.paperLink && (

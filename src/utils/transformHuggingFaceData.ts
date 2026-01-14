@@ -1,4 +1,5 @@
 import type { LeaderboardEntry } from '../types/leaderboard';
+import { normalizeProviderName } from '../constants/providers';
 
 /**
  * Raw row data from HuggingFace dataset API
@@ -31,7 +32,7 @@ interface HuggingFaceResponse {
 function parseModelAndProvider(combined: string): { model: string; provider: string } {
   const match = combined.match(/^(.+?)\s*\(([^)]+)\)$/);
   if (match) {
-    return { model: match[1].trim(), provider: match[2].trim() };
+    return { model: match[1].trim(), provider: normalizeProviderName(match[2]) };
   }
   // Fallback if no provider in parentheses
   return { model: combined, provider: 'Unknown' };

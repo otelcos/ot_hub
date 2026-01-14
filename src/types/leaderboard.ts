@@ -105,7 +105,7 @@ export type BenchmarkQuestion =
 /**
  * Benchmark category type
  */
-export type BenchmarkCategory = 'overall' | 'knowledge' | 'network-optimisation' | 'self-healing';
+export type BenchmarkCategory = 'overall' | 'knowledge' | 'network-optimisation';
 
 /**
  * Benchmark configuration

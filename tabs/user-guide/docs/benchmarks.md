@@ -20,6 +20,7 @@ Open Telco provides a suite of benchmarks testing different AI capabilities in t
 | TeleLogs | Operations | Medium | Network diagnostics use cases |
 | 3GPP TSG | Standards | Medium | Standards document work |
 | TeleYAML | Configuration | Hard | Network automation (coming soon) |
+| TeleTables | Knowledge | - | Table understanding (coming soon) |
 
 ## All Benchmarks
 
@@ -36,7 +37,7 @@ Open Telco provides a suite of benchmarks testing different AI capabilities in t
 
 <BenchmarkCard
   title="TeleMath"
-  description="500 mathematically intensive problems covering signal processing, network optimization, and performance analysis. Implemented as a ReAct agent using bash and python tools to solve domain-specific mathematical computations."
+  description="Evaluating mathematical reasoning in telecommunication settings."
   sampleCount="500 samples"
   difficulty="hard"
   paperLink="https://arxiv.org/abs/2506.10674"
@@ -57,15 +58,24 @@ Open Telco provides a suite of benchmarks testing different AI capabilities in t
   description="Classifies 3GPP technical documents according to their working group. Models must identify the correct technical specification group for a given document text."
   sampleCount="Variable"
   difficulty="medium"
+  paperLink="https://arxiv.org/abs/2407.09424"
   datasetLink="https://huggingface.co/datasets/eaguaida/gsma_sample"
 />
 
 <BenchmarkCard
   title="TeleYAML"
-  description="Evaluates the capability of LLMs to generate standard-compliant YAML configurations for 5G core network tasks: AMF Configuration, Network Slicing, and UE Provisioning."
+  description="Evaluating understanding of 5G core networks parameters and configuration syntax."
   sampleCount="In Progress"
   difficulty="hard"
   datasetLink="https://huggingface.co/datasets/otellm/gsma-sample-data"
+/>
+
+<BenchmarkCard
+  title="TeleTables"
+  description="Evaluating LLM knowledge and table interpretation of 3GPP telecom standards."
+  sampleCount="TBD"
+  paperLink="https://arxiv.org/abs/2601.04202"
+  datasetLink="https://huggingface.co/datasets/netop/TeleTables"
 />
 
 </div>

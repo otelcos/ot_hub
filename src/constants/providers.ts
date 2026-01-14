@@ -104,3 +104,51 @@ export function getProviderLogoUrl(provider: string): string | undefined {
 
   return logo ? `${LOGO_BASE_PATH}${logo}` : undefined;
 }
+
+/**
+ * Canonical provider names derived from PROVIDER_COLORS (lowercase -> canonical)
+ */
+const CANONICAL_PROVIDERS: Record<string, string> = Object.keys(PROVIDER_COLORS)
+  .filter(key => key !== 'Other')
+  .reduce((acc, key) => {
+    acc[key.toLowerCase()] = key;
+    return acc;
+  }, {} as Record<string, string>);
+
+/**
+ * Aliases for provider name variants
+ */
+const PROVIDER_ALIASES: Record<string, string> = {
+  'xai': 'Grok',
+  'x.ai': 'Grok',
+  'alibaba': 'Qwen',
+  'aws': 'Amazon',
+  'huggingface': 'Hugging Face',
+  'swissai': 'Swiss AI',
+};
+
+/**
+ * Normalize provider name to canonical form
+ */
+export function normalizeProviderName(rawProvider: string): string {
+  if (!rawProvider?.trim()) return 'Unknown';
+
+  const lowerProvider = rawProvider.trim().toLowerCase();
+
+  // Check canonical providers (from PROVIDER_COLORS)
+  if (CANONICAL_PROVIDERS[lowerProvider]) {
+    return CANONICAL_PROVIDERS[lowerProvider];
+  }
+
+  // Check aliases
+  if (PROVIDER_ALIASES[lowerProvider]) {
+    return PROVIDER_ALIASES[lowerProvider];
+  }
+
+  // Fallback: Title Case
+  return rawProvider.trim()
+    .toLowerCase()
+    .split(' ')
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}

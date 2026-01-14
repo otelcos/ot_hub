@@ -78,19 +78,7 @@ Track the performance of language models across Open Telco evaluations.
 
 ## Submission Guidelines
 
-Want to add your model to the leaderboard?
-
-1. **Run the full evaluation suite** using the standard configuration
-2. **Document your setup** including model version, temperature, and parameters
-3. **Submit via GitHub** - Open an issue with your results and evaluation logs
-
-### Required Information
-
-- Model name and version
-- Provider (OpenAI, Anthropic, etc.)
-- Evaluation date
-- Full evaluation logs
-- Any custom configurations used
+Want your model to be included? Go [here](https://github.com/otelcos/ot_leaderboard).
 
 ## Evaluation Standards
 

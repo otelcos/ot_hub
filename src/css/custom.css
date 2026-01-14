@@ -67,6 +67,11 @@ html, body {
   max-width: 100vw;
 }
 
+/* Reserve scrollbar space to prevent layout shift when content expands */
+html {
+  scrollbar-gutter: stable;
+}
+
 /* ============================================
    NAVBAR STYLES - Anthropic-Inspired Design
    ============================================ */
@@ -2788,6 +2793,12 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   flex-wrap: wrap;
 }
 
+.benchmark-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .benchmark-page-title {
   font-family: 'JetBrains Mono', monospace;
   font-size: 1.5rem;
@@ -2797,6 +2808,21 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.benchmark-page-subtitle {
+  font-size: 0.85rem;
+  color: var(--ot-text-muted);
+  margin: 0;
+}
+
+.benchmark-page-subtitle a {
+  color: var(--ot-accent);
+  text-decoration: none;
+}
+
+.benchmark-page-subtitle a:hover {
+  text-decoration: underline;
 }
 
 .benchmark-header-links {
@@ -2827,6 +2853,10 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 /* Full Width Content */
 .benchmark-content {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
 }
 
 /* Legacy grid support (for any remaining uses) */
@@ -2885,6 +2915,7 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 
 .full-ranking-card {
   padding: 24px 28px;
+  flex-shrink: 0;
 }
 
 .full-ranking-header {
@@ -3119,6 +3150,106 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   border-color: var(--ot-text-subtle);
 }
 
+/* Date Range Slider */
+.tci-date-slider {
+  width: 100%;
+  padding: 16px 20px 24px;
+  margin-top: 8px;
+}
+
+.tci-date-slider__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.tci-date-slider__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ot-text-subtle);
+  font-family: 'Source Sans 3', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tci-date-slider__selected {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ot-text);
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.tci-date-slider__track-container {
+  padding: 0 8px;
+}
+
+.tci-date-slider__track {
+  position: relative;
+  height: 6px;
+  background: var(--ot-border);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.tci-date-slider__range {
+  position: absolute;
+  height: 100%;
+  background: var(--ot-primary);
+  border-radius: 3px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.tci-date-slider__thumb {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border: 2px solid var(--ot-primary);
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  transition: box-shadow 150ms ease, transform 150ms ease;
+  z-index: 2;
+}
+
+.tci-date-slider__thumb:hover {
+  box-shadow: 0 0 0 4px rgba(166, 29, 45, 0.15);
+}
+
+.tci-date-slider__thumb--active {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 0 6px rgba(166, 29, 45, 0.2);
+}
+
+.tci-date-slider__thumb:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(166, 29, 45, 0.25);
+}
+
+.tci-date-slider__labels {
+  position: relative;
+  height: 24px;
+  margin-top: 12px;
+}
+
+.tci-date-slider__label {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: var(--ot-text-muted);
+  font-family: 'Source Sans 3', sans-serif;
+  white-space: nowrap;
+}
+
+.tci-date-slider__label--active {
+  color: var(--ot-primary);
+  font-weight: 500;
+}
+
 /* Staggered Dot Animation */
 @keyframes tciDotReveal {
   from {
@@ -3133,7 +3264,6 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 
 .tci-dot {
   animation: tciDotReveal 350ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  animation-fill-mode: both;
 }
 
 /* Glow pulse effect for selected dots */
@@ -3237,6 +3367,28 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 
   .tci-description {
     font-size: 13px;
+  }
+
+  .tci-date-slider {
+    padding: 12px 12px 20px;
+  }
+
+  .tci-date-slider__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .tci-date-slider__title {
+    font-size: 11px;
+  }
+
+  .tci-date-slider__selected {
+    font-size: 12px;
+  }
+
+  .tci-date-slider__label {
+    font-size: 9px;
   }
 }
 
@@ -3455,14 +3607,14 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 .benchmark-questions-section {
   margin-top: 48px;
   padding-top: 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--ot-border);
 }
 
 .questions-section-title {
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px;
   font-weight: 600;
-  color: #F3F4F6;
+  color: var(--ot-text);
   margin-bottom: 24px;
 }
 
@@ -3470,6 +3622,8 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-width: 100%;
+  min-width: 0;
 }
 
 /* Question Cards - Base Styles */
@@ -3479,6 +3633,7 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   border-radius: 12px;
   padding: 24px;
   position: relative;
+  overflow: hidden;
 }
 
 /* Type-specific accent colors (subtle left border variants) */
@@ -3515,6 +3670,9 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   line-height: 1.7;
   color: #e5e7eb;
   margin-bottom: 16px;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .question-text--math {
@@ -3543,6 +3701,8 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .question-option {
@@ -3554,6 +3714,11 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   color: #d1d5db;
   line-height: 1.5;
   transition: all 0.15s ease;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .question-option:hover {
@@ -3582,6 +3747,7 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   margin: 16px 0;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 100%;
 }
 
 .question-table {
@@ -3728,6 +3894,10 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.15s ease;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .question-accordion:hover {
@@ -3789,12 +3959,18 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 
 .accordion-content {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .accordion-content .question-card {
   border: none;
   border-radius: 0;
   margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Question Type Badges */

@@ -22,8 +22,7 @@ export default function LeaderboardCard({
   maxScore = 100,
   benchmarkKey,
 }: LeaderboardCardProps): JSX.Element {
-  const topScore = rankings.length > 0 ? Math.max(...rankings.map(r => r.score)) : maxScore;
-  const getBarWidth = (score: number) => Math.max(5, (score / topScore) * 100);
+  const getBarWidth = (score: number) => Math.max(5, score);
 
   return (
     <div className="leaderboard-card">

@@ -20,14 +20,8 @@ export default function TCIFullTable({
         <div className="leaderboard-card-header">
           <div className="leaderboard-card-title-section">
             <h3 className="leaderboard-card-title">Telco Capability Index (TCI)</h3>
-            <p className="leaderboard-card-description">
-              A unified measure of AI model performance across telecommunications-specific tasks,
-              using IRT-inspired methodology for meaningful cross-model comparisons.
-            </p>
             <a
               href="https://opentelco.io/dashboards"
-              target="_blank"
-              rel="noopener noreferrer"
               className="tci-info-link"
             >
               What is the TCI score?

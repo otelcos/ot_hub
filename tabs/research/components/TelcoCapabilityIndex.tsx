@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import {
   ScatterChart,
   Scatter,
@@ -13,8 +13,9 @@ import type { TCIDataPoint } from '../../../src/types/leaderboard';
 import { useLeaderboardData } from '../../../src/hooks/useLeaderboardData';
 import { useIsMobile } from '../../../src/hooks/useIsMobile';
 import { getProviderColor } from '../../../src/constants/providers';
-import { getModelReleaseDate, formatReleaseDate } from '../../../src/constants/modelReleaseDates';
+import { getModelReleaseDate, formatReleaseDate, formatQuarterTick } from '../../../src/constants/modelReleaseDates';
 import ProviderIcon from '../../../src/components/ProviderIcon';
+import DateRangeSlider from './DateRangeSlider';
 
 // Number of top models to label on the chart
 const TOP_LABELED_COUNT = 5;
@@ -95,6 +96,7 @@ interface CustomDotProps {
   isModelSelected: boolean;
   isTopModel: boolean;
   onClick: () => void;
+  hasAnimated: boolean;
 }
 
 const CustomDot: React.FC<CustomDotProps> = ({
@@ -106,6 +108,7 @@ const CustomDot: React.FC<CustomDotProps> = ({
   isModelSelected,
   isTopModel,
   onClick,
+  hasAnimated,
 }) => {
   if (!cx || !cy || !payload) return null;
 
@@ -114,8 +117,7 @@ const CustomDot: React.FC<CustomDotProps> = ({
 
   return (
     <g
-      className="tci-dot"
-      style={{ animationDelay: `${index * 25}ms` }}
+      {...(!hasAnimated && { className: 'tci-dot', style: { animationDelay: `${(index ?? 0) * 25}ms` } })}
       onClick={onClick}
       cursor="pointer"
     >
@@ -150,7 +152,7 @@ const CustomDot: React.FC<CustomDotProps> = ({
           fontWeight={500}
           fontFamily="'Source Sans 3', sans-serif"
           textAnchor="middle"
-          className="tci-label"
+          {...(!hasAnimated && { className: 'tci-label' })}
         >
           {payload.model}
         </text>
@@ -210,6 +212,8 @@ export default function TelcoCapabilityIndex(): JSX.Element {
   // Selection state
   const [selectedOrgs, setSelectedOrgs] = useState<Set<string>>(new Set());
   const [selectedModels, setSelectedModels] = useState<Set<string>>(new Set());
+  const [dateRange, setDateRange] = useState<[number, number] | null>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   // Toggle organization highlight
   const toggleOrg = useCallback((org: string) => {
@@ -241,6 +245,15 @@ export default function TelcoCapabilityIndex(): JSX.Element {
   const resetSelection = useCallback(() => {
     setSelectedOrgs(new Set());
     setSelectedModels(new Set());
+    setDateRange(null);
+  }, []);
+
+  // Disable animation class after initial load to prevent replay on interactions
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasAnimated(true);
+    }, 1000); // Wait for all staggered animations to complete
+    return () => clearTimeout(timer);
   }, []);
 
   // Transform data for chart
@@ -262,6 +275,97 @@ export default function TelcoCapabilityIndex(): JSX.Element {
       }));
   }, [leaderboardData]);
 
+  // Calculate date bounds for slider (snapped to quarters)
+  const dateBounds = useMemo(() => {
+    if (chartData.length === 0) {
+      return {
+        min: new Date('2023-01-01').getTime(),
+        max: new Date('2026-01-01').getTime(),
+        quarters: [] as { timestamp: number; label: string }[],
+      };
+    }
+
+    const dates = chartData.map((d) => d.releaseDate);
+    const rawMin = Math.min(...dates);
+    const rawMax = Math.max(...dates);
+
+    // Floor min to quarter start
+    const minDate = new Date(rawMin);
+    const minQuarterStart = new Date(
+      minDate.getFullYear(),
+      Math.floor(minDate.getMonth() / 3) * 3,
+      1
+    ).getTime();
+
+    // Ceiling max to next quarter start
+    const maxDate = new Date(rawMax);
+    const maxQuarterEnd = new Date(
+      maxDate.getFullYear(),
+      (Math.floor(maxDate.getMonth() / 3) + 1) * 3,
+      1
+    ).getTime();
+
+    // Generate quarter labels for slider
+    const quarters: { timestamp: number; label: string }[] = [];
+    let current = new Date(minQuarterStart);
+
+    while (current.getTime() <= maxQuarterEnd) {
+      const quarter = Math.floor(current.getMonth() / 3) + 1;
+      quarters.push({
+        timestamp: current.getTime(),
+        label: `Q${quarter} ${current.getFullYear()}`,
+      });
+      current.setMonth(current.getMonth() + 3);
+    }
+
+    return {
+      min: minQuarterStart,
+      max: maxQuarterEnd,
+      quarters,
+    };
+  }, [chartData]);
+
+  // Filter chart data by date range
+  const filteredChartData = useMemo(() => {
+    if (!dateRange) return chartData;
+    const [minSelected, maxSelected] = dateRange;
+    return chartData.filter(
+      (d) => d.releaseDate >= minSelected && d.releaseDate <= maxSelected
+    );
+  }, [chartData, dateRange]);
+
+  // Generate quarterly tick values for X-axis
+  const quarterlyTicks = useMemo(() => {
+    if (chartData.length === 0) return [];
+
+    const dates = chartData.map((d) => d.releaseDate);
+    const minDate = Math.min(...dates);
+    const maxDate = Math.max(...dates);
+
+    // Add padding (60 days) to bounds
+    const padding = 60 * 24 * 60 * 60 * 1000;
+    const startBound = minDate - padding;
+    const endBound = maxDate + padding;
+
+    // Get year range
+    const startYear = new Date(startBound).getFullYear();
+    const endYear = new Date(endBound).getFullYear();
+
+    const ticks: number[] = [];
+    const quarterMonths = [0, 3, 6, 9]; // Jan, Apr, Jul, Oct
+
+    for (let year = startYear; year <= endYear + 1; year++) {
+      for (const month of quarterMonths) {
+        const tickDate = new Date(year, month, 1).getTime();
+        if (tickDate >= startBound && tickDate <= endBound) {
+          ticks.push(tickDate);
+        }
+      }
+    }
+
+    return ticks;
+  }, [chartData]);
+
   // Extract unique providers
   const providers = useMemo(() => {
     const seen = new Set<string>();
@@ -278,20 +382,20 @@ export default function TelcoCapabilityIndex(): JSX.Element {
     return result;
   }, [leaderboardData]);
 
-  // Top 3 models by TCI score (for labels)
+  // Top 3 models by TCI score (for labels) - uses filtered data
   const topModelNames = useMemo(() => {
     return new Set(
-      [...chartData]
+      [...filteredChartData]
         .sort((a, b) => b.tci - a.tci)
         .slice(0, 3)
         .map((d) => d.model)
     );
-  }, [chartData]);
+  }, [filteredChartData]);
 
-  // Y-axis domain calculation
+  // Y-axis domain calculation - uses filtered data
   const yAxisDomain = useMemo(() => {
-    if (chartData.length === 0) return [90, 150];
-    const tciValues = chartData.map((d) => d.tci);
+    if (filteredChartData.length === 0) return [90, 150];
+    const tciValues = filteredChartData.map((d) => d.tci);
     const minTCI = Math.min(...tciValues);
     const maxTCI = Math.max(...tciValues);
     const padding = (maxTCI - minTCI) * 0.15;
@@ -299,7 +403,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
       Math.floor((minTCI - padding) / 5) * 5,
       Math.ceil((maxTCI + padding) / 5) * 5,
     ];
-  }, [chartData]);
+  }, [filteredChartData]);
 
   // Y-axis ticks
   const yAxisTicks = useMemo(() => {
@@ -325,7 +429,33 @@ export default function TelcoCapabilityIndex(): JSX.Element {
   }, [chartData]);
 
   // Check if any selection is active
-  const hasSelection = selectedOrgs.size > 0 || selectedModels.size > 0;
+  const hasSelection = selectedOrgs.size > 0 || selectedModels.size > 0 || dateRange !== null;
+
+  // Memoized shape renderer to prevent animation replay on re-renders
+  const renderShape = useCallback(
+    (props: unknown) => {
+      const typedProps = props as { cx?: number; cy?: number; payload?: TCIDataPoint; index?: number };
+      const { payload } = typedProps;
+      if (!payload) return null;
+
+      const isOrgHighlighted =
+        selectedOrgs.size === 0 || selectedOrgs.has(payload.provider);
+      const isModelSelected = selectedModels.has(payload.model);
+      const isTopModel = topModelNames.has(payload.model);
+
+      return (
+        <CustomDot
+          {...typedProps}
+          isOrgHighlighted={isOrgHighlighted}
+          isModelSelected={isModelSelected}
+          isTopModel={isTopModel}
+          onClick={() => toggleModel(payload.model)}
+          hasAnimated={hasAnimated}
+        />
+      );
+    },
+    [selectedOrgs, selectedModels, topModelNames, toggleModel, hasAnimated]
+  );
 
   if (loading) {
     return (
@@ -346,10 +476,6 @@ export default function TelcoCapabilityIndex(): JSX.Element {
   return (
     <div className="tci-chart-container">
       <h2 className="tci-title">Telco Capabilities Index (TCI)</h2>
-      <p className="tci-description">
-        A unified measure of AI model performance across telecommunications-specific tasks,
-        using IRT-inspired methodology for meaningful cross-model comparisons.
-      </p>
 
       <div className="tci-chart-wrapper">
         {/* Organization Legend */}
@@ -357,7 +483,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
           providers={providers}
           selectedOrgs={selectedOrgs}
           onToggle={toggleOrg}
-          resultCount={chartData.length}
+          resultCount={filteredChartData.length}
         />
 
         <ResponsiveContainer width="100%" height={500}>
@@ -373,7 +499,8 @@ export default function TelcoCapabilityIndex(): JSX.Element {
               type="number"
               dataKey="releaseDate"
               domain={xAxisDomain}
-              tickFormatter={formatReleaseDate}
+              ticks={quarterlyTicks}
+              tickFormatter={formatQuarterTick}
               tick={{ fontSize: 11, fill: '#5c5552', fontFamily: "'Source Sans 3', sans-serif" }}
               axisLine={{ stroke: '#d4d0c8' }}
               tickLine={false}
@@ -399,32 +526,22 @@ export default function TelcoCapabilityIndex(): JSX.Element {
               }}
             />
             <Tooltip content={<MinimalTooltip />} cursor={{ strokeDasharray: '3 3', stroke: '#a61d2d' }} />
-            <Scatter data={chartData} shape={(props: unknown) => {
-              const typedProps = props as { cx?: number; cy?: number; payload?: TCIDataPoint; index?: number };
-              const { payload } = typedProps;
-              if (!payload) return null;
-
-              const isOrgHighlighted =
-                selectedOrgs.size === 0 || selectedOrgs.has(payload.provider);
-              const isModelSelected = selectedModels.has(payload.model);
-              const isTopModel = topModelNames.has(payload.model);
-
-              return (
-                <CustomDot
-                  {...typedProps}
-                  isOrgHighlighted={isOrgHighlighted}
-                  isModelSelected={isModelSelected}
-                  isTopModel={isTopModel}
-                  onClick={() => toggleModel(payload.model)}
-                />
-              );
-            }}>
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
+            <Scatter data={filteredChartData} shape={renderShape}>
+              {filteredChartData.map((entry) => (
+                <Cell key={entry.model} fill={entry.color} />
               ))}
             </Scatter>
           </ScatterChart>
         </ResponsiveContainer>
+
+        {/* Date Range Slider */}
+        <DateRangeSlider
+          minDate={dateBounds.min}
+          maxDate={dateBounds.max}
+          value={dateRange ?? [dateBounds.min, dateBounds.max]}
+          onChange={setDateRange}
+          quarterLabels={dateBounds.quarters}
+        />
 
         {/* Reset button - only visible when selection active */}
         {hasSelection && (

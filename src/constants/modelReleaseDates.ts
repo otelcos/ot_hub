@@ -160,3 +160,12 @@ export function formatReleaseDate(timestamp: number): string {
   const year = date.getFullYear();
   return `${month}. ${year}`;
 }
+
+/**
+ * Format timestamp as quarter label for X-axis ticks
+ */
+export function formatQuarterTick(timestamp: number): string {
+  const date = new Date(timestamp);
+  const quarter = Math.floor(date.getMonth() / 3) + 1;
+  return `Q${quarter} ${date.getFullYear()}`;
+}

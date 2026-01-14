@@ -15,7 +15,7 @@ import BenchmarkCard from '@site/tabs/research/components/BenchmarkCard';
 
 # Benchmarks
 
-Explore evaluations across 5 distinct benchmarks, covering telecommunications knowledge, network operations, mathematical reasoning, and standards comprehension.
+Explore evaluations across 6 distinct benchmarks, covering telecommunications knowledge, network operations, mathematical reasoning, and standards comprehension.
 
 <div className="benchmark-grid">
 
@@ -37,7 +37,7 @@ Explore evaluations across 5 distinct benchmarks, covering telecommunications kn
 
 <BenchmarkCard
   title="TeleMath"
-  description="Evaluating mathematical reasoning in signal processing, network optimisation, and performance analysis."
+  description="Evaluating mathematical reasoning in telecommunication settings."
   link="/leaderboard/telemath"
   paperLink="https://arxiv.org/abs/2506.10674"
   datasetLink="https://huggingface.co/datasets/netop/TeleMath"
@@ -47,12 +47,20 @@ Explore evaluations across 5 distinct benchmarks, covering telecommunications kn
   title="3GPP-TSG"
   description="Evaluating 3GPP protocols knowledge."
   link="/leaderboard/tsg"
+  paperLink="https://arxiv.org/abs/2407.09424"
   datasetLink="https://huggingface.co/datasets/eaguaida/gsma_sample"
 />
 
 <BenchmarkCard
   title="TeleYAML"
-  description="Evaluates LLM capability to generate valid YAML configurations for telecommunications network elements. Tests understanding of 5G core network parameters and configuration syntax."
+  description="Evaluating understanding of 5G core networks parameters and configuration syntax."
+/>
+
+<BenchmarkCard
+  title="TeleTables"
+  description="Evaluating LLM knowledge and table interpretation of 3GPP telecom standards."
+  paperLink="https://arxiv.org/abs/2601.04202"
+  datasetLink="https://huggingface.co/datasets/netop/TeleTables"
 />
 
 </div>
