@@ -65,6 +65,44 @@ export interface TCIDataPoint {
 }
 
 /**
+ * Question types for benchmark examples
+ */
+export type QuestionType = 'mcq' | 'open-ended' | 'log-analysis' | 'text-classification';
+
+export interface MCQQuestion {
+  type: 'mcq';
+  question: string;
+  options: string[];
+}
+
+export interface OpenEndedQuestion {
+  type: 'open-ended';
+  question: string;
+}
+
+export interface LogAnalysisQuestion {
+  type: 'log-analysis';
+  prompt: string;
+  tableExcerpt: {
+    headers: string[];
+    rows: string[][];
+  };
+  options: string[];
+}
+
+export interface TextClassificationQuestion {
+  type: 'text-classification';
+  passage: string;
+  options: string[];
+}
+
+export type BenchmarkQuestion =
+  | MCQQuestion
+  | OpenEndedQuestion
+  | LogAnalysisQuestion
+  | TextClassificationQuestion;
+
+/**
  * Benchmark configuration
  */
 export interface BenchmarkConfig {
@@ -73,7 +111,8 @@ export interface BenchmarkConfig {
   description: string;
   icon?: string;
   samples?: string;
-  difficulty?: 'easy' | 'medium' | 'hard';
   paperLink?: string;
   datasetLink?: string;
+  questions?: BenchmarkQuestion[];
+  comingSoon?: boolean;
 }
