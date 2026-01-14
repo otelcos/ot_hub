@@ -3816,3 +3816,19 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
     padding: 10px 12px;
   }
 }
+
+
+/* ============================================
+   PIXEL ART ICONS - Crisp Rendering
+   ============================================ */
+
+.pixel-art-icon {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.pixel-art-icon svg {
+  shape-rendering: crispEdges;
+}
