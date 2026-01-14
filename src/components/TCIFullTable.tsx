@@ -22,8 +22,6 @@ export default function TCIFullTable({
             <h3 className="leaderboard-card-title">Telco Capability Index (TCI)</h3>
             <a
               href="https://opentelco.io/dashboards"
-              target="_blank"
-              rel="noopener noreferrer"
               className="tci-info-link"
             >
               What is the TCI score?
