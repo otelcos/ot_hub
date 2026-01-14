@@ -913,10 +913,11 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 /* Filter Tabs - LM Arena Inspired */
 .leaderboard-tabs {
   display: flex;
-  gap: 4px;
-  margin-bottom: 32px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 0;
+  justify-content: flex-start;
+  gap: 0;
+  width: 900px;
+  margin: 0 auto 32px;
+  border-bottom: 1px solid #e5e0d8;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -927,21 +928,31 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 }
 
 .leaderboard-tab {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 20px;
+  padding: 14px 24px;
   font-size: 14px;
   font-weight: 500;
   color: #2d2926;
   background: transparent;
   border: none;
-  border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
   white-space: nowrap;
   flex-shrink: 0;
-  margin-bottom: -1px;
+}
+
+.leaderboard-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.2s ease;
 }
 
 .leaderboard-tab-icon {
@@ -949,17 +960,16 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
   line-height: 1;
 }
 
-.leaderboard-tab-label {
-  font-family: var(--font-display);
-}
-
 .leaderboard-tab:hover:not(.active) {
   color: #1a1714;
 }
 
 .leaderboard-tab.active {
-  color: #d4a574;
-  border-bottom-color: #d4a574;
+  color: #a61d2d;
+}
+
+.leaderboard-tab.active::after {
+  background: #a61d2d;
 }
 
 /* Leaderboard Content Area */

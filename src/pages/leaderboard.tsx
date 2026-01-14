@@ -83,11 +83,6 @@ export default function LeaderboardPage(): JSX.Element {
   return (
     <Layout title="Leaderboard" description="Open Telco LLM Leaderboard">
       <div className="leaderboard-page">
-        <div className="leaderboard-header">
-          <h1>Leaderboard</h1>
-          <p>Track the performance of language models across Open Telco evaluations.</p>
-        </div>
-
         <LeaderboardTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
         <div className="leaderboard-content">
