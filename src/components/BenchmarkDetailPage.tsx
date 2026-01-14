@@ -250,8 +250,7 @@ export default function BenchmarkDetailPage({
       const range = maxTCI - minTCI;
       return Math.max(5, ((score - minTCI) / range) * 100);
     } else {
-      const topScore = Math.max(...rankings.map(r => r.score));
-      return Math.max(5, (score / topScore) * 100);
+      return Math.max(5, score);
     }
   };
 
