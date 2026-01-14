@@ -38,7 +38,6 @@ const config: Config = {
         path: 'tabs/research/docs',
         routeBasePath: '',
         sidebarPath: false,
-        editUrl: 'https://github.com/otelcos/ot_hub/tree/main/',
       },
     ],
     // Leaderboard now uses custom React page at src/pages/leaderboard.tsx
@@ -50,7 +49,6 @@ const config: Config = {
         path: 'tabs/leaderboard/docs',
         routeBasePath: 'leaderboard/details',
         sidebarPath: false,
-        editUrl: 'https://github.com/otelcos/ot_hub/tree/main/',
       },
     ],
     [
@@ -60,7 +58,6 @@ const config: Config = {
         path: 'tabs/resources/docs',
         routeBasePath: 'resources',
         sidebarPath: false,
-        editUrl: 'https://github.com/otelcos/ot_hub/tree/main/',
       },
     ],
     [
@@ -70,7 +67,6 @@ const config: Config = {
         path: 'tabs/blog/docs',
         routeBasePath: 'blog',
         sidebarPath: false,
-        editUrl: 'https://github.com/otelcos/ot_hub/tree/main/',
       },
     ],
   ],
@@ -83,7 +79,6 @@ const config: Config = {
           path: 'tabs/user-guide/docs',
           sidebarPath: './sidebars.ts',
           routeBasePath: '/docs',
-          editUrl: 'https://github.com/otelcos/ot_hub/tree/main/',
         },
         blog: false,
         theme: {

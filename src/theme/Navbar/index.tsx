@@ -3,6 +3,25 @@ import Link from '@docusaurus/Link';
 import { useLocation } from '@docusaurus/router';
 import styles from './styles.module.css';
 
+// Hamburger icon for mobile menu
+const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
+  <svg
+    className={`${styles.hamburgerIcon} ${isOpen ? styles.hamburgerOpen : ''}`}
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <line className={styles.hamburgerLine1} x1="3" y1="6" x2="21" y2="6" />
+    <line className={styles.hamburgerLine2} x1="3" y1="12" x2="21" y2="12" />
+    <line className={styles.hamburgerLine3} x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+
 // SVG Chevron component - rotates when dropdown is open
 const Chevron = ({ isOpen }: { isOpen: boolean }) => (
   <svg
@@ -113,6 +132,8 @@ const ThetaLetter = () => (
 
 export default function Navbar(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Listen for scroll on any element using capture phase
   useEffect(() => {
@@ -146,6 +167,55 @@ export default function Navbar(): JSX.Element {
       document.removeEventListener('scroll', handleScroll, { capture: true });
     };
   }, []);
+
+  // Close mobile menu on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <nav className={`navbar ${styles.navbar}`}>
@@ -210,6 +280,85 @@ export default function Navbar(): JSX.Element {
           >
             GitHub
           </a>
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          className={styles.hamburgerButton}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          <HamburgerIcon isOpen={isMobileMenuOpen} />
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className={styles.mobileOverlay} onClick={closeMobileMenu} />
+      )}
+
+      {/* Mobile Menu Drawer */}
+      <div
+        ref={mobileMenuRef}
+        className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}
+      >
+        <div className={styles.mobileMenuHeader}>
+          <span className={styles.mobileMenuTitle}>Menu</span>
+          <button
+            className={styles.mobileCloseButton}
+            onClick={closeMobileMenu}
+            aria-label="Close menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className={styles.mobileMenuContent}>
+          {/* Research Section */}
+          <div className={styles.mobileMenuSection}>
+            <span className={styles.mobileMenuLabel}>Research</span>
+            <Link to="/dashboards" className={styles.mobileMenuItem} onClick={closeMobileMenu}>
+              Dashboard
+            </Link>
+            <Link to="/benchmarks" className={styles.mobileMenuItem} onClick={closeMobileMenu}>
+              Benchmarks
+            </Link>
+            <Link to="/models" className={styles.mobileMenuItem} onClick={closeMobileMenu}>
+              Models
+            </Link>
+          </div>
+
+          {/* Main Links */}
+          <div className={styles.mobileMenuSection}>
+            <Link to="/leaderboard" className={styles.mobileMenuItem} onClick={closeMobileMenu}>
+              Leaderboard
+            </Link>
+            <Link to="/docs" className={styles.mobileMenuItem} onClick={closeMobileMenu}>
+              Documentation
+            </Link>
+          </div>
+
+          {/* External Links */}
+          <div className={styles.mobileMenuSection}>
+            <a
+              href="https://github.com/otelcos/open_telco"
+              className={styles.mobileMenuItem}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobileMenu}
+            >
+              GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.5rem' }}>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </nav>
