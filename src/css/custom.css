@@ -1128,6 +1128,7 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
     padding: 12px 0;
     gap: 24px;
     background: var(--ifm-background-color, #faf9f5);
+    z-index: auto;
   }
 
   .leaderboard-page {
