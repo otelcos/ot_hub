@@ -39,8 +39,8 @@ uv --version
 ## Step 2: Clone and Install
 
 ```bash
-git clone https://github.com/otelcos/open_telco.git
-cd open_telco
+git clone https://github.com/otelcos/evals.git
+cd evals
 uv sync
 ```
 
@@ -81,7 +81,7 @@ INSPECT_EVAL_MODEL=anthropic/claude-sonnet-4-20250514
 Run a quick test with 5 samples:
 
 ```bash
-uv run inspect eval src/open_telco/teleqna/teleqna.py --model openai/gpt-4o --limit 5
+uv run inspect eval src/evals/teleqna/teleqna.py --model openai/gpt-4o --limit 5
 ```
 
 If successful, you'll see evaluation progress and results in your terminal.

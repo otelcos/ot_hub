@@ -26,7 +26,7 @@ Get running in under 5 minutes:
   {
     title: "Clone the repository",
     description: "Get the Open Telco codebase from GitHub.",
-    code: "git clone https://github.com/otelcos/open_telco.git\ncd open_telco"
+    code: "git clone https://github.com/otelcos/evals.git\ncd evals"
   },
   {
     title: "Install dependencies",
@@ -41,7 +41,7 @@ Get running in under 5 minutes:
   {
     title: "Run your first evaluation",
     description: "Test with TeleQnA benchmark.",
-    code: "uv run inspect eval src/open_telco/teleqna/teleqna.py --model openai/gpt-4o --limit 20"
+    code: "uv run inspect eval src/evals/teleqna/teleqna.py --model openai/gpt-4o --limit 20"
   }
 ]} />
 
@@ -59,6 +59,6 @@ For detailed setup instructions, see the [Installation Guide](/docs/installation
 
 ## Resources
 
-- **Repository:** [github.com/otelcos/open_telco](https://github.com/otelcos/open_telco)
+- **Repository:** [github.com/otelcos/evals](https://github.com/otelcos/evals)
 - **Datasets:** [huggingface.co/datasets/GSMA/open_telco](https://huggingface.co/datasets/GSMA/open_telco)
 - **Inspect AI:** [inspect.aisi.org.uk](https://inspect.aisi.org.uk/)

@@ -229,7 +229,7 @@ const FAQ_ITEMS: FAQItem[] = [
         </ul>
         <p>
           To request inclusion, submit your model via{' '}
-          <a href="https://github.com/gsma-research/open_telco/issues" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/otelcos/evals/issues" target="_blank" rel="noopener noreferrer">
             GitHub Issues
           </a>{' '}
           with evaluation results and methodology documentation.
@@ -253,7 +253,7 @@ const FAQ_ITEMS: FAQItem[] = [
         </ul>
         <p>
           Propose new benchmarks through our{' '}
-          <a href="https://github.com/gsma-research/open_telco/issues" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/otelcos/evals/issues" target="_blank" rel="noopener noreferrer">
             GitHub repository
           </a>. We especially welcome benchmarks covering network operations,
           customer service, and emerging 5G/6G technologies.

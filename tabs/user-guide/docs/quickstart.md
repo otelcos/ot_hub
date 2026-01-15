@@ -18,8 +18,8 @@ Get from zero to your first evaluation result in 5 minutes.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and setup
-git clone https://github.com/otelcos/open_telco.git
-cd open_telco
+git clone https://github.com/otelcos/evals.git
+cd evals
 uv sync
 ```
 
@@ -41,7 +41,7 @@ OPENAI_API_KEY=your_openai_key
 Start with **TeleQnA** - it's the fastest benchmark and a good test of your setup:
 
 ```bash
-uv run inspect eval src/open_telco/teleqna/teleqna.py --model openai/gpt-4o --limit 20
+uv run inspect eval src/evals/teleqna/teleqna.py --model openai/gpt-4o --limit 20
 ```
 
 This runs 20 questions from the TeleQnA benchmark using GPT-4o.
@@ -76,28 +76,28 @@ Once TeleQnA works, try others:
 
 ```bash
 # Network diagnostics (root cause analysis)
-uv run inspect eval src/open_telco/telelogs/telelogs.py --model openai/gpt-4o --limit 10
+uv run inspect eval src/evals/telelogs/telelogs.py --model openai/gpt-4o --limit 10
 
 # Standards classification
-uv run inspect eval src/open_telco/three_gpp/three_gpp.py --model openai/gpt-4o --limit 10
+uv run inspect eval src/evals/three_gpp/three_gpp.py --model openai/gpt-4o --limit 10
 
 # Mathematical reasoning (more challenging)
-uv run inspect eval src/open_telco/telemath/telemath.py --model openai/gpt-4o --limit 5
+uv run inspect eval src/evals/telemath/telemath.py --model openai/gpt-4o --limit 5
 ```
 
 ## Try Different Models
 
 ```bash
 # Anthropic Claude
-uv run inspect eval src/open_telco/teleqna/teleqna.py \
+uv run inspect eval src/evals/teleqna/teleqna.py \
   --model anthropic/claude-sonnet-4-20250514 --limit 20
 
 # Via OpenRouter (access many models)
-uv run inspect eval src/open_telco/teleqna/teleqna.py \
+uv run inspect eval src/evals/teleqna/teleqna.py \
   --model openrouter/google/gemini-2.0-flash-001 --limit 20
 
 # GPT-4o-mini (faster, cheaper)
-uv run inspect eval src/open_telco/teleqna/teleqna.py \
+uv run inspect eval src/evals/teleqna/teleqna.py \
   --model openai/gpt-4o-mini --limit 20
 ```
 
@@ -107,7 +107,7 @@ Remove the `--limit` flag to run the complete dataset:
 
 ```bash
 # Full TeleQnA (10,000 questions)
-uv run inspect eval src/open_telco/teleqna/teleqna.py --model openai/gpt-4o
+uv run inspect eval src/evals/teleqna/teleqna.py --model openai/gpt-4o
 ```
 
 <InfoCard variant="warning" title="API Costs">
@@ -119,7 +119,7 @@ uv run inspect eval src/open_telco/teleqna/teleqna.py --model openai/gpt-4o
 Run the same benchmark across models:
 
 ```bash
-uv run inspect eval-set src/open_telco/teleqna/teleqna.py \
+uv run inspect eval-set src/evals/teleqna/teleqna.py \
   --model openai/gpt-4o,anthropic/claude-sonnet-4-20250514 \
   --log-dir logs/comparison \
   --limit 50
@@ -132,7 +132,7 @@ uv run inspect eval-set src/open_telco/teleqna/teleqna.py \
 If you hit rate limits, add retry options:
 
 ```bash
-uv run inspect eval src/open_telco/teleqna/teleqna.py \
+uv run inspect eval src/evals/teleqna/teleqna.py \
   --model openai/gpt-4o \
   --retry-attempts 5 \
   --retry-wait 60
@@ -149,7 +149,7 @@ uv run inspect eval src/open_telco/teleqna/teleqna.py \
 Run multiple epochs for more stable results:
 
 ```bash
-uv run inspect eval src/open_telco/teleqna/teleqna.py \
+uv run inspect eval src/evals/teleqna/teleqna.py \
   --model openai/gpt-4o \
   --epochs 3
 ```

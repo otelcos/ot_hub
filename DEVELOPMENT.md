@@ -5,7 +5,7 @@
 ```bash
 cd website
 npm install    # First time only
-npm start      # Starts dev server at http://localhost:3000/open_telco/
+npm start      # Starts dev server at http://localhost:3000/
 ```
 
 ## Prerequisites
@@ -47,7 +47,7 @@ website/
 
 ## Deployment
 
-The site is deployed to GitHub Pages at https://otelcos.github.io/open_telco/
+The site is deployed to https://opentelco.io
 
 To deploy manually:
 ```bash

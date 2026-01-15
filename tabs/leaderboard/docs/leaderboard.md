@@ -78,7 +78,7 @@ Track the performance of language models across Open Telco evaluations.
 
 ## Submission Guidelines
 
-Want your model to be included? Go [here](https://github.com/otelcos/ot_leaderboard).
+Want your model to be included? Go [here](https://github.com/otelcos/leaderboard).
 
 ## Evaluation Standards
 

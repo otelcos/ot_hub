@@ -16,7 +16,7 @@ const config: Config = {
   baseUrl: '/',
 
   organizationName: 'otelcos',
-  projectName: 'ot_hub',
+  projectName: 'website',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -128,7 +128,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/otelcos/open_telco',
+          href: 'https://github.com/otelcos/evals',
           label: 'GitHub',
           position: 'right',
         },
@@ -168,7 +168,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/otelcos/open_telco',
+              href: 'https://github.com/otelcos/evals',
             },
             {
               label: 'GSMA',

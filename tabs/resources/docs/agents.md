@@ -32,7 +32,7 @@ An agent specialized in analyzing network logs and identifying root causes of is
 
 **Usage:**
 ```python
-from open_telco.agents import NetworkDiagnosticsAgent
+from evals.agents import NetworkDiagnosticsAgent
 
 agent = NetworkDiagnosticsAgent(model="gpt-4o")
 result = agent.diagnose(logs=network_logs)

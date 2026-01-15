@@ -156,7 +156,7 @@ website/
 │   └─────────────────────────────────────────────────────────────────────┘   │
 │                                                                              │
 │   Data Flow:                                                                 │
-│   1. JSON file served from /open_telco/data/leaderboard.json                │
+│   1. JSON file served from /data/leaderboard.json                           │
 │   2. React components fetch JSON on mount                                    │
 │   3. parseJSON() maps fields to LeaderboardEntry type                       │
 │   4. calculateTCI() computes capability index using IRT methodology         │
@@ -179,7 +179,7 @@ website/
 │                                                      ▼                       │
 │                              ┌────────────────────────────────────────────┐ │
 │                              │         GitHub Pages                        │ │
-│                              │  https://otelcos.github.io/open_telco│ │
+│                              │           https://opentelco.io              │ │
 │                              └────────────────────────────────────────────┘ │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -428,14 +428,14 @@ npm run serve     # Preview production build
 ### Deployment (GitHub Pages)
 
 The site is deployed via GitHub Actions to:
-`https://otelcos.github.io/open_telco/`
+`https://opentelco.io`
 
 Configuration in `docusaurus.config.ts`:
 ```typescript
-url: 'https://otelcos.github.io',
-baseUrl: '/open_telco/',
+url: 'https://opentelco.io',
+baseUrl: '/',
 organizationName: 'otelcos',
-projectName: 'open_telco',
+projectName: 'website',
 ```
 
 ---
@@ -449,7 +449,7 @@ Key settings:
 {
   title: 'Open Telco',
   tagline: 'A collection of telco evals...',
-  baseUrl: '/open_telco/',
+  baseUrl: '/',
 
   // Tab-based organization using multi-instance docs
   staticDirectories: ['static', 'tabs/leaderboard'],
@@ -535,7 +535,7 @@ plugins: [
 
 | Issue | Solution |
 |-------|----------|
-| JSON not loading | Check path `/open_telco/data/leaderboard.json` |
+| JSON not loading | Check path `/data/leaderboard.json` |
 | Chart not rendering | Verify Recharts imported |
 | Styles not applying | Check CSS class names |
 | Build fails on LaTeX | Use code blocks instead of math |

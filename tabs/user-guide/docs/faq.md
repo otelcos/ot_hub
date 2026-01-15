@@ -52,7 +52,7 @@ Common questions about Open Telco, organized by topic.
           <li>Broad coverage of telecom topics</li>
           <li>Good baseline for model comparison</li>
         </ul>
-        <p>Run it with: <code>uv run inspect eval src/open_telco/teleqna/teleqna.py --model openai/gpt-4o --limit 50</code></p>
+        <p>Run it with: <code>uv run inspect eval src/evals/teleqna/teleqna.py --model openai/gpt-4o --limit 50</code></p>
       </>
     )
   },
@@ -187,7 +187,7 @@ Common questions about Open Telco, organized by topic.
       <>
         <p>Use <code>inspect eval-set</code> with comma-separated models:</p>
         <pre style={{ background: '#f5f5f5', padding: '12px', borderRadius: '4px', overflow: 'auto' }}>
-{`uv run inspect eval-set src/open_telco/teleqna/teleqna.py \\
+{`uv run inspect eval-set src/evals/teleqna/teleqna.py \\
   --model openai/gpt-4o,anthropic/claude-sonnet-4-20250514 \\
   --log-dir logs/comparison`}
         </pre>
@@ -201,7 +201,7 @@ Common questions about Open Telco, organized by topic.
       <>
         <p>Yes! Re-run the same command with the same <code>--log-dir</code>:</p>
         <pre style={{ background: '#f5f5f5', padding: '12px', borderRadius: '4px', overflow: 'auto' }}>
-{`uv run inspect eval-set src/open_telco/teleqna/teleqna.py \\
+{`uv run inspect eval-set src/evals/teleqna/teleqna.py \\
   --model openai/gpt-4o \\
   --log-dir logs/my-run`}
         </pre>
@@ -234,7 +234,7 @@ Common questions about Open Telco, organized by topic.
       <>
         <p>Add retry options to handle rate limits gracefully:</p>
         <pre style={{ background: '#f5f5f5', padding: '12px', borderRadius: '4px', overflow: 'auto' }}>
-{`uv run inspect eval src/open_telco/teleqna/teleqna.py \\
+{`uv run inspect eval src/evals/teleqna/teleqna.py \\
   --model openai/gpt-4o \\
   --retry-attempts 5 \\
   --retry-wait 60`}
@@ -280,6 +280,6 @@ Common questions about Open Telco, organized by topic.
 
 ## Getting Help
 
-- **GitHub Issues:** [github.com/otelcos/open_telco/issues](https://github.com/otelcos/open_telco/issues)
+- **GitHub Issues:** [github.com/otelcos/evals/issues](https://github.com/otelcos/evals/issues)
 - **Inspect AI Docs:** [inspect.aisi.org.uk](https://inspect.aisi.org.uk/)
 - **Email:** [emolero@gsma.com](mailto:emolero@gsma.com)

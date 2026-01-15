@@ -85,23 +85,23 @@ Open Telco provides a suite of benchmarks testing different AI capabilities in t
 ### Basic Usage
 
 ```bash
-uv run inspect eval src/open_telco/<benchmark>/<benchmark>.py --model <model>
+uv run inspect eval src/evals/<benchmark>/<benchmark>.py --model <model>
 ```
 
 ### Examples
 
 ```bash
 # TeleQnA - Knowledge evaluation
-uv run inspect eval src/open_telco/teleqna/teleqna.py --model openai/gpt-4o
+uv run inspect eval src/evals/teleqna/teleqna.py --model openai/gpt-4o
 
 # TeleMath - Mathematical reasoning
-uv run inspect eval src/open_telco/telemath/telemath.py --model openai/gpt-4o
+uv run inspect eval src/evals/telemath/telemath.py --model openai/gpt-4o
 
 # TeleLogs - Root cause analysis
-uv run inspect eval src/open_telco/telelogs/telelogs.py --model openai/gpt-4o
+uv run inspect eval src/evals/telelogs/telelogs.py --model openai/gpt-4o
 
 # 3GPP TSG - Standards classification
-uv run inspect eval src/open_telco/three_gpp/three_gpp.py --model openai/gpt-4o
+uv run inspect eval src/evals/three_gpp/three_gpp.py --model openai/gpt-4o
 ```
 
 ### Common Options

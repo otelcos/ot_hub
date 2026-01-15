@@ -13,7 +13,7 @@ We welcome contributions from the community! Open Telco is an open-source projec
 
 | Contribution | Description |
 |--------------|-------------|
-| **Report Issues** | Found a bug? Open an issue on [GitHub](https://github.com/otelcos/open_telco/issues). |
+| **Report Issues** | Found a bug? Open an issue on [GitHub](https://github.com/otelcos/evals/issues). |
 | **Request Features** | Have an idea? Share it in GitHub Issues or Discussions. |
 | **Improve Docs** | Fix typos, add examples, or write tutorials. |
 | **Add Benchmarks** | Contribute new telecom-specific evaluations. |
@@ -24,8 +24,8 @@ We welcome contributions from the community! Open Telco is an open-source projec
 
 ```bash
 # 1. Fork and clone
-git clone https://github.com/YOUR_USERNAME/open_telco.git
-cd open_telco
+git clone https://github.com/otelcos/evals.git
+cd evals
 
 # 2. Install dependencies
 pip install uv
@@ -64,7 +64,7 @@ pre-commit run --all-files
 
 Want to contribute a new benchmark? Follow these steps:
 
-1. **Review existing implementations** in `src/open_telco/`
+1. **Review existing implementations** in `src/evals/`
 2. **Follow Inspect AI patterns** - see [their docs](https://inspect.aisi.org.uk/)
 3. **Include documentation** - README, docstrings, usage examples
 4. **Add tests** - ensure your eval works correctly

@@ -1,5 +1,6 @@
 /**
- * Custom plugin to redirect root (/) to baseUrl (/ot_hub/)
+ * Custom plugin to redirect root (/) to baseUrl when using subdirectory deployment
+ * Not active when baseUrl is '/' (custom domain deployment)
  * Works in both development and production
  */
 const path = require('path');
@@ -9,8 +10,13 @@ module.exports = function rootRedirectPlugin(context, options) {
   return {
     name: 'root-redirect-plugin',
 
-    // Add middleware for development server
+    // Add middleware for development server (only active when baseUrl !== '/')
     configureWebpack(config, isServer, utils) {
+      const { baseUrl } = context.siteConfig;
+      // Skip if baseUrl is root (custom domain deployment)
+      if (baseUrl === '/') {
+        return {};
+      }
       return {
         devServer: {
           setupMiddlewares: (middlewares, devServer) => {
@@ -18,7 +24,7 @@ module.exports = function rootRedirectPlugin(context, options) {
             devServer.app.get('/', (req, res, next) => {
               // Only redirect exact root path
               if (req.path === '/') {
-                res.redirect(301, '/ot_hub/');
+                res.redirect(301, baseUrl);
               } else {
                 next();
               }
@@ -44,7 +50,7 @@ module.exports = function rootRedirectPlugin(context, options) {
 </body>
 </html>`;
 
-      // Write redirect to parent of outDir (which is build/ot_hub)
+      // Write redirect to parent of outDir (for subdirectory deployments)
       // So the redirect goes to build/index.html
       const parentDir = path.dirname(outDir);
       const redirectPath = path.join(parentDir, 'index.html');

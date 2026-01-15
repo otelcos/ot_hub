@@ -4,7 +4,7 @@ on:
   # Trigger from leaderboard repo or main repo
   repository_dispatch:
     types: [leaderboard-updated, docs-updated]
-  # Deploy on direct changes to ot_hub
+  # Deploy on direct changes to website repo
   push:
     branches: [main]
   # Manual trigger

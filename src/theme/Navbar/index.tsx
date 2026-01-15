@@ -273,7 +273,7 @@ export default function Navbar(): JSX.Element {
         {/* Right Items */}
         <div className={styles.navItemsRight}>
           <a
-            href="https://github.com/otelcos/open_telco"
+            href="https://github.com/otelcos/evals"
             className={styles.navLink}
             target="_blank"
             rel="noopener noreferrer"
@@ -345,7 +345,7 @@ export default function Navbar(): JSX.Element {
           {/* External Links */}
           <div className={styles.mobileMenuSection}>
             <a
-              href="https://github.com/otelcos/open_telco"
+              href="https://github.com/otelcos/evals"
               className={styles.mobileMenuItem}
               target="_blank"
               rel="noopener noreferrer"

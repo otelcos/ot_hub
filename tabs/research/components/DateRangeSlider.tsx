@@ -33,6 +33,8 @@ export default function DateRangeSlider({
     onChangeRef.current = onChange;
   }, [value, onChange]);
 
+
+
   // Convert timestamp to percentage position
   const timestampToPercent = useCallback(
     (timestamp: number): number => {

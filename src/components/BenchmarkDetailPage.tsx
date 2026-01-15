@@ -320,7 +320,7 @@ export default function BenchmarkDetailPage({
             </h1>
             <p className="benchmark-page-subtitle">
               Want to add your model to the leaderboard?{' '}
-              <a href="https://github.com/gsma-research/ot_leaderboard" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/otelcos/leaderboard" target="_blank" rel="noopener noreferrer">
                 Go here
               </a>
             </p>
