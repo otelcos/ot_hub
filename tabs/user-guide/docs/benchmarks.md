@@ -72,8 +72,8 @@ Open Telco provides a suite of benchmarks testing different AI capabilities in t
 
 <BenchmarkCard
   title="TeleTables"
-  description="A curated set of 100 of the hardest questions testing LLM ability to interpret technical tables from 3GPP standards."
-  sampleCount="100 samples"
+  description="A curated set of 500 questions testing LLM ability to interpret technical tables from 3GPP standards."
+  sampleCount="500 samples"
   difficulty="medium"
   paperLink="https://arxiv.org/abs/2601.04202"
   datasetLink="https://huggingface.co/datasets/netop/TeleTables"

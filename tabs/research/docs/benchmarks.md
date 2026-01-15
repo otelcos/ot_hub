@@ -58,7 +58,7 @@ Explore evaluations across 6 distinct benchmarks, covering telecommunications kn
 
 <BenchmarkCard
   title="TeleTables"
-  description="A curated set of 100 of the hardest questions testing LLM ability to interpret technical tables from 3GPP standards."
+  description="A curated set of 500 questions testing LLM ability to interpret technical tables from 3GPP standards."
   link="/leaderboard/teletables"
   paperLink="https://arxiv.org/abs/2601.04202"
   datasetLink="https://huggingface.co/datasets/netop/TeleTables"

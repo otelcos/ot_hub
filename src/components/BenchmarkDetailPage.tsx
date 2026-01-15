@@ -34,8 +34,8 @@ const TCI_CONFIG = {
   title: 'Telco Capability Index (TCI)',
   longDescription: `The Telco Capability Index (TCI) provides a standardized score for comparing AI model performance across telecommunications domains. Using Item Response Theory (IRT) inspired methodology, TCI weighs each benchmark by its difficulty and discrimination power, producing scores on a normalized scale centered at 115.
 
-Models must complete at least 3 of 4 benchmarks to receive a TCI score. This ensures meaningful comparisons even when some benchmark results are missing.`,
-  samples: '4 benchmarks',
+Models must complete at least 3 of 5 benchmarks to receive a TCI score. This ensures meaningful comparisons even when some benchmark results are missing.`,
+  samples: '5 benchmarks',
 };
 
 // Question Card Components
