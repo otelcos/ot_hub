@@ -94,7 +94,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/open-telco-social-card.jpg',
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -139,13 +138,8 @@ const config: Config = {
         },
       ],
     },
-    footer: {
-      style: 'light',
-      links: [],
-    },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
     },
     tableOfContents: {
       minHeadingLevel: 2,
