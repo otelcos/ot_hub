@@ -116,20 +116,6 @@ const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
   );
 };
 
-// Inline Theta letter for use in "Θpen Telco" text
-const ThetaLetter = () => (
-  <svg
-    className={styles.thetaInline}
-    viewBox="0 0 20 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <ellipse cx="10" cy="12" rx="8" ry="10" stroke="currentColor" strokeWidth="2.5" fill="none"/>
-    <line x1="2" y1="12" x2="18" y2="12" stroke="currentColor" strokeWidth="2"/>
-  </svg>
-);
-
 export default function Navbar(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -224,36 +210,31 @@ export default function Navbar(): JSX.Element {
         <Link to="/" className={`${styles.brand} ${isCollapsed ? styles.brandCollapsed : ''}`}>
           {/* Animated logo text - individual spans for smooth morphing */}
           <div className={styles.logoText}>
-            {/* Θ - stays fixed */}
-            <span className={styles.letterTheta}>
-              <ThetaLetter />
+            {/* "GSMA " - fades out on scroll */}
+            <span className={`${styles.letterGsma} ${isCollapsed ? styles.letterGsmaCollapsed : ''}`}>
+              GSMA&nbsp;
             </span>
 
-            {/* "pen" - fades out and collapses */}
+            {/* "O" - stays visible, becomes part of "OT" */}
+            <span className={styles.letterFixed}>
+              O
+            </span>
+
+            {/* "PEN-" - fades out on scroll */}
             <span className={`${styles.letterPen} ${isCollapsed ? styles.letterPenCollapsed : ''}`}>
-              pen
+              PEN-
             </span>
 
-            {/* Space - collapses */}
-            <span className={`${styles.letterSpace} ${isCollapsed ? styles.letterSpaceCollapsed : ''}`}>
-              {' '}
-            </span>
-
-            {/* T - slides left */}
-            <span className={`${styles.letterT} ${isCollapsed ? styles.letterTSlide : ''}`}>
+            {/* "T" - stays visible, becomes part of "OT" */}
+            <span className={styles.letterFixed}>
               T
             </span>
 
-            {/* "elco" - fades out */}
-            <span className={`${styles.letterFade} ${isCollapsed ? styles.letterFadeOut : ''}`}>
-              elco
+            {/* "ELCO AI" - fades out on scroll */}
+            <span className={`${styles.letterElco} ${isCollapsed ? styles.letterElcoCollapsed : ''}`}>
+              ELCO AI
             </span>
           </div>
-
-          {/* Subtitle - fades out */}
-          <span className={`${styles.subtitle} ${isCollapsed ? styles.subtitleHidden : ''}`}>
-            by <span className={styles.gsmaHighlight}>GSMA</span>
-          </span>
         </Link>
 
         {/* Nav Items */}
@@ -268,18 +249,6 @@ export default function Navbar(): JSX.Element {
           />
           <NavLink to="/leaderboard">Leaderboard</NavLink>
           <NavLink to="/docs">Documentation</NavLink>
-        </div>
-
-        {/* Right Items */}
-        <div className={styles.navItemsRight}>
-          <a
-            href="https://github.com/otelcos/evals"
-            className={styles.navLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -342,23 +311,6 @@ export default function Navbar(): JSX.Element {
             </Link>
           </div>
 
-          {/* External Links */}
-          <div className={styles.mobileMenuSection}>
-            <a
-              href="https://github.com/otelcos/evals"
-              className={styles.mobileMenuItem}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMobileMenu}
-            >
-              GitHub
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.5rem' }}>
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </nav>

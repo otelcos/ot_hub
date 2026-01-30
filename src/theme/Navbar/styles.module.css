@@ -8,6 +8,7 @@
   background: #faf9f5;
   border-bottom: 1px solid #e5e0d8;
   height: 4.25rem;
+  font-family: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .navbarInner {
@@ -38,34 +39,47 @@
   /* Keep same width - no change, nav items don't move */
 }
 
-/* Animated logo text container - fixed width prevents nav shift */
+/* Animated logo text container */
 .logoText {
   display: flex;
   align-items: center;
   font-weight: 600;
   font-size: 1.125rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
   line-height: 1.1;
-  width: 6.5rem;
-  min-width: 6.5rem;
 }
 
-/* Θ - anchor point, no animation */
-.letterTheta {
-  display: inline-flex;
-  align-items: center;
+/* Letters that stay visible (O and T) */
+.letterFixed {
+  display: inline-block;
 }
 
-/* "pen" - fades out AND collapses width */
+/* "GSMA " prefix - fades and collapses first */
+.letterGsma {
+  display: inline-block;
+  opacity: 1;
+  max-width: 4em;
+  overflow: hidden;
+  transition:
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    max-width 180ms cubic-bezier(0.4, 0, 0.2, 1) 80ms;
+}
+
+.letterGsmaCollapsed {
+  opacity: 0;
+  max-width: 0;
+}
+
+/* "PEN-" middle section - fades and collapses */
 .letterPen {
   display: inline-block;
   opacity: 1;
-  max-width: 2em;
+  max-width: 3em;
   overflow: hidden;
   transition:
-    opacity 180ms cubic-bezier(0.4, 0, 0.2, 1),
-    max-width 200ms cubic-bezier(0.4, 0, 0.2, 1) 100ms;
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 50ms,
+    max-width 180ms cubic-bezier(0.4, 0, 0.2, 1) 100ms;
 }
 
 .letterPenCollapsed {
@@ -73,71 +87,20 @@
   max-width: 0;
 }
 
-/* "elco" - fades out only */
-.letterFade {
+/* "ELCO AI" suffix - fades and collapses last */
+.letterElco {
+  display: inline-block;
   opacity: 1;
-  transition: opacity 180ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.letterFadeOut {
-  opacity: 0;
-}
-
-/* Space between words - collapses */
-.letterSpace {
-  display: inline-block;
-  width: 0.25em;
-  transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1) 120ms;
-}
-
-.letterSpaceCollapsed {
-  width: 0;
-}
-
-/* T - slides toward Θ (very close, matching logo) */
-.letterT {
-  display: inline-block;
-  transform: translateX(0);
-  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 120ms;
-}
-
-.letterTSlide {
-  transform: translateX(-0.15em);
-}
-
-/* Inline Theta for "Θpen Telco" */
-.thetaInline {
-  display: inline-block;
-  width: 0.85em;
-  height: 1em;
-  vertical-align: baseline;
-  margin-right: 0.02em;
-  color: currentColor;
-}
-
-.subtitle {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  color: #6b6560;
-  letter-spacing: 0.02em;
-  margin-left: 3px;
-  margin-top: 1px;
-  opacity: 1;
-  transform: translateY(0);
+  max-width: 5em;
+  overflow: hidden;
   transition:
-    opacity 180ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 80ms,
+    max-width 180ms cubic-bezier(0.4, 0, 0.2, 1) 120ms;
 }
 
-.subtitleHidden {
+.letterElcoCollapsed {
   opacity: 0;
-  transform: translateY(-4px);
-  pointer-events: none;
-}
-
-.gsmaHighlight {
-  color: #a61d2d;
-  font-weight: 600;
+  max-width: 0;
 }
 
 /* Nav Items */
@@ -306,24 +269,16 @@
 @media (prefers-reduced-motion: reduce) {
   .brand,
   .logoText,
+  .letterGsma,
   .letterPen,
-  .letterFade,
-  .letterSpace,
-  .letterT,
-  .subtitle {
+  .letterElco {
     transition: none;
   }
 
   /* Instant state changes without animation */
-  .letterPenCollapsed {
-    display: none;
-  }
-
-  .letterFadeOut {
-    display: none;
-  }
-
-  .subtitleHidden {
+  .letterGsmaCollapsed,
+  .letterPenCollapsed,
+  .letterElcoCollapsed {
     display: none;
   }
 }
@@ -521,33 +476,13 @@
     display: block;
   }
 
-  /* Disable collapse on mobile - keep full logo */
-  .brandCollapsed {
-    min-width: 120px;
-  }
-
-  /* Override all collapse animations on mobile */
-  .letterPenCollapsed {
+  /* Disable collapse on mobile - keep full logo visible */
+  .letterGsmaCollapsed,
+  .letterPenCollapsed,
+  .letterElcoCollapsed {
     opacity: 1;
-    max-width: 2em;
-  }
-
-  .letterFadeOut {
-    opacity: 1;
-  }
-
-  .letterSpaceCollapsed {
-    width: 0.25em;
-  }
-
-  .letterTSlide {
-    transform: translateX(0);
-  }
-
-  .subtitleHidden {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    max-width: none;
+    overflow: visible;
   }
 }
 

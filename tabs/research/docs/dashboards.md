@@ -13,9 +13,11 @@ import TCIFaq from '@site/tabs/research/components/TCIFaq';
   <a href="/models" className="research-tab">Models</a>
 </div>
 
-# AI Benchmarking
+# Telco Capabilities Index
 
-Our database of benchmark results, featuring the performance of leading AI models on challenging telecommunications tasks. It includes results from benchmarks evaluated internally by Open Telco as well as data collected from external sources. Explore trends in AI capabilities across time, by benchmark, or by model.
+The Telco Capabilities Index (TCI) combines scores from many different AI benchmarks into a single "general capability" scale, allowing comparisons between models even over timespans long enough for single benchmarks to reach saturation.
+
+[Learn more about how the TCI is calculated.](/docs/tci)
 
 <TelcoCapabilityIndex />
 
