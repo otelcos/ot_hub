@@ -18,7 +18,7 @@ import TCIFaq from '@site/tabs/research/components/TCIFaq';
 
 <p style={{fontSize: '14px', lineHeight: '1.5', textAlign: 'justify', color: '#5c5552'}}>The Telco Capabilities Index (TCI) combines scores from many different AI benchmarks into a single "general capability" scale, allowing comparisons between models even over timespans long enough for single benchmarks to reach saturation.</p>
 
-[Learn more about how the TCI is calculated.](/docs/tci)
+[Learn more about how the TCI is calculated.](#what-does-tci-represent)
 
 <TelcoCapabilityIndex />
 

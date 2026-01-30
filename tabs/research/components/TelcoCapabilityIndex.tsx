@@ -1,11 +1,12 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import {
-  ScatterChart,
+  ComposedChart,
   Scatter,
+  Line,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
   ResponsiveContainer,
   Cell,
 } from 'recharts';
@@ -16,30 +17,10 @@ import { getProviderColor } from '../../../src/constants/providers';
 import { getModelReleaseDate, formatReleaseDate, formatQuarterTick } from '../../../src/constants/modelReleaseDates';
 import ProviderIcon from '../../../src/components/ProviderIcon';
 import DateRangeSlider from './DateRangeSlider';
+import { fitLinearRegression, generateCombinedRegressionData } from '../../../src/utils/linearRegression';
 
 // Number of top models to label on the chart
 const TOP_LABELED_COUNT = 5;
-
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: Array<{ payload: TCIDataPoint }>;
-}
-
-const MinimalTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
-  if (!active || !payload || !payload.length) return null;
-
-  const data = payload[0].payload;
-
-  return (
-    <div className="tci-tooltip">
-      <div className="tci-tooltip__model">{data.model}</div>
-      <div className="tci-tooltip__org">{data.provider}</div>
-      <div className="tci-tooltip__score" style={{ color: data.color }}>
-        TCI: {data.tci}
-      </div>
-    </div>
-  );
-};
 
 interface LegendItemProps {
   provider: { name: string; color: string };
@@ -112,8 +93,8 @@ const CustomDot: React.FC<CustomDotProps> = ({
 }) => {
   if (!cx || !cy || !payload) return null;
 
-  const baseOpacity = isOrgHighlighted ? 0.7 : 0.15;
-  const radius = isModelSelected ? 5 : 4;
+  const baseOpacity = isOrgHighlighted ? 0.85 : 0.25;
+  const radius = isModelSelected ? 7 : 5;
 
   return (
     <g
@@ -126,7 +107,7 @@ const CustomDot: React.FC<CustomDotProps> = ({
         <circle
           cx={cx}
           cy={cy}
-          r={9}
+          r={12}
           fill={payload.color}
           fillOpacity={0.25}
           className="tci-dot__glow"
@@ -139,23 +120,32 @@ const CustomDot: React.FC<CustomDotProps> = ({
         r={radius}
         fill={payload.color}
         fillOpacity={baseOpacity}
-        stroke={isModelSelected ? payload.color : 'rgba(255,255,255,0.5)'}
-        strokeWidth={isModelSelected ? 1.5 : 0.5}
+        stroke={isModelSelected ? payload.color : 'rgba(255,255,255,0.7)'}
+        strokeWidth={isModelSelected ? 2 : 1}
       />
       {/* Label for top 3 models */}
-      {isTopModel && isOrgHighlighted && (
+      {isTopModel && isOrgHighlighted && !isModelSelected && (
         <text
           x={cx}
           y={cy - 12}
           fill={payload.color}
-          fontSize={12}
-          fontWeight={500}
-          fontFamily="'Source Sans 3', sans-serif"
+          fontSize={13}
+          fontWeight={600}
+          fontFamily="'Inter', sans-serif"
           textAnchor="middle"
           {...(!hasAnimated && { className: 'tci-label' })}
         >
           {payload.model}
         </text>
+      )}
+      {/* Popup for selected model */}
+      {isModelSelected && (
+        <foreignObject x={cx + 14} y={cy - 18} width={200} height={36} style={{ overflow: 'visible' }}>
+          <div className="tci-popup">
+            <span className="tci-popup__model">{payload.model}</span>
+            <span className="tci-popup__score">{payload.tci}</span>
+          </div>
+        </foreignObject>
       )}
     </g>
   );
@@ -429,6 +419,14 @@ export default function TelcoCapabilityIndex(): JSX.Element {
     return [minDate - padding, maxDate + padding];
   }, [chartData]);
 
+  // Linear regression line and confidence band data
+  const regressionData = useMemo(() => {
+    const params = fitLinearRegression(filteredChartData);
+    if (!params) return [];
+
+    return generateCombinedRegressionData(filteredChartData, params, xAxisDomain[0], xAxisDomain[1], 50);
+  }, [filteredChartData, xAxisDomain]);
+
   // Check if any selection is active
   const hasSelection = selectedOrgs.size > 0 || selectedModels.size > 0 || dateRange !== null;
 
@@ -486,11 +484,11 @@ export default function TelcoCapabilityIndex(): JSX.Element {
 
       <div className="tci-chart-wrapper">
         <ResponsiveContainer width="100%" height={500}>
-          <ScatterChart margin={{ top: 58, right: 20, bottom: 35, left: 5 }}>
+          <ComposedChart margin={{ top: 58, right: 20, bottom: 35, left: 5 }}>
             <CartesianGrid
               strokeDasharray="4 4"
               stroke="#b8b4ac"
-              strokeOpacity={0.7}
+              strokeOpacity={0.5}
               vertical={false}
               horizontal={true}
             />
@@ -500,7 +498,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
               domain={xAxisDomain}
               ticks={quarterlyTicks}
               tickFormatter={formatQuarterTick}
-              tick={{ fontSize: 11, fill: '#5c5552', fontFamily: "'Source Sans 3', sans-serif" }}
+              tick={{ fontSize: 13, fill: '#5c5552', fontFamily: "'Inter', sans-serif" }}
               axisLine={{ stroke: '#d4d0c8' }}
               tickLine={false}
               scale="time"
@@ -511,7 +509,7 @@ export default function TelcoCapabilityIndex(): JSX.Element {
               dataKey="tci"
               domain={yAxisDomain}
               ticks={yAxisTicks}
-              tick={{ fontSize: 11, fill: '#5c5552', fontFamily: "'Source Sans 3', sans-serif" }}
+              tick={{ fontSize: 13, fill: '#5c5552', fontFamily: "'Inter', sans-serif" }}
               axisLine={{ stroke: '#d4d0c8' }}
               tickLine={false}
               name="Score"
@@ -521,16 +519,53 @@ export default function TelcoCapabilityIndex(): JSX.Element {
                 position: 'top',
                 offset: 34,
                 dx: 15,
-                style: { fontSize: '12px', fill: '#5c5552', fontFamily: "'Source Sans 3', sans-serif" },
+                style: { fontSize: '14px', fontWeight: 500, fill: '#5c5552', fontFamily: "'Inter', sans-serif" },
               }}
             />
-            <Tooltip content={<MinimalTooltip />} cursor={{ strokeDasharray: '3 3', stroke: '#a61d2d' }} />
+            {/* Confidence band - uncertainty in the trend line (95% CI) */}
+            {regressionData.length > 0 && (
+              <>
+                <Area
+                  data={regressionData}
+                  dataKey="upper"
+                  stroke="none"
+                  fill="#9ca3af"
+                  fillOpacity={0.2}
+                  isAnimationActive={false}
+                  legendType="none"
+                  baseValue="dataMin"
+                />
+                <Area
+                  data={regressionData}
+                  dataKey="lower"
+                  stroke="none"
+                  fill="#faf8f5"
+                  fillOpacity={1}
+                  isAnimationActive={false}
+                  legendType="none"
+                  baseValue="dataMin"
+                />
+              </>
+            )}
+            {/* Linear regression line */}
+            {regressionData.length > 0 && (
+              <Line
+                data={regressionData}
+                dataKey="regressionTCI"
+                stroke="#6b7280"
+                strokeWidth={1.5}
+                strokeOpacity={0.9}
+                dot={false}
+                isAnimationActive={false}
+                legendType="none"
+              />
+            )}
             <Scatter data={filteredChartData} shape={renderShape}>
               {filteredChartData.map((entry) => (
                 <Cell key={entry.model} fill={entry.color} />
               ))}
             </Scatter>
-          </ScatterChart>
+          </ComposedChart>
         </ResponsiveContainer>
 
         {/* Date Range Slider */}

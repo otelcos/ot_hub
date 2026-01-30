@@ -21,7 +21,7 @@ const features = [
     title: 'Telco Capability Index',
     description:
       'Track performance over time in frontier models on telecommunication tasks',
-    href: '/leaderboard/tci',
+    href: '/dashboards',
     videoSrc: '/videos/telco_capability.mp4',
   },
   {

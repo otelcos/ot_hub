@@ -5,8 +5,6 @@ sidebar_label: Benchmarks
 sidebar_position: 4
 ---
 
-import BenchmarkCard from '@site/tabs/research/components/BenchmarkCard';
-
 # Benchmarks
 
 Open Telco provides a suite of benchmarks testing different AI capabilities in telecommunications.
@@ -21,65 +19,6 @@ Open Telco provides a suite of benchmarks testing different AI capabilities in t
 | 3GPP TSG | Standards | Standards document work |
 | TeleYAML | Configuration | Network automation (coming soon) |
 | TeleTables | Knowledge | Table interpretation from 3GPP specs |
-
-## All Benchmarks
-
-<div className="benchmark-grid">
-
-<BenchmarkCard
-  title="TeleQnA"
-  description="A benchmark dataset of 10,000 question-answer pairs sourced from telecommunications standards and research articles. Evaluates LLMs' knowledge across general telecom inquiries and complex standards-related questions."
-  sampleCount="10K samples"
-  difficulty="easy"
-  paperLink="https://arxiv.org/abs/2310.15051"
-  datasetLink="https://huggingface.co/datasets/netop/TeleQnA"
-/>
-
-<BenchmarkCard
-  title="TeleMath"
-  description="Evaluating mathematical reasoning in telecommunication settings."
-  sampleCount="500 samples"
-  difficulty="hard"
-  paperLink="https://arxiv.org/abs/2506.10674"
-  datasetLink="https://huggingface.co/datasets/netop/TeleMath"
-/>
-
-<BenchmarkCard
-  title="TeleLogs"
-  description="A synthetic dataset for root cause analysis (RCA) in 5G networks. Given network configuration parameters and user-plane data (throughput, RSRP, SINR), models must identify which of 8 predefined root causes explain throughput degradation."
-  sampleCount="Synthetic"
-  difficulty="medium"
-  paperLink="https://arxiv.org/abs/2507.21974"
-  datasetLink="https://huggingface.co/datasets/netop/TeleLogs"
-/>
-
-<BenchmarkCard
-  title="3GPP TSG"
-  description="Classifies 3GPP technical documents according to their working group. Models must identify the correct technical specification group for a given document text."
-  sampleCount="Variable"
-  difficulty="medium"
-  paperLink="https://arxiv.org/abs/2407.09424"
-  datasetLink="https://huggingface.co/datasets/eaguaida/gsma_sample"
-/>
-
-<BenchmarkCard
-  title="TeleYAML"
-  description="Evaluating understanding of 5G core networks parameters and configuration syntax."
-  sampleCount="In Progress"
-  difficulty="hard"
-  datasetLink="https://huggingface.co/datasets/otellm/gsma-sample-data"
-/>
-
-<BenchmarkCard
-  title="TeleTables"
-  description="A curated set of 500 questions testing LLM ability to interpret technical tables from 3GPP standards."
-  sampleCount="500 samples"
-  difficulty="medium"
-  paperLink="https://arxiv.org/abs/2601.04202"
-  datasetLink="https://huggingface.co/datasets/netop/TeleTables"
-/>
-
-</div>
 
 ## Running Benchmarks
 

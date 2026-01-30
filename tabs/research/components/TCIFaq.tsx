@@ -2,12 +2,14 @@ import React from 'react';
 import { useAccordion } from '../../../src/hooks/useAccordion';
 
 interface FAQItem {
+  id?: string;
   question: string;
   answer: React.ReactNode;
 }
 
 const FAQ_ITEMS: FAQItem[] = [
   {
+    id: "what-does-tci-represent",
     question: "What does the TCI represent?",
     answer: (
       <>
@@ -276,6 +278,7 @@ export default function TCIFaq(): JSX.Element {
           {FAQ_ITEMS.map((item, index) => (
             <div
               key={index}
+              id={item.id}
               className={`tci-faq-item ${isOpen(index) ? 'open' : ''}`}
             >
               <button
