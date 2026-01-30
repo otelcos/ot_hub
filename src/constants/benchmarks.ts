@@ -288,6 +288,20 @@ export const TCI_CONFIG = {
 /**
  * Get TCI color based on score tier
  */
+/**
+ * Benchmark colors for frontier chart visualization
+ */
+export const BENCHMARK_COLORS: Record<string, string> = {
+  teleqna: '#3B82F6',      // Blue
+  telemath: '#10B981',     // Emerald
+  telelogs: '#F59E0B',     // Amber
+  tsg: '#8B5CF6',          // Purple
+  teletables: '#EF4444',   // Red
+};
+
+/**
+ * Get TCI color based on score tier
+ */
 export function getTCIColor(tci: number | null): string {
   if (tci === null) return '#8a8582';
   if (tci >= 140) return '#047857'; // Emerald 700 - Exceptional

@@ -2,11 +2,11 @@
  * Open Telco Custom Styles
  * Primary brand color: Dark neutral #2d2926
  * Accent color: Teal #0d9488 (used sparingly for indicators)
- * Typography: JetBrains Mono (display) + Source Sans 3 (body)
+ * Typography: Inter (all text)
  */
 
-/* Fonts - JetBrains Mono for technical headlines, Source Sans 3 for body, Inter for footer */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+/* Fonts - Inter for all text */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Infima CSS variable overrides */
 :root {
@@ -50,10 +50,10 @@
   --ifm-link-color: #2d2926;
   --ifm-link-hover-color: #1a1714;
 
-  /* Typography - JetBrains Mono for display, Source Sans 3 for body */
-  --ifm-font-family-base: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --ifm-heading-font-family: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-display: 'JetBrains Mono', 'SF Mono', Monaco, 'Andale Mono', monospace;
+  /* Typography - Inter for all text */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --ifm-heading-font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Footer */
   --ifm-footer-background-color: #f5f3ed;
@@ -97,7 +97,7 @@ html {
 }
 
 .navbar__title {
-  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-weight: 500;
   font-size: 1.25rem;
   color: #202124;
@@ -115,7 +115,7 @@ html {
 
 /* Base nav link styles - DeepMind clean typography */
 .navbar__link {
-  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-weight: 400;
   font-size: 0.9375rem;
   color: #5f6368;
@@ -197,7 +197,7 @@ html {
 .dropdown__link {
   display: block;
   padding: 0.75rem 1.25rem;
-  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   color: #5f6368;
@@ -501,7 +501,7 @@ code {
   /* Mobile menu items with clean hover */
   .navbar-sidebar .menu__link {
     padding: 0.75rem 1.25rem;
-    font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 0.9375rem;
     color: #5f6368;
     border-radius: 0;
@@ -2842,7 +2842,7 @@ a.benchmark-card-clickable:hover .benchmark-card-arrow {
 }
 
 .benchmark-page-title {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--ot-text);
@@ -3106,8 +3106,8 @@ p.tci-intro {
 /* Chart wrapper */
 .tci-chart-wrapper {
   position: relative;
-  background: rgba(45, 41, 38, 0.03);
-  border: 1px solid rgba(45, 41, 38, 0.06);
+  background: rgba(45, 41, 38, 0.04);
+  border: 1px solid rgba(45, 41, 38, 0.10);
   border-radius: 12px;
   padding: 8px 2px 2px;
 }
@@ -3166,7 +3166,33 @@ p.tci-intro {
   color: var(--ot-text);
 }
 
-/* Minimal Tooltip */
+/* Click Popup */
+.tci-popup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--ot-border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
+}
+
+.tci-popup__model {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: var(--ot-text);
+}
+
+.tci-popup__score {
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ot-text-muted);
+}
+
+/* Legacy Tooltip (unused) */
 .tci-tooltip {
   background: white;
   border: 1px solid var(--ot-border);
@@ -3205,7 +3231,7 @@ p.tci-intro {
   padding: 8px 14px;
   font-size: 12px;
   font-weight: 500;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--ot-text);
   cursor: pointer;
   transition: all 150ms ease;
@@ -3371,7 +3397,7 @@ p.tci-intro {
   text-align: center;
   font-size: 15px;
   color: var(--ot-text-muted);
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .tci-error {
@@ -3432,6 +3458,275 @@ p.tci-intro {
 
   .tci-date-slider__label {
     font-size: 9px;
+  }
+}
+
+/* ============================================
+   VIEW TOGGLE (Dashboard Tab Switcher)
+   ============================================ */
+
+.view-toggle {
+  display: inline-flex;
+  gap: 0;
+  background: var(--ot-bg-muted);
+  border: 1px solid var(--ot-border);
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.view-toggle__btn {
+  padding: 8px 20px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ot-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.view-toggle__btn:hover:not(.view-toggle__btn--active) {
+  color: var(--ot-text);
+  background: rgba(45, 41, 38, 0.06);
+}
+
+.view-toggle__btn--active {
+  color: var(--ot-text);
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   FRONTIER CHART (Benchmark Timeline)
+   ============================================ */
+
+.frontier-chart-container {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  padding: 20px 0;
+  font-family: var(--font-display);
+}
+
+.frontier-chart-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.frontier-chart-wrapper {
+  position: relative;
+  background: rgba(45, 41, 38, 0.04);
+  border: 1px solid rgba(45, 41, 38, 0.10);
+  border-radius: 12px;
+  padding: 8px 2px 2px;
+}
+
+/* Frontier Chart Tooltip */
+.frontier-tooltip {
+  background: #ffffff;
+  border: 1px solid var(--ot-border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  font-family: var(--font-display);
+  min-width: 140px;
+}
+
+.frontier-tooltip__date {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ot-text-muted);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ot-border);
+}
+
+.frontier-tooltip__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.frontier-tooltip__color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.frontier-tooltip__name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ot-text);
+  flex: 1;
+}
+
+.frontier-tooltip__value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ot-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
+   BENCHMARK CHECKBOX PANEL
+   ============================================ */
+
+.benchmark-checkbox-panel {
+  width: 180px;
+  flex-shrink: 0;
+  padding: 16px;
+  background: var(--ot-bg-muted);
+  border: 1px solid var(--ot-border);
+  border-radius: 12px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+}
+
+.benchmark-checkbox-panel__header {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ot-border);
+}
+
+.benchmark-checkbox-panel__title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ot-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.benchmark-checkbox-panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.benchmark-checkbox-panel__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px 8px;
+  margin: 0 -8px;
+  border-radius: 6px;
+  transition: background 150ms ease;
+}
+
+.benchmark-checkbox-panel__item:hover {
+  background: rgba(45, 41, 38, 0.06);
+}
+
+.benchmark-checkbox-panel__item--unchecked {
+  opacity: 0.5;
+}
+
+.benchmark-checkbox-panel__checkbox {
+  display: none;
+}
+
+.benchmark-checkbox-panel__indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.benchmark-checkbox-panel__label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ot-text);
+}
+
+.benchmark-checkbox-panel__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ot-border);
+}
+
+.benchmark-checkbox-panel__btn {
+  flex: 1;
+  padding: 6px 12px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ot-text-muted);
+  background: transparent;
+  border: 1px solid var(--ot-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.benchmark-checkbox-panel__btn:hover {
+  color: var(--ot-text);
+  background: rgba(45, 41, 38, 0.04);
+  border-color: var(--ot-text-subtle);
+}
+
+/* Frontier Chart Mobile Responsive */
+@media (max-width: 900px) {
+  .frontier-chart-container {
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+
+  .benchmark-checkbox-panel {
+    width: 100%;
+    position: static;
+    padding: 12px 16px;
+  }
+
+  .benchmark-checkbox-panel__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  .benchmark-checkbox-panel__item {
+    margin: 0;
+    padding: 4px 8px;
+    background: rgba(250, 249, 245, 0.97);
+    border: 1px solid var(--ot-border);
+    border-radius: 20px;
+  }
+
+  .benchmark-checkbox-panel__item:hover {
+    background: rgba(45, 41, 38, 0.06);
+  }
+
+  .benchmark-checkbox-panel__actions {
+    margin-top: 12px;
+    padding-top: 10px;
+    justify-content: flex-start;
+  }
+
+  .benchmark-checkbox-panel__btn {
+    flex: none;
+    padding: 4px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .view-toggle {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .view-toggle__btn {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 13px;
   }
 }
 
@@ -3756,7 +4051,7 @@ p.tci-intro {
 }
 
 .questions-section-title {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--ot-text);
@@ -3800,7 +4095,7 @@ p.tci-intro {
 
 /* Question Number */
 .question-number {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: #9ca3af;
@@ -3821,7 +4116,7 @@ p.tci-intro {
 }
 
 .question-text--math {
-  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 /* Format Hint Tag */
@@ -3899,7 +4194,7 @@ p.tci-intro {
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
 }
 
 .question-table th,
@@ -4017,7 +4312,7 @@ p.tci-intro {
 }
 
 .coming-soon-content h3 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: #e5e7eb;
@@ -4076,7 +4371,7 @@ p.tci-intro {
 }
 
 .accordion-number {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: #6b7280;
@@ -4120,7 +4415,7 @@ p.tci-intro {
 
 /* Question Type Badges */
 .question-type-badge {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
