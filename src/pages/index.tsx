@@ -99,31 +99,38 @@ function CollaboratorsSection(): JSX.Element {
 function MissionSection(): JSX.Element {
   return (
     <section className={styles.missionSection}>
-      {/* The Challenge card */}
-      <div className={styles.missionHeroCard}>
-        <h3 className={styles.missionBlockTitle}>The Challenge</h3>
-        <p>
-          <strong>Connectivity</strong> underpins modern society, yet today's
-          most advanced AI systems <strong>falter</strong> when applied to
-          telecommunications. Frontier models produce{' '}
-          <strong>30-40% incorrect responses</strong> on telecom-specific
-          queries, <strong>hallucinate</strong> spectrum regulations, and
-          struggle with the precision required for{' '}
-          <strong>autonomous network operations</strong>. General-purpose AI
-          does not speak the language of <strong>3GPP standards</strong>,{' '}
-          <strong>ITU protocols</strong>, or real-world network troubleshooting.
-          This domain gap threatens to delay the industry's path toward{' '}
-          <strong>zero-touch, self-healing networks</strong>.
+      {/* The Challenge - Anthropic-style bold statement */}
+      <div className={styles.statementSection}>
+        <h2 className={styles.statementHeadline}>
+          <span className={styles.underline}>Connectivity</span> underpins
+          modern society, yet frontier AI models{' '}
+          <span className={styles.underline}>fail</span> on telecoms.
+        </h2>
+        <p className={styles.statementBody}>
+          Surging capabilities in reasoning, math and code have not translated
+          to real enterprise use cases. In telecoms, models hallucinate 3GPP
+          standards, regulations and network configurations — blocking the path
+          to{' '}
+          <a
+            href="https://www.nokia.com/autonomous-networks/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            autonomous L5 networks
+          </a>
+          .
         </p>
       </div>
 
       {/* THE SOLUTION - Text Left, Placeholder Right */}
       <div className={styles.splitSection}>
         <div className={styles.splitTextColumn}>
-          <h3 className={styles.missionBlockTitle}>The Solution</h3>
+          <h3 className={styles.missionBlockTitle}>
+            AI will transform how networks operate.
+          </h3>
           <p>
-            GSMA Open-Telco is where operators, researchers, and tech providers
-            build telco-grade AI together.
+            GSMA Open-Telco is the cross-industry collaboration ensuring that
+            transformation is open, accurate, and telco-grade.
           </p>
         </div>
         <div className={styles.splitImageColumn}>
