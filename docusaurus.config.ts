@@ -131,11 +131,6 @@ const config: Config = {
           label: 'Leaderboard',
           position: 'left',
         },
-        {
-          href: 'https://github.com/otelcos/evals',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     prism: {

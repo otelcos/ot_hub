@@ -290,8 +290,12 @@ export const TCI_CONFIG = {
  */
 export function getTCIColor(tci: number | null): string {
   if (tci === null) return '#8a8582';
-  if (tci >= 135) return '#d4a574'; // High - gold accent
-  if (tci >= 125) return '#81C784'; // Good - green
-  if (tci >= 115) return '#FFB74D'; // Medium - amber
-  return '#FFAB91'; // Lower - coral
+  if (tci >= 140) return '#047857'; // Emerald 700 - Exceptional
+  if (tci >= 135) return '#059669'; // Emerald 600 - Excellent
+  if (tci >= 130) return '#10b981'; // Emerald 500 - Very Good
+  if (tci >= 125) return '#34d399'; // Emerald 400 - Good
+  if (tci >= 120) return '#6ee7b7'; // Emerald 300 - Above Average
+  if (tci >= 115) return '#fbbf24'; // Amber 400 - Average
+  if (tci >= 110) return '#fb923c'; // Orange 400 - Below Average
+  return '#f87171'; // Red 400 - Needs Improvement
 }

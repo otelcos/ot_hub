@@ -66,23 +66,18 @@
 /* Card title - JetBrains Mono */
 .cardTitle {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
   color: #ffffff;
   margin: 0 0 12px 0;
   letter-spacing: -0.01em;
-  line-height: 32px;
+  line-height: 24px;
+  white-space: nowrap;
 }
 
-/* Card description - Source Sans 3 */
+/* Card description - hidden */
 .cardDescription {
-  font-family: var(--ifm-font-family-base);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-  flex-grow: 1;
+  display: none;
 }
 
 /* Card footer with CTA */
@@ -153,8 +148,8 @@
   }
 
   .cardTitle {
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 20px;
+    line-height: 26px;
   }
 }
 
@@ -167,8 +162,8 @@
   }
 
   .cardTitle {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 22px;
+    line-height: 28px;
   }
 }
 
@@ -191,13 +186,8 @@
   }
 
   .cardTitle {
-    font-size: 22px;
-    line-height: 30px;
-  }
-
-  .cardDescription {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 22px;
   }
 
   .cardCta {
@@ -216,8 +206,8 @@
   }
 
   .cardTitle {
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 15px;
+    line-height: 20px;
   }
 }
 

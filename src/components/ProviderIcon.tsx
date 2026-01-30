@@ -26,7 +26,7 @@ export default function ProviderIcon({
         style={{
           width: size,
           height: size,
-          borderRadius: '50%',
+          borderRadius: '8px',
           objectFit: 'cover',
         }}
         onError={(e) => {
@@ -43,7 +43,7 @@ export default function ProviderIcon({
         style={{
           width: size,
           height: size,
-          borderRadius: '50%',
+          borderRadius: '8px',
           backgroundColor: color,
           opacity: 0.8,
         }}

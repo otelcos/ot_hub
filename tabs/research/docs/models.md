@@ -2,6 +2,7 @@
 id: models
 title: Models
 sidebar_label: Models
+hide_table_of_contents: true
 ---
 
 import ModelsPage from '@site/tabs/research/components/ModelsPage';

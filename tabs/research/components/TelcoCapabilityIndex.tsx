@@ -476,19 +476,17 @@ export default function TelcoCapabilityIndex(): JSX.Element {
 
   return (
     <div className="tci-chart-container">
-      <h2 className="tci-title">Telco Capabilities Index (TCI)</h2>
+      {/* Organization Legend - horizontal pills above chart */}
+      <OrganizationLegend
+        providers={providers}
+        selectedOrgs={selectedOrgs}
+        onToggle={toggleOrg}
+        resultCount={filteredChartData.length}
+      />
 
       <div className="tci-chart-wrapper">
-        {/* Organization Legend */}
-        <OrganizationLegend
-          providers={providers}
-          selectedOrgs={selectedOrgs}
-          onToggle={toggleOrg}
-          resultCount={filteredChartData.length}
-        />
-
         <ResponsiveContainer width="100%" height={500}>
-          <ScatterChart margin={{ top: 58, right: isMobile ? 20 : 170, bottom: 35, left: 5 }}>
+          <ScatterChart margin={{ top: 58, right: 20, bottom: 35, left: 5 }}>
             <CartesianGrid
               strokeDasharray="4 4"
               stroke="#b8b4ac"

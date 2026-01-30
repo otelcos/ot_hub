@@ -210,11 +210,6 @@ export default function Navbar(): JSX.Element {
         <Link to="/" className={`${styles.brand} ${isCollapsed ? styles.brandCollapsed : ''}`}>
           {/* Animated logo text - individual spans for smooth morphing */}
           <div className={styles.logoText}>
-            {/* "GSMA " - fades out on scroll */}
-            <span className={`${styles.letterGsma} ${isCollapsed ? styles.letterGsmaCollapsed : ''}`}>
-              GSMA&nbsp;
-            </span>
-
             {/* "O" - stays visible, becomes part of "OT" */}
             <span className={styles.letterFixed}>
               O

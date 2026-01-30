@@ -70,105 +70,108 @@ export default function ModelsPage(): JSX.Element {
   }
 
   return (
-    <div className="models-page-layout">
-      {/* Main content */}
-      <div className="models-main-content">
-        <div className="models-count">
-          {filteredData.length} models
-        </div>
-
-        {/* Model list */}
-        <div className="models-list">
-          {filteredData.map((model) => (
-            <div
-              key={`${model.provider}-${model.model}`}
-              className="model-row"
-            >
-              <div className="model-info">
-                <ProviderIcon provider={model.provider} size={24} />
-                <div className="model-details">
-                  <div className="model-name">
-                    {model.model}
-                  </div>
-                  <span className="model-provider-tag">
-                    {model.provider}
-                  </span>
-                </div>
-              </div>
-
-              {/* TCI Score */}
-              <div className="model-score-section">
-                <div
-                  className="score-badge"
-                  style={{ backgroundColor: getTCIColor(model.tci) }}
-                >
-                  {model.tci !== null ? Math.round(model.tci) : '—'}
-                </div>
-                <span className="score-label">TCI</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Sidebar - Search & Filter */}
-      <div className="models-sidebar">
-        <h3 className="models-sidebar-title">
-          Search & Filter
-        </h3>
-
-        {/* Search input */}
-        <div className="models-search-container">
-          <div className="models-search-input-wrapper">
-            <input
-              type="text"
-              placeholder="Search models"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="models-search-input"
-            />
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2">
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
+    <div className="models-page-container">
+      <div className="models-page-layout">
+        {/* Main content */}
+        <div className="models-main-content">
+          <div className="models-count">
+            {filteredData.length} models
           </div>
-        </div>
 
-        {/* Sort by */}
-        <div className="models-sort-container">
-          <div className="models-filter-label">
-            Sort by:
-          </div>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as 'tci' | 'mean' | 'name')}
-            className="models-sort-select"
-          >
-            <option value="tci">Telco Capability Index</option>
-            <option value="mean">Mean Score</option>
-            <option value="name">Name</option>
-          </select>
-        </div>
-
-        {/* Developer filter */}
-        <div>
-          <div className="models-filter-label" style={{ marginBottom: '12px' }}>
-            Developer
-          </div>
-          <div className="models-provider-filter">
-            {providers.map(provider => (
-              <label
-                key={provider}
-                className="models-provider-checkbox"
+          {/* Model list */}
+          <div className="models-list">
+            {filteredData.map((model) => (
+              <div
+                key={`${model.provider}-${model.model}`}
+                className="model-row"
               >
-                <input
-                  type="checkbox"
-                  checked={selectedProviders.has(provider)}
-                  onChange={() => toggleProvider(provider)}
-                />
-                {provider}
-              </label>
+                <div className="model-info">
+                  <ProviderIcon provider={model.provider} size={24} />
+                  <div className="model-details">
+                    <div className="model-name">
+                      {model.model}
+                    </div>
+                    <span className="model-provider-tag">
+                      {model.provider}
+                    </span>
+                  </div>
+                </div>
+
+                {/* TCI Score */}
+                <div className="model-score-section">
+                  <div
+                    className="score-badge"
+                    style={{ backgroundColor: getTCIColor(model.tci) }}
+                  >
+                    {model.tci !== null ? Math.round(model.tci) : '—'}
+                  </div>
+                  <span className="score-label">TCI</span>
+                </div>
+              </div>
             ))}
+          </div>
+        </div>
+
+        {/* Sidebar - Search & Filter */}
+        <div className="models-sidebar">
+          {/* Search input */}
+          <div className="models-search-container">
+            <div className="models-filter-label">Search</div>
+            <div className="models-search-input-wrapper">
+              <input
+                type="text"
+                placeholder="Search models..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="models-search-input"
+              />
+              <svg
+                className="models-search-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Sort by */}
+          <div className="models-sort-container">
+            <div className="models-filter-label">Sort by</div>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as 'tci' | 'mean' | 'name')}
+              className="models-sort-select"
+            >
+              <option value="tci">Telco Capability Index</option>
+              <option value="mean">Mean Score</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+
+          {/* Developer filter */}
+          <div>
+            <div className="models-filter-label">Developer</div>
+            <div className="models-provider-filter">
+              {providers.map(provider => (
+                <label
+                  key={provider}
+                  className="models-provider-checkbox"
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedProviders.has(provider)}
+                    onChange={() => toggleProvider(provider)}
+                  />
+                  {provider}
+                </label>
+              ))}
+            </div>
           </div>
         </div>
       </div>
