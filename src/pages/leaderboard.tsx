@@ -3,10 +3,10 @@ import Layout from '@theme/Layout';
 import LeaderboardTabs from '../components/LeaderboardTabs';
 import TCIFullTable from '../components/TCIFullTable';
 import CategorySection from '../components/CategorySection';
-import type { LeaderboardEntry, RankingEntry, TCIEntry } from '../types/leaderboard';
+import type { RankingEntry, TCIEntry } from '../types/leaderboard';
 import type { BenchmarkCategory } from '../constants/benchmarks';
 import { useLeaderboardData } from '../hooks/useLeaderboardData';
-import { calculateError } from '../utils/calculateTCI';
+import { calculateTCIRankings, calculateBenchmarkRankings } from '../utils/rankings';
 
 export default function LeaderboardPage(): JSX.Element {
   const { data, loading, error } = useLeaderboardData();
@@ -14,37 +14,12 @@ export default function LeaderboardPage(): JSX.Element {
 
   // Calculate TCI rankings (TCI is pre-calculated from HuggingFace)
   const tciRankings = useMemo((): TCIEntry[] => {
-    const rankings = data
-      .filter(entry => entry.tci !== null)
-      .map(entry => ({
-        rank: 0,
-        model: entry.model,
-        provider: entry.provider,
-        tci: entry.tci as number,
-        error: entry.tci_stderr ?? calculateError(entry.tci as number, 'tci'),
-        isNew: entry.rank <= 3,
-      }))
-      .sort((a, b) => b.tci - a.tci)
-      .map((entry, index) => ({ ...entry, rank: index + 1 }));
-
-    return rankings;
+    return calculateTCIRankings(data);
   }, [data]);
 
   // Calculate benchmark rankings
   const getBenchmarkRankings = (benchmarkKey: string): RankingEntry[] => {
-    const key = benchmarkKey as keyof LeaderboardEntry;
-    return data
-      .filter(entry => entry[key] !== null && typeof entry[key] === 'number')
-      .map(entry => ({
-        rank: 0,
-        model: entry.model,
-        provider: entry.provider,
-        score: entry[key] as number,
-        error: calculateError(entry[key] as number, benchmarkKey),
-        isNew: entry.rank <= 3,
-      }))
-      .sort((a, b) => b.score - a.score)
-      .map((entry, index) => ({ ...entry, rank: index + 1 }));
+    return calculateBenchmarkRankings(data, benchmarkKey);
   };
 
   if (loading) {

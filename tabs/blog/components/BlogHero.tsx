@@ -1,7 +1,7 @@
 import React from 'react';
 import { BlogPost } from './BlogCard';
 import { useBlogPostUrls } from '../../../src/hooks/useBlogPostUrls';
-import { formatDate } from '../utils/formatDate';
+import { formatDate } from '../../../src/utils/dateFormatting';
 import CategoryTagList from '../../../src/components/CategoryTagList';
 
 interface BlogHeroProps {

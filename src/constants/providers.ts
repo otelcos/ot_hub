@@ -26,6 +26,9 @@ export const PROVIDER_COLORS: Record<string, string> = {
   'NVIDIA': '#76B900',      // NVIDIA Green (official)
   'Cohere': '#EF4444',      // Red
   'Hugging Face': '#FFB800', // HuggingFace Yellow
+  'Moonshot AI': '#4A90D9', // Moonshot blue
+  'Xiaomi': '#FF6900',      // Xiaomi orange
+  'xAI': '#1D9BF0',         // X/Twitter blue
   'Other': '#6B7280',       // Neutral gray
 };
 
@@ -52,6 +55,9 @@ export const PROVIDER_LOGOS: Record<string, string> = {
   'Cohere': 'cohere.png',
   'Hugging Face': 'huggingface.png',
   'NetoAI': 'NetoAI-logo.png',
+  'Moonshot AI': 'moonshot.png',
+  'Xiaomi': 'xiaomi.png',
+  'xAI': 'xai.png',
 };
 
 /**
@@ -70,13 +76,6 @@ export function getProviderColor(provider: string): string {
   );
 
   return matchedKey ? PROVIDER_COLORS[matchedKey] : PROVIDER_COLORS['Other'];
-}
-
-/**
- * Get provider logo filename (returns undefined if not found)
- */
-export function getProviderLogo(provider: string): string | undefined {
-  return PROVIDER_LOGOS[provider];
 }
 
 /**
@@ -119,8 +118,9 @@ const CANONICAL_PROVIDERS: Record<string, string> = Object.keys(PROVIDER_COLORS)
  * Aliases for provider name variants
  */
 const PROVIDER_ALIASES: Record<string, string> = {
-  'xai': 'Grok',
-  'x.ai': 'Grok',
+  'xai': 'xAI',
+  'x.ai': 'xAI',
+  'x-ai': 'xAI',
   'alibaba': 'Qwen',
   'aws': 'Amazon',
   'huggingface': 'Hugging Face',

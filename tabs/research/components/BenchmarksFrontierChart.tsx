@@ -9,9 +9,11 @@ import {
   Tooltip,
 } from 'recharts';
 import type { LeaderboardEntry } from '../../../src/types/leaderboard';
+import { getBenchmarkScore, parseReleaseDate } from '../../../src/types/leaderboard';
 import { useLeaderboardData } from '../../../src/hooks/useLeaderboardData';
 import { BENCHMARKS, BENCHMARK_COLORS } from '../../../src/constants/benchmarks';
-import { getModelReleaseDate, formatQuarterTick } from '../../../src/constants/modelReleaseDates';
+import { formatMonthTick } from '../../../src/utils/dateFormatting';
+import { calculateQuarterBounds, generateQuarterlyTicks, calculateXAxisDomain } from '../../../src/utils/chartUtils';
 import BenchmarkCheckboxPanel from './BenchmarkCheckboxPanel';
 import DateRangeSlider from './DateRangeSlider';
 
@@ -25,6 +27,7 @@ interface FrontierPoint {
 /**
  * Compute unified timeline data with frontier values for all benchmarks.
  * This creates a single data array where each point has the running max for each benchmark.
+ * Only processes entries with valid release dates.
  */
 function computeUnifiedFrontierData(
   data: LeaderboardEntry[],
@@ -32,6 +35,7 @@ function computeUnifiedFrontierData(
   endDate: number
 ): FrontierPoint[] {
   // Collect all events (model releases with their scores)
+  // Filter to only entries with valid release dates
   const events: Array<{
     releaseDate: number;
     model: string;
@@ -40,12 +44,16 @@ function computeUnifiedFrontierData(
   }> = [];
 
   for (const entry of data) {
-    const releaseDate = getModelReleaseDate(entry.model);
+    const releaseDate = parseReleaseDate(entry);
+    if (releaseDate === undefined) {
+      continue; // Skip entries without valid release dates
+    }
+
     const scores: Record<string, number> = {};
 
     for (const key of benchmarkKeys) {
-      const score = entry[key as keyof LeaderboardEntry];
-      if (typeof score === 'number' && score !== null) {
+      const score = getBenchmarkScore(entry, key);
+      if (score !== undefined) {
         scores[key] = score;
       }
     }
@@ -199,65 +207,26 @@ export default function BenchmarksFrontierChart(): JSX.Element {
     setSelectedBenchmarks(new Set());
   }, []);
 
-  // Calculate date bounds for slider (snapped to quarters)
-  const dateBounds = useMemo(() => {
-    if (leaderboardData.length === 0) {
-      return {
-        min: new Date('2023-01-01').getTime(),
-        max: new Date('2026-01-01').getTime(),
-        quarters: [] as { timestamp: number; label: string }[],
-      };
-    }
-
-    const dates = leaderboardData.map((d) => getModelReleaseDate(d.model));
-    const rawMin = Math.min(...dates);
-    const rawMax = Math.max(...dates);
-
-    // Floor min to quarter start
-    const minDate = new Date(rawMin);
-    const minQuarterStart = new Date(
-      minDate.getFullYear(),
-      Math.floor(minDate.getMonth() / 3) * 3,
-      1
-    ).getTime();
-
-    // Ceiling max to next quarter start
-    const maxDate = new Date(rawMax);
-    const maxQuarterEnd = new Date(
-      maxDate.getFullYear(),
-      (Math.floor(maxDate.getMonth() / 3) + 1) * 3,
-      1
-    ).getTime();
-
-    // Generate quarter labels for slider
-    const quarters: { timestamp: number; label: string }[] = [];
-    const current = new Date(minQuarterStart);
-
-    while (current.getTime() <= maxQuarterEnd) {
-      const quarter = Math.floor(current.getMonth() / 3) + 1;
-      quarters.push({
-        timestamp: current.getTime(),
-        label: `Q${quarter} ${current.getFullYear()}`,
-      });
-      current.setMonth(current.getMonth() + 3);
-    }
-
-    return {
-      min: minQuarterStart,
-      max: maxQuarterEnd,
-      quarters,
-    };
+  // Filter to entries with valid release dates for all date-based calculations
+  const entriesWithDates = useMemo(() => {
+    return leaderboardData.filter((entry) => parseReleaseDate(entry) !== undefined);
   }, [leaderboardData]);
 
-  // Filter data by date range
+  // Calculate date bounds for slider (snapped to quarters)
+  const dateBounds = useMemo(() => {
+    const dates = entriesWithDates.map((d) => parseReleaseDate(d) as number);
+    return calculateQuarterBounds(dates);
+  }, [entriesWithDates]);
+
+  // Filter data by date range (only entries with valid release dates)
   const filteredData = useMemo(() => {
-    if (!dateRange) return leaderboardData;
+    if (!dateRange) return entriesWithDates;
     const [minSelected, maxSelected] = dateRange;
-    return leaderboardData.filter((entry) => {
-      const releaseDate = getModelReleaseDate(entry.model);
+    return entriesWithDates.filter((entry) => {
+      const releaseDate = parseReleaseDate(entry) as number;
       return releaseDate >= minSelected && releaseDate <= maxSelected;
     });
-  }, [leaderboardData, dateRange]);
+  }, [entriesWithDates, dateRange]);
 
   // Compute unified frontier data
   const frontierData = useMemo(() => {
@@ -269,49 +238,17 @@ export default function BenchmarksFrontierChart(): JSX.Element {
     );
   }, [filteredData, availableBenchmarkKeys, dateRange, dateBounds.max]);
 
-  // X-axis domain
+  // X-axis domain (uses entries with valid dates only)
   const xAxisDomain = useMemo(() => {
-    if (leaderboardData.length === 0) {
-      return [new Date('2023-01-01').getTime(), new Date('2026-01-01').getTime()];
-    }
-    const dates = leaderboardData.map((d) => getModelReleaseDate(d.model));
-    const minDate = Math.min(...dates);
-    const maxDate = Math.max(...dates);
-    // Add padding (2 months on each side)
-    const padding = 60 * 24 * 60 * 60 * 1000;
-    return [minDate - padding, maxDate + padding];
-  }, [leaderboardData]);
+    const dates = entriesWithDates.map((d) => parseReleaseDate(d) as number);
+    return calculateXAxisDomain(dates);
+  }, [entriesWithDates]);
 
   // Generate quarterly tick values for X-axis
   const quarterlyTicks = useMemo(() => {
-    if (leaderboardData.length === 0) return [];
-
-    const dates = leaderboardData.map((d) => getModelReleaseDate(d.model));
-    const minDate = Math.min(...dates);
-    const maxDate = Math.max(...dates);
-
-    // Add padding
-    const padding = 60 * 24 * 60 * 60 * 1000;
-    const startBound = minDate - padding;
-    const endBound = maxDate + padding;
-
-    const startYear = new Date(startBound).getFullYear();
-    const endYear = new Date(endBound).getFullYear();
-
-    const ticks: number[] = [];
-    const quarterMonths = [0, 3, 6, 9];
-
-    for (let year = startYear; year <= endYear + 1; year++) {
-      for (const month of quarterMonths) {
-        const tickDate = new Date(year, month, 1).getTime();
-        if (tickDate >= startBound && tickDate <= endBound) {
-          ticks.push(tickDate);
-        }
-      }
-    }
-
-    return ticks;
-  }, [leaderboardData]);
+    const dates = entriesWithDates.map((d) => parseReleaseDate(d) as number);
+    return generateQuarterlyTicks(dates);
+  }, [entriesWithDates]);
 
   // Get benchmark info for selected benchmarks
   const selectedBenchmarkInfo = useMemo(() => {
@@ -353,12 +290,13 @@ export default function BenchmarksFrontierChart(): JSX.Element {
                 dataKey="releaseDate"
                 domain={xAxisDomain}
                 ticks={quarterlyTicks}
-                tickFormatter={formatQuarterTick}
-                tick={{ fontSize: 13, fill: '#5c5552', fontFamily: "'Inter', sans-serif" }}
+                tickFormatter={formatMonthTick}
+                tick={{ fontSize: 13, fill: '#5c5552', fontFamily: "'Inter', sans-serif", dy: 10 }}
                 axisLine={{ stroke: '#d4d0c8' }}
                 tickLine={false}
                 scale="time"
                 name="Release Date"
+                interval="preserveStartEnd"
               />
               <YAxis
                 type="number"

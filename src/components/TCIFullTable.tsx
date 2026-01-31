@@ -1,5 +1,6 @@
 import React from 'react';
 import type { TCIEntry } from '../types/leaderboard';
+import { calculateBarWidth } from '../utils/chartUtils';
 import RankingRow from './RankingRow';
 
 interface TCIFullTableProps {
@@ -9,10 +10,8 @@ interface TCIFullTableProps {
 export default function TCIFullTable({
   rankings,
 }: TCIFullTableProps): JSX.Element {
-  const minTCI = 90;
-  const maxTCI = Math.max(...rankings.map(r => r.tci), 150);
-  const range = maxTCI - minTCI;
-  const getBarWidth = (tci: number) => Math.max(5, ((tci - minTCI) / range) * 100);
+  const scores = rankings.map(r => r.tci);
+  const getBarWidth = (tci: number) => calculateBarWidth(tci, scores);
 
   return (
     <div className="tci-full-table">

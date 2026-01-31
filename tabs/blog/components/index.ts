@@ -6,6 +6,6 @@ export { default as CategoryFilter } from './CategoryFilter';
 export type { BlogPost } from './BlogCard';
 export type { Category } from './CategoryFilter';
 
-// Utilities
-export { formatDate } from '../utils/formatDate';
+// Utilities - re-export from centralized location
+export { formatDate } from '../../../src/utils/dateFormatting';
 export { categoryColors, getCategoryColors } from '../constants/categoryColors';

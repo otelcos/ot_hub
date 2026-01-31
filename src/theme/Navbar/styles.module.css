@@ -22,7 +22,7 @@
   gap: 2rem;
 }
 
-/* Brand with collapse animation */
+/* Brand with collapse animation - fixed width prevents nav shift */
 .brand {
   display: flex;
   flex-direction: column;
@@ -31,11 +31,16 @@
   color: #2d2926;
   position: relative;
   flex-shrink: 0;
+  width: 158px; /* Matches expanded logo width - nav items stay static */
 }
 
 .brand:hover {
   text-decoration: none;
   color: #2d2926;
+}
+
+.brandCollapsed {
+  /* Keep same width - nav items don't shift */
 }
 
 /* Animated logo text container */

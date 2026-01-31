@@ -1,27 +1,28 @@
 import type { LeaderboardEntry } from '../types/leaderboard';
 import { normalizeProviderName } from '../constants/providers';
+import { calculateAllTCI } from './calculateTCI';
 
 /**
- * Raw row data from HuggingFace dataset API
+ * Raw row data from the leaderboard JSON file
  */
-interface HuggingFaceRow {
+interface RawLeaderboardRow {
   model: string;
   teleqna: [number, number, number] | null; // [score, stderr, n_samples]
   telelogs: [number, number, number] | null;
   telemath: [number, number, number] | null;
   '3gpp_tsg': [number, number, number] | null;
   teletables: [number, number, number] | null;
-  tci: [number, number, number] | null; // [score, stderr, 0] - pre-calculated TCI
+  tci?: [number, number, number] | null; // Optional: [score, stderr, 0] - manual override
   date: string;
 }
 
 /**
- * Response structure from HuggingFace datasets API /rows endpoint
+ * Structure of the leaderboard JSON data file
  */
-interface HuggingFaceResponse {
+interface RawLeaderboardData {
   rows: Array<{
     row_idx: number;
-    row: HuggingFaceRow;
+    row: RawLeaderboardRow;
     truncated_cells: string[];
   }>;
 }
@@ -49,9 +50,15 @@ function calculateMean(scores: (number | null)[]): number | null {
 }
 
 /**
- * Transform HuggingFace API response to LeaderboardEntry array
+ * Transform raw leaderboard JSON data to LeaderboardEntry array
+ *
+ * TCI scores are calculated dynamically using IRT (Item Response Theory).
+ * If a `tci` field exists in the JSON, it's used as a manual override.
  */
-export function transformHuggingFaceData(response: HuggingFaceResponse): LeaderboardEntry[] {
+export function transformLeaderboardData(response: RawLeaderboardData): LeaderboardEntry[] {
+  // Track which entries have manual TCI overrides
+  const manualTciOverrides = new Set<string>();
+
   const entries: LeaderboardEntry[] = response.rows.map((item) => {
     const row = item.row;
     const { model, provider } = parseModelAndProvider(row.model);
@@ -66,8 +73,13 @@ export function transformHuggingFaceData(response: HuggingFaceResponse): Leaderb
     const tsg_stderr = row['3gpp_tsg']?.[1] ?? null;
     const teletables = row.teletables?.[0] ?? null;
     const teletables_stderr = row.teletables?.[1] ?? null;
-    const tci = row.tci?.[0] ?? null;
-    const tci_stderr = row.tci?.[1] ?? null;
+
+    // Check for manual TCI override in JSON
+    const tciOverride = row.tci?.[0] ?? null;
+    const tciStderrOverride = row.tci?.[1] ?? null;
+    if (tciOverride !== null) {
+      manualTciOverrides.add(model);
+    }
 
     const mean = calculateMean([teleqna, telelogs, telemath, tsg, teletables]);
 
@@ -87,22 +99,28 @@ export function transformHuggingFaceData(response: HuggingFaceResponse): Leaderb
       tsg_stderr,
       teletables,
       teletables_stderr,
-      tci,
-      tci_stderr,
+      tci: tciOverride,        // Will be recalculated unless it's an override
+      tci_stderr: tciStderrOverride,
+      releaseDate: row.date,   // ISO date string from leaderboard JSON
     };
   });
 
+  // Calculate TCI dynamically using IRT
+  // Note: JSON TCI values are ignored - all TCI is calculated at runtime
+  // To add a manual override, set tci_override: true in the JSON row
+  const { entries: entriesWithTCI } = calculateAllTCI(entries, false);
+
   // Sort by mean score descending and assign ranks
-  entries.sort((a, b) => {
+  entriesWithTCI.sort((a, b) => {
     if (a.mean === null && b.mean === null) return 0;
     if (a.mean === null) return 1;
     if (b.mean === null) return -1;
     return b.mean - a.mean;
   });
 
-  entries.forEach((entry, index) => {
+  entriesWithTCI.forEach((entry, index) => {
     entry.rank = index + 1;
   });
 
-  return entries;
+  return entriesWithTCI;
 }

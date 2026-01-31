@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import type { TCIEntry } from '../types/leaderboard';
+import { calculateBarWidth } from '../utils/chartUtils';
+import { TOP_RANKINGS_COUNT } from '../constants/ui';
 import RankingRow from './RankingRow';
 
 export type { TCIEntry };
@@ -12,12 +14,10 @@ interface TCIHeroCardProps {
 export default function TCIHeroCard({
   rankings,
 }: TCIHeroCardProps): JSX.Element {
-  const minTCI = 90;
-  const maxTCI = Math.max(...rankings.map(r => r.tci), 150);
-  const range = maxTCI - minTCI;
-  const getBarWidth = (tci: number) => Math.max(5, ((tci - minTCI) / range) * 100);
+  const scores = rankings.map(r => r.tci);
+  const getBarWidth = (tci: number) => calculateBarWidth(tci, scores);
 
-  const displayRankings = rankings.slice(0, 3);
+  const displayRankings = rankings.slice(0, TOP_RANKINGS_COUNT);
 
   return (
     <div className="leaderboard-card tci-hero-card">

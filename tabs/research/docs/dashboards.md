@@ -30,7 +30,7 @@ export function DashboardContent() {
         </>
       ) : (
         <>
-          <h1>Benchmark Frontier Timeline</h1>
+          <h1>Frontier Progress Timeline</h1>
           <p style={{fontSize: '14px', lineHeight: '1.5', textAlign: 'justify', color: '#5c5552', marginTop: '-8px'}}>
             Track the best model performance over time for each benchmark. The staircase lines show the frontier—each step up represents a new model achieving the highest score on that benchmark.
           </p>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { LeaderboardEntry } from '../types/leaderboard';
-import { transformHuggingFaceData } from '../utils/transformHuggingFaceData';
+import { transformLeaderboardData } from '../utils/transformLeaderboardData';
 
-// Static JSON file generated at build time from HuggingFace private dataset
+// Static JSON file generated at build time
 const LEADERBOARD_DATA_URL = '/data/leaderboard.json';
 
 interface UseLeaderboardDataResult {
@@ -23,7 +23,7 @@ export function useLeaderboardData(): UseLeaderboardDataResult {
         return response.json();
       })
       .then(jsonData => {
-        setData(transformHuggingFaceData(jsonData));
+        setData(transformLeaderboardData(jsonData));
         setLoading(false);
       })
       .catch(err => {

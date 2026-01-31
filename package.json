@@ -5,8 +5,8 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "prebuild": "node scripts/fetch-leaderboard.js",
     "build": "docusaurus build",
+    "sync-leaderboard": "node scripts/fetch-leaderboard.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

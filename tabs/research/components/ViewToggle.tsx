@@ -22,7 +22,7 @@ export default function ViewToggle({ activeView, onChange }: ViewToggleProps): J
         onClick={() => onChange('benchmarks')}
         type="button"
       >
-        Benchmarks
+        Frontier Progress
       </button>
     </div>
   );

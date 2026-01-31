@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBlogPostUrls } from '../../../src/hooks/useBlogPostUrls';
-import { formatDate } from '../utils/formatDate';
+import { formatDate } from '../../../src/utils/dateFormatting';
 import CategoryTagList from '../../../src/components/CategoryTagList';
 
 export interface BlogPost {

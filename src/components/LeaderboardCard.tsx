@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import type { RankingEntry } from '../types/leaderboard';
+import { calculateBarWidth } from '../utils/chartUtils';
+import { TOP_RANKINGS_COUNT } from '../constants/ui';
 import RankingRow from './RankingRow';
 
 export type { RankingEntry };
@@ -10,7 +12,6 @@ interface LeaderboardCardProps {
   description: string;
   icon?: string;
   rankings: RankingEntry[];
-  maxScore?: number;
   benchmarkKey: string;
 }
 
@@ -19,10 +20,10 @@ export default function LeaderboardCard({
   description,
   icon,
   rankings,
-  maxScore = 100,
   benchmarkKey,
 }: LeaderboardCardProps): JSX.Element {
-  const getBarWidth = (score: number) => Math.max(5, score);
+  const scores = rankings.map(r => r.score);
+  const getBarWidth = (score: number) => calculateBarWidth(score, scores, { isPercentage: true });
 
   return (
     <div className="leaderboard-card">
@@ -35,7 +36,7 @@ export default function LeaderboardCard({
       </div>
 
       <div className="leaderboard-rankings">
-        {rankings.slice(0, 3).map((entry, index) => (
+        {rankings.slice(0, TOP_RANKINGS_COUNT).map((entry, index) => (
           <RankingRow
             key={`${entry.model}-${index}`}
             rank={entry.rank}

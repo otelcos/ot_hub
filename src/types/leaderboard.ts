@@ -3,7 +3,28 @@
  */
 
 /**
- * Raw entry from the leaderboard Parquet file
+ * Fitted IRT (Item Response Theory) parameters from the 2PL model.
+ *
+ * These parameters are dynamically fitted from leaderboard data,
+ * ensuring benchmark difficulty adapts as models improve.
+ */
+export interface IRTParameters {
+  /** Difficulty parameter (D_b) for each benchmark - higher = harder */
+  difficulty: Record<string, number>;
+  /** Slope/discrimination parameter (α_b) for each benchmark */
+  slope: Record<string, number>;
+  /** Capability parameter (C_m) for each model */
+  capability: Record<string, number>;
+  /** Final loss value from optimization */
+  fitResidual: number;
+  /** Number of models used in fitting */
+  nModels: number;
+  /** Number of benchmarks used in fitting */
+  nBenchmarks: number;
+}
+
+/**
+ * Raw entry from the leaderboard JSON file
  */
 export interface LeaderboardEntry {
   rank: number;
@@ -23,6 +44,7 @@ export interface LeaderboardEntry {
   teletables_stderr: number | null;
   tci: number | null;
   tci_stderr: number | null;
+  releaseDate?: string; // ISO date string from JSON (e.g., "2025-11-18")
 }
 
 /**
@@ -124,4 +146,46 @@ export interface BenchmarkConfig {
   datasetLink?: string;
   questions?: BenchmarkQuestion[];
   comingSoon?: boolean;
+}
+
+/**
+ * Type-safe benchmark score keys that exist as numeric fields on LeaderboardEntry
+ */
+export type BenchmarkScoreKey = 'teleqna' | 'telelogs' | 'telemath' | 'tsg' | 'teletables';
+
+/**
+ * Type guard to check if a key is a valid benchmark score key
+ */
+export function isBenchmarkScoreKey(key: string): key is BenchmarkScoreKey {
+  return ['teleqna', 'telelogs', 'telemath', 'tsg', 'teletables'].includes(key);
+}
+
+/**
+ * Safely extract a benchmark score from a LeaderboardEntry.
+ * Returns undefined if the key is invalid or the score is null.
+ */
+export function getBenchmarkScore(entry: LeaderboardEntry, key: string): number | undefined {
+  if (!isBenchmarkScoreKey(key)) {
+    return undefined;
+  }
+  const score = entry[key];
+  return typeof score === 'number' ? score : undefined;
+}
+
+/**
+ * Check if an entry has a valid release date
+ */
+export function hasValidReleaseDate(entry: LeaderboardEntry): entry is LeaderboardEntry & { releaseDate: string } {
+  return typeof entry.releaseDate === 'string' && entry.releaseDate.length > 0;
+}
+
+/**
+ * Parse release date string to timestamp. Returns undefined if invalid.
+ */
+export function parseReleaseDate(entry: LeaderboardEntry): number | undefined {
+  if (!hasValidReleaseDate(entry)) {
+    return undefined;
+  }
+  const timestamp = new Date(entry.releaseDate).getTime();
+  return Number.isNaN(timestamp) ? undefined : timestamp;
 }

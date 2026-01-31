@@ -3,9 +3,10 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
-import type { RankingEntry, TCIEntry, LeaderboardEntry, BenchmarkQuestion, MCQQuestion, OpenEndedQuestion, LogAnalysisQuestion, TextClassificationQuestion } from '../types/leaderboard';
+import type { BenchmarkQuestion, MCQQuestion, OpenEndedQuestion, LogAnalysisQuestion, TextClassificationQuestion } from '../types/leaderboard';
 import { useLeaderboardData } from '../hooks/useLeaderboardData';
-import { calculateError } from '../utils/calculateTCI';
+import { calculateRankings } from '../utils/rankings';
+import { calculateBarWidth } from '../utils/chartUtils';
 import { BENCHMARKS } from '../constants/benchmarks';
 import RankingRow from './RankingRow';
 
@@ -210,49 +211,14 @@ export default function BenchmarkDetailPage({
 
   // Calculate rankings
   const rankings = useMemo(() => {
-    if (isTCI) {
-      // TCI rankings (TCI is pre-calculated from HuggingFace)
-      return data
-        .filter(entry => entry.tci !== null)
-        .map(entry => ({
-          rank: 0,
-          model: entry.model,
-          provider: entry.provider,
-          score: entry.tci as number,
-          error: entry.tci_stderr ?? calculateError(entry.tci as number, 'tci'),
-          isNew: entry.rank <= 3,
-        }))
-        .sort((a, b) => b.score - a.score)
-        .map((entry, index) => ({ ...entry, rank: index + 1 }));
-    } else {
-      // Individual benchmark rankings
-      const key = benchmarkKey as keyof LeaderboardEntry;
-      return data
-        .filter(entry => entry[key] !== null && typeof entry[key] === 'number')
-        .map(entry => ({
-          rank: 0,
-          model: entry.model,
-          provider: entry.provider,
-          score: entry[key] as number,
-          error: calculateError(entry[key] as number, benchmarkKey),
-          isNew: entry.rank <= 3,
-        }))
-        .sort((a, b) => b.score - a.score)
-        .map((entry, index) => ({ ...entry, rank: index + 1 }));
-    }
-  }, [data, benchmarkKey, isTCI]);
+    return calculateRankings(data, benchmarkKey);
+  }, [data, benchmarkKey]);
 
   // Calculate bar widths
+  const scores = rankings.map(r => r.score);
   const getBarWidth = (score: number) => {
     if (rankings.length === 0) return 0;
-    if (isTCI) {
-      const minTCI = 90;
-      const maxTCI = Math.max(...rankings.map(r => r.score), 150);
-      const range = maxTCI - minTCI;
-      return Math.max(5, ((score - minTCI) / range) * 100);
-    } else {
-      return Math.max(5, score);
-    }
+    return calculateBarWidth(score, scores, { isPercentage: !isTCI });
   };
 
   const toggleQuestion = (index: number) => {

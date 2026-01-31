@@ -238,30 +238,6 @@ export function getBenchmarksByCategory(category: BenchmarkCategory): typeof LEA
  */
 export const TCI_CONFIG = {
   /**
-   * Benchmark difficulties (estimated based on average scores - lower avg = harder)
-   * Higher value = easier benchmark
-   */
-  benchmarkDifficulty: {
-    teleqna: 0.7,   // Easier - higher avg scores
-    telelogs: 0.3,  // Harder - lower avg scores
-    telemath: 0.4,  // Medium-hard
-    tsg: 0.4,       // Medium-hard
-    teletables: 0.3, // Harder - similar to TeleLogs
-  } as Record<string, number>,
-
-  /**
-   * Benchmark slopes (how discriminating each benchmark is)
-   * Higher value = more discriminating
-   */
-  benchmarkSlope: {
-    teleqna: 1.2,
-    telelogs: 1.5,
-    telemath: 1.3,
-    tsg: 1.2,
-    teletables: 1.5,
-  } as Record<string, number>,
-
-  /**
    * Base error values for error bar calculations
    */
   baseErrors: {
@@ -272,22 +248,52 @@ export const TCI_CONFIG = {
     teletables: 3.6,
     tci: 1.8,
   } as Record<string, number>,
-
-  /**
-   * Minimum number of benchmark scores required to calculate TCI
-   */
-  minScoresRequired: 3,
-
-  /**
-   * TCI scale parameters
-   */
-  baseScore: 115,
-  scaleFactor: 20,
 };
 
 /**
- * Get TCI color based on score tier
+ * IRT (Item Response Theory) configuration for dynamic TCI calculation
  */
+export const IRT_CONFIG = {
+  /** Base TCI score (average capability maps to this) */
+  baseScore: 115,
+  /** Scale factor for converting capability to TCI */
+  scaleFactor: 20,
+  /** Minimum number of benchmark scores required to calculate TCI */
+  minScoresRequired: 3,
+
+  /**
+   * Ridge regularization strengths (tuned for sparse data)
+   */
+  regularization: {
+    /** Difficulty regularization toward 0 */
+    lambdaD: 0.1,
+    /** Slope regularization toward 1.0 */
+    lambdaAlpha: 0.5,
+    /** Capability regularization toward 0 */
+    lambdaC: 0.1,
+  },
+
+  /**
+   * Optimization bounds
+   */
+  bounds: {
+    /** Minimum slope value */
+    alphaMin: 0.1,
+    /** Maximum slope value */
+    alphaMax: 5.0,
+  },
+
+  /** Maximum iterations for L-BFGS-B optimization */
+  maxIterations: 1000,
+};
+
+/**
+ * Benchmark keys used for IRT fitting (must match LeaderboardEntry fields)
+ */
+export const BENCHMARK_KEYS = ['teleqna', 'telelogs', 'telemath', 'tsg', 'teletables'] as const;
+
+export type BenchmarkKey = (typeof BENCHMARK_KEYS)[number];
+
 /**
  * Benchmark colors for frontier chart visualization
  */

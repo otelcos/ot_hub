@@ -19,23 +19,6 @@ export interface DataPoint {
   tci: number;
 }
 
-export interface RegressionPoint {
-  releaseDate: number;
-  regressionTCI: number;
-}
-
-export interface ConfidenceBandPoint {
-  releaseDate: number;
-  upper: number;
-  lower: number;
-}
-
-export interface PredictionBandPoint {
-  releaseDate: number;
-  upperPred: number;
-  lowerPred: number;
-}
-
 export interface CombinedBandPoint {
   releaseDate: number;
   regressionTCI: number;
@@ -100,35 +83,6 @@ export function fitLinearRegression(data: DataPoint[]): LinearParams | null {
 }
 
 /**
- * Generate regression line points for rendering.
- *
- * @param params Linear regression parameters
- * @param xMin Start of x range (timestamp)
- * @param xMax End of x range (timestamp)
- * @param numPoints Number of points to generate (default 2 for a straight line)
- * @returns Array of points for the line
- */
-export function generateRegressionLine(
-  params: LinearParams,
-  xMin: number,
-  xMax: number,
-  numPoints: number = 2
-): RegressionPoint[] {
-  const points: RegressionPoint[] = [];
-  const step = (xMax - xMin) / (numPoints - 1);
-
-  for (let i = 0; i < numPoints; i++) {
-    const x = xMin + i * step;
-    points.push({
-      releaseDate: x,
-      regressionTCI: params.slope * x + params.intercept,
-    });
-  }
-
-  return points;
-}
-
-/**
  * Calculate the standard error at a specific x value.
  *
  * The standard error varies based on distance from the mean x value,
@@ -147,11 +101,15 @@ function calculateStandardErrorAtX(
   params: LinearParams
 ): number {
   const n = data.length;
+  // Guard against division by zero (requires n >= 3 for meaningful SE)
+  if (n < 3) return 0;
+
   const xValues = data.map(d => d.releaseDate);
   const xMean = xValues.reduce((sum, xi) => sum + xi, 0) / n;
 
   // Sum of squared deviations from mean
   const ssX = xValues.reduce((sum, xi) => sum + Math.pow(xi - xMean, 2), 0);
+  if (ssX === 0) return 0;
 
   // Residual sum of squares
   const ssResidual = data.reduce((sum, point) => {
@@ -166,50 +124,6 @@ function calculateStandardErrorAtX(
   const se = s * Math.sqrt(1 / n + Math.pow(x - xMean, 2) / ssX);
 
   return se;
-}
-
-/**
- * Generate confidence band points for rendering as a shaded area.
- *
- * Uses 95% confidence interval (±1.96 standard errors).
- *
- * @param data Original data points used for regression
- * @param params Linear regression parameters
- * @param xMin Start of x range (timestamp)
- * @param xMax End of x range (timestamp)
- * @param numPoints Number of points to generate (default 50)
- * @returns Array of points with upper and lower bounds
- */
-export function generateConfidenceBand(
-  data: DataPoint[],
-  params: LinearParams,
-  xMin: number,
-  xMax: number,
-  numPoints: number = 50
-): ConfidenceBandPoint[] {
-  // Need at least 3 points to calculate meaningful confidence intervals
-  if (data.length < 3) {
-    return [];
-  }
-
-  const points: ConfidenceBandPoint[] = [];
-  const step = (xMax - xMin) / (numPoints - 1);
-  const zScore = 1.96; // 95% confidence interval
-
-  for (let i = 0; i < numPoints; i++) {
-    const x = xMin + i * step;
-    const y = params.slope * x + params.intercept;
-    const se = calculateStandardErrorAtX(x, data, params);
-    const margin = zScore * se;
-
-    points.push({
-      releaseDate: x,
-      upper: y + margin,
-      lower: y - margin,
-    });
-  }
-
-  return points;
 }
 
 /**
@@ -229,10 +143,14 @@ function calculatePredictionErrorAtX(
   params: LinearParams
 ): number {
   const n = data.length;
+  // Guard against division by zero (requires n >= 3 for meaningful PE)
+  if (n < 3) return 0;
+
   const xValues = data.map(d => d.releaseDate);
   const xMean = xValues.reduce((sum, xi) => sum + xi, 0) / n;
 
   const ssX = xValues.reduce((sum, xi) => sum + Math.pow(xi - xMean, 2), 0);
+  if (ssX === 0) return 0;
 
   const ssResidual = data.reduce((sum, point) => {
     const predicted = params.slope * point.releaseDate + params.intercept;
@@ -245,50 +163,6 @@ function calculatePredictionErrorAtX(
   const se = s * Math.sqrt(1 + 1 / n + Math.pow(x - xMean, 2) / ssX);
 
   return se;
-}
-
-/**
- * Generate prediction band points for rendering.
- *
- * Shows where future individual models are likely to fall (95% prediction interval).
- * Wider than confidence band because it includes individual variance.
- *
- * @param data Original data points used for regression
- * @param params Linear regression parameters
- * @param xMin Start of x range (timestamp)
- * @param xMax End of x range (timestamp)
- * @param numPoints Number of points to generate (default 50)
- * @returns Array of points with upper and lower prediction bounds
- */
-export function generatePredictionBand(
-  data: DataPoint[],
-  params: LinearParams,
-  xMin: number,
-  xMax: number,
-  numPoints: number = 50
-): PredictionBandPoint[] {
-  if (data.length < 3) {
-    return [];
-  }
-
-  const points: PredictionBandPoint[] = [];
-  const step = (xMax - xMin) / (numPoints - 1);
-  const zScore = 1.96; // 95% prediction interval
-
-  for (let i = 0; i < numPoints; i++) {
-    const x = xMin + i * step;
-    const y = params.slope * x + params.intercept;
-    const pe = calculatePredictionErrorAtX(x, data, params);
-    const margin = zScore * pe;
-
-    points.push({
-      releaseDate: x,
-      upperPred: y + margin,
-      lowerPred: y - margin,
-    });
-  }
-
-  return points;
 }
 
 /**
