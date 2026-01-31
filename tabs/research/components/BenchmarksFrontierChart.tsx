@@ -11,6 +11,7 @@ import {
 import type { LeaderboardEntry } from '../../../src/types/leaderboard';
 import { getBenchmarkScore, parseReleaseDate } from '../../../src/types/leaderboard';
 import { useLeaderboardData } from '../../../src/hooks/useLeaderboardData';
+import { useIsMobile } from '../../../src/hooks/useIsMobile';
 import { BENCHMARKS, BENCHMARK_COLORS } from '../../../src/constants/benchmarks';
 import { formatMonthTick } from '../../../src/utils/dateFormatting';
 import { calculateQuarterBounds, generateQuarterlyTicks, calculateXAxisDomain } from '../../../src/utils/chartUtils';
@@ -171,8 +172,12 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
   );
 }
 
+// Reduced padding for mobile (30 days vs 60 days on desktop)
+const MOBILE_PADDING_MS = 30 * 24 * 60 * 60 * 1000;
+
 export default function BenchmarksFrontierChart(): JSX.Element {
   const { data: leaderboardData, loading, error } = useLeaderboardData();
+  const isMobile = useIsMobile();
 
   // Get available benchmark keys (not comingSoon)
   const availableBenchmarkKeys = useMemo(() => {
@@ -230,10 +235,11 @@ export default function BenchmarksFrontierChart(): JSX.Element {
   }, [filteredData, availableBenchmarkKeys, dateRange, dateBounds.max]);
 
   // X-axis domain (uses entries with valid dates only)
+  // Reduced padding on mobile for better label spacing
   const xAxisDomain = useMemo(() => {
     const dates = entriesWithDates.map((d) => parseReleaseDate(d) as number);
-    return calculateXAxisDomain(dates);
-  }, [entriesWithDates]);
+    return calculateXAxisDomain(dates, isMobile ? MOBILE_PADDING_MS : undefined);
+  }, [entriesWithDates, isMobile]);
 
   // Generate quarterly tick values for X-axis
   const quarterlyTicks = useMemo(() => {

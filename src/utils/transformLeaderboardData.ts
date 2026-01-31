@@ -14,6 +14,8 @@ interface RawLeaderboardRow {
   teletables: [number, number, number] | null;
   tci?: [number, number, number] | null; // Optional: [score, stderr, 0] - manual override
   date: string;
+  total_cost?: number | null; // Total cost in USD to run all evals
+  cost_efficiency?: number | null; // 0-100 index (higher = cheaper)
 }
 
 /**
@@ -102,6 +104,8 @@ export function transformLeaderboardData(response: RawLeaderboardData): Leaderbo
       tci: tciOverride,        // Will be recalculated unless it's an override
       tci_stderr: tciStderrOverride,
       releaseDate: row.date,   // ISO date string from leaderboard JSON
+      total_cost: row.total_cost ?? null,
+      cost_efficiency: row.cost_efficiency ?? null,
     };
   });
 

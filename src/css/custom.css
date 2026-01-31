@@ -3103,23 +3103,133 @@ p.tci-intro {
   line-height: 1.6;
 }
 
-/* Chart wrapper */
+/* Chart wrapper - Epoch AI white style */
 .tci-chart-wrapper {
   position: relative;
-  background: rgba(45, 41, 38, 0.04);
-  border: 1px solid rgba(45, 41, 38, 0.10);
+  background: #FFFFFF;
+  border: 1px solid #CCD8D9;
   border-radius: 12px;
   padding: 8px 2px 2px;
 }
 
-/* Ensure Recharts SVG has warm background */
-.tci-chart-wrapper .recharts-wrapper {
-  background: #faf8f5;
+/* D3.js Scatter Plot SVG */
+.tci-scatter-svg {
+  display: block;
+  background: #FFFFFF;
   border-radius: 8px;
 }
 
-.tci-chart-wrapper .recharts-surface {
-  background: #faf8f5;
+/* D3 Brush Container */
+.tci-brush-container {
+  margin-top: 8px;
+  padding: 0 0 8px;
+}
+
+.tci-brush-svg {
+  display: block;
+}
+
+/* D3 Brush Styling */
+.tci-brush-svg .selection {
+  rx: 4;
+  ry: 4;
+}
+
+.tci-brush-svg .handle {
+  display: none; /* Hide default handles, using custom circles */
+}
+
+.tci-brush-svg .overlay {
+  cursor: crosshair;
+}
+
+/* D3 Dot transitions */
+.tci-scatter-svg .tci-dot {
+  transition: fill-opacity 150ms ease, r 150ms ease;
+}
+
+/* Scatter plot container */
+.tci-scatter-container {
+  position: relative;
+}
+
+/* Hover Tooltip */
+.tci-hover-tooltip {
+  background: #ffffff;
+  border: 1px solid #CCD8D9;
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-family: 'Inter', sans-serif;
+  min-width: 160px;
+  z-index: 100;
+}
+
+.tci-hover-tooltip__model {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2B424B;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #EBF5F4;
+}
+
+.tci-hover-tooltip__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding: 3px 0;
+}
+
+.tci-hover-tooltip__label {
+  color: #5C737B;
+}
+
+.tci-hover-tooltip__value {
+  color: #2B424B;
+  font-weight: 500;
+}
+
+.tci-hover-tooltip__cost {
+  color: #059669;
+}
+
+/* Range Selector Buttons */
+.tci-range-buttons {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding-left: 60px;
+}
+
+.tci-range-button {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  color: #5C737B;
+  background: #f9fafb;
+  border: 1px solid #CCD8D9;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.tci-range-button:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.tci-range-button--active {
+  background: #0099B1;
+  color: #ffffff;
+  border-color: #0099B1;
+}
+
+.tci-range-button--active:hover {
+  background: #007d92;
+  border-color: #007d92;
 }
 
 /* Zoom reset button */
@@ -3224,6 +3334,13 @@ p.tci-intro {
   font-size: 12px;
   font-family: 'Inter', sans-serif;
   color: var(--ot-text-muted);
+}
+
+.tci-popup__cost {
+  font-size: 11px;
+  font-family: 'Inter', sans-serif;
+  color: #059669;
+  font-weight: 500;
 }
 
 /* Legacy Tooltip (unused) */

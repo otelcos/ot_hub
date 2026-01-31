@@ -10,31 +10,33 @@
           1000
         ],
         "telelogs": [
-          86,
+          86.0,
           3.4874,
           100
         ],
         "telemath": [
-          78,
+          78.0,
           4.1633,
           100
         ],
         "3gpp_tsg": [
-          66,
+          66.0,
           4.761,
           100
         ],
         "teletables": [
-          45,
-          5,
+          45.0,
+          5.0,
           100
         ],
         "tci": [
-          137.8,
-          1.46,
+          136.7,
+          1.47,
           0
         ],
-        "date": "2025-11-18"
+        "date": "2025-11-18",
+        "total_cost": 58.31,
+        "cost_efficiency": 5.9
       },
       "truncated_cells": []
     },
@@ -48,31 +50,33 @@
           1000
         ],
         "telelogs": [
-          78,
+          78.0,
           4.1633,
           100
         ],
         "telemath": [
-          79,
+          79.0,
           4.0936,
           100
         ],
         "3gpp_tsg": [
-          58,
+          58.0,
           4.9604,
           100
         ],
         "teletables": [
-          37,
+          37.0,
           4.8524,
           100
         ],
         "tci": [
-          133.4,
-          1.5,
+          132.2,
+          1.51,
           0
         ],
-        "date": "2025-08-07"
+        "date": "2025-08-07",
+        "total_cost": 15.94,
+        "cost_efficiency": 23.0
       },
       "truncated_cells": []
     },
@@ -86,31 +90,33 @@
           1000
         ],
         "telelogs": [
-          72,
+          72.0,
           4.5126,
           100
         ],
         "telemath": [
-          74,
+          74.0,
           4.4084,
           100
         ],
         "3gpp_tsg": [
-          59,
+          59.0,
           4.9431,
           100
         ],
         "teletables": [
-          34,
+          34.0,
           4.761,
           100
         ],
         "tci": [
-          129.9,
-          1.53,
+          128.7,
+          1.54,
           0
         ],
-        "date": "2025-04-16"
+        "date": "2025-04-16",
+        "total_cost": 10.25,
+        "cost_efficiency": 28.8
       },
       "truncated_cells": []
     },
@@ -124,31 +130,33 @@
           1000
         ],
         "telelogs": [
-          60,
+          60.0,
           4.9237,
           100
         ],
         "telemath": [
-          76,
+          76.0,
           4.2923,
           100
         ],
         "3gpp_tsg": [
-          57,
+          57.0,
           4.9757,
           100
         ],
         "teletables": [
-          42,
+          42.0,
           4.9604,
           100
         ],
         "tci": [
-          128.5,
-          1.54,
+          127.4,
+          1.55,
           0
         ],
-        "date": "2026-01-27"
+        "date": "2026-01-27",
+        "total_cost": 9.64,
+        "cost_efficiency": 29.6
       },
       "truncated_cells": []
     },
@@ -162,36 +170,78 @@
           1000
         ],
         "telelogs": [
-          75,
+          75.0,
           4.3519,
           100
         ],
         "telemath": [
-          66,
+          66.0,
           4.761,
           100
         ],
         "3gpp_tsg": [
-          52,
+          52.0,
           5.0212,
           100
         ],
         "teletables": [
-          35,
+          35.0,
           4.7937,
           100
         ],
         "tci": [
-          128.1,
-          1.55,
+          127.0,
+          1.56,
           0
         ],
-        "date": "2025-09-19"
+        "date": "2025-09-19",
+        "total_cost": 1.22,
+        "cost_efficiency": 56.7
       },
       "truncated_cells": []
     },
     {
       "row_idx": 5,
+      "row": {
+        "model": "gemini-3-flash-preview (Google)",
+        "teleqna": [
+          83.2,
+          1.1829,
+          1000
+        ],
+        "telelogs": [
+          46.0,
+          5.0091,
+          100
+        ],
+        "telemath": [
+          80.0,
+          4.0202,
+          100
+        ],
+        "3gpp_tsg": [
+          63.0,
+          4.8524,
+          100
+        ],
+        "teletables": [
+          48.0,
+          5.0212,
+          100
+        ],
+        "tci": [
+          127.0,
+          1.56,
+          0
+        ],
+        "date": "2025-12-17",
+        "total_cost": 0.71,
+        "cost_efficiency": 63.9
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 6,
       "row": {
         "model": "o1 (OpenAI)",
         "teleqna": [
@@ -200,112 +250,38 @@
           1000
         ],
         "telelogs": [
-          73,
+          73.0,
           4.462,
           100
         ],
         "telemath": [
-          72,
+          72.0,
           4.5126,
           100
         ],
         "3gpp_tsg": [
-          54,
+          54.0,
           5.0091,
           100
         ],
         "teletables": [
-          29,
+          29.0,
           4.5605,
           100
         ],
         "tci": [
-          127.9,
-          1.55,
+          126.7,
+          1.56,
           0
         ],
-        "date": "2024-12-05"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 6,
-      "row": {
-        "model": "claude-opus-4 (Anthropic)",
-        "teleqna": [
-          82.4,
-          1.2049,
-          1000
-        ],
-        "telelogs": [
-          65,
-          4.7937,
-          100
-        ],
-        "telemath": [
-          71,
-          4.5605,
-          100
-        ],
-        "3gpp_tsg": [
-          58,
-          4.9604,
-          100
-        ],
-        "teletables": [
-          36,
-          4.8242,
-          100
-        ],
-        "tci": [
-          127.3,
-          1.55,
-          0
-        ],
-        "date": "2025-05-22"
+        "date": "2024-12-05",
+        "total_cost": 91.23,
+        "cost_efficiency": 0.0
       },
       "truncated_cells": []
     },
     {
       "row_idx": 7,
-      "row": {
-        "model": "claude-opus-4.5 (Anthropic)",
-        "teleqna": [
-          84.5,
-          1.145,
-          1000
-        ],
-        "telelogs": [
-          56,
-          4.9889,
-          100
-        ],
-        "telemath": [
-          72,
-          4.5126,
-          100
-        ],
-        "3gpp_tsg": [
-          64,
-          4.8242,
-          100
-        ],
-        "teletables": [
-          39,
-          4.9021,
-          100
-        ],
-        "tci": [
-          127.3,
-          1.55,
-          0
-        ],
-        "date": "2025-11-24"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 8,
       "row": {
         "model": "grok-4.1-fast (X-AI)",
         "teleqna": [
@@ -314,36 +290,118 @@
           1000
         ],
         "telelogs": [
-          71,
+          71.0,
           4.5605,
           100
         ],
         "telemath": [
-          70,
+          70.0,
           4.6057,
           100
         ],
         "3gpp_tsg": [
-          55,
-          5,
+          55.0,
+          5.0,
           100
         ],
         "teletables": [
-          32,
+          32.0,
           4.6883,
           100
         ],
         "tci": [
-          127.3,
-          1.55,
+          126.2,
+          1.56,
           0
         ],
-        "date": "2025-11-20"
+        "date": "2025-11-20",
+        "total_cost": 0.51,
+        "cost_efficiency": 68.3
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 8,
+      "row": {
+        "model": "claude-opus-4 (Anthropic)",
+        "teleqna": [
+          82.4,
+          1.2049,
+          1000
+        ],
+        "telelogs": [
+          65.0,
+          4.7937,
+          100
+        ],
+        "telemath": [
+          71.0,
+          4.5605,
+          100
+        ],
+        "3gpp_tsg": [
+          58.0,
+          4.9604,
+          100
+        ],
+        "teletables": [
+          36.0,
+          4.8242,
+          100
+        ],
+        "tci": [
+          126.2,
+          1.56,
+          0
+        ],
+        "date": "2025-05-22",
+        "total_cost": 19.84,
+        "cost_efficiency": 20.1
       },
       "truncated_cells": []
     },
     {
       "row_idx": 9,
+      "row": {
+        "model": "claude-opus-4.5 (Anthropic)",
+        "teleqna": [
+          84.5,
+          1.145,
+          1000
+        ],
+        "telelogs": [
+          56.0,
+          4.9889,
+          100
+        ],
+        "telemath": [
+          72.0,
+          4.5126,
+          100
+        ],
+        "3gpp_tsg": [
+          64.0,
+          4.8242,
+          100
+        ],
+        "teletables": [
+          39.0,
+          4.9021,
+          100
+        ],
+        "tci": [
+          126.2,
+          1.56,
+          0
+        ],
+        "date": "2025-11-24",
+        "total_cost": 8.83,
+        "cost_efficiency": 30.7
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 10,
       "row": {
         "model": "claude-opus-4.1 (Anthropic)",
         "teleqna": [
@@ -352,36 +410,38 @@
           1000
         ],
         "telelogs": [
-          59,
+          59.0,
           4.9431,
           100
         ],
         "telemath": [
-          73,
+          73.0,
           4.462,
           100
         ],
         "3gpp_tsg": [
-          58,
+          58.0,
           4.9604,
           100
         ],
         "teletables": [
-          36,
+          36.0,
           4.8242,
           100
         ],
         "tci": [
-          126.5,
-          1.56,
+          125.4,
+          1.57,
           0
         ],
-        "date": "2025-08-05"
+        "date": "2025-08-05",
+        "total_cost": 21.35,
+        "cost_efficiency": 19.1
       },
       "truncated_cells": []
     },
     {
-      "row_idx": 10,
+      "row_idx": 11,
       "row": {
         "model": "claude-sonnet-4.5 (Anthropic)",
         "teleqna": [
@@ -390,36 +450,38 @@
           1000
         ],
         "telelogs": [
-          59,
+          59.0,
           4.9431,
           100
         ],
         "telemath": [
-          68,
+          68.0,
           4.6883,
           100
         ],
         "3gpp_tsg": [
-          57,
+          57.0,
           4.9757,
           100
         ],
         "teletables": [
-          32,
+          32.0,
           4.6883,
           100
         ],
         "tci": [
-          124.6,
-          1.58,
+          123.5,
+          1.59,
           0
         ],
-        "date": "2025-09-29"
+        "date": "2025-09-29",
+        "total_cost": 4.37,
+        "cost_efficiency": 40.0
       },
       "truncated_cells": []
     },
     {
-      "row_idx": 11,
+      "row_idx": 12,
       "row": {
         "model": "claude-3.7-sonnet (Anthropic)",
         "teleqna": [
@@ -428,36 +490,38 @@
           1000
         ],
         "telelogs": [
-          59,
+          59.0,
           4.9431,
           100
         ],
         "telemath": [
-          65,
+          65.0,
           4.7937,
           100
         ],
         "3gpp_tsg": [
-          56,
+          56.0,
           4.9889,
           100
         ],
         "teletables": [
-          38,
+          38.0,
           4.8783,
           100
         ],
         "tci": [
-          124.5,
-          1.58,
+          123.4,
+          1.59,
           0
         ],
-        "date": "2025-02-24"
+        "date": "2025-02-24",
+        "total_cost": 3.66,
+        "cost_efficiency": 42.3
       },
       "truncated_cells": []
     },
     {
-      "row_idx": 12,
+      "row_idx": 13,
       "row": {
         "model": "grok-code-fast-1 (X-AI)",
         "teleqna": [
@@ -466,1460 +530,38 @@
           1000
         ],
         "telelogs": [
-          61,
+          61.0,
           4.9021,
           100
         ],
         "telemath": [
-          65,
+          65.0,
           4.7937,
           100
         ],
         "3gpp_tsg": [
-          55,
-          5,
+          55.0,
+          5.0,
           100
         ],
         "teletables": [
-          32,
+          32.0,
           4.6883,
           100
         ],
         "tci": [
-          123.2,
-          1.59,
-          0
-        ],
-        "date": "2025-08-28"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 13,
-      "row": {
-        "model": "chatgpt-4o-latest (OpenAI)",
-        "teleqna": [
-          81,
-          1.2412,
-          1000
-        ],
-        "telelogs": [
-          52,
-          5.0212,
-          100
-        ],
-        "telemath": [
-          66,
-          4.761,
-          100
-        ],
-        "3gpp_tsg": [
-          58,
-          4.9604,
-          100
-        ],
-        "teletables": [
-          32,
-          4.6883,
-          100
-        ],
-        "tci": [
-          122.4,
+          122.1,
           1.6,
           0
         ],
-        "date": "2024-08-08"
+        "date": "2025-08-28",
+        "total_cost": 3.72,
+        "cost_efficiency": 42.1
       },
       "truncated_cells": []
     },
     {
       "row_idx": 14,
-      "row": {
-        "model": "claude-sonnet-4 (Anthropic)",
-        "teleqna": [
-          83,
-          1.1884,
-          1000
-        ],
-        "telelogs": [
-          47,
-          5.0161,
-          100
-        ],
-        "telemath": [
-          70,
-          4.6057,
-          100
-        ],
-        "3gpp_tsg": [
-          56,
-          4.9889,
-          100
-        ],
-        "teletables": [
-          31,
-          4.6482,
-          100
-        ],
-        "tci": [
-          122.4,
-          1.6,
-          0
-        ],
-        "date": "2025-05-22"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 15,
-      "row": {
-        "model": "o4-mini (OpenAI)",
-        "teleqna": [
-          80.8,
-          1.2462,
-          1000
-        ],
-        "telelogs": [
-          49,
-          5.0242,
-          100
-        ],
-        "telemath": [
-          68,
-          4.6883,
-          100
-        ],
-        "3gpp_tsg": [
-          45,
-          5,
-          100
-        ],
-        "teletables": [
-          40,
-          4.9237,
-          100
-        ],
-        "tci": [
-          121.8,
-          1.6,
-          0
-        ],
-        "date": "2025-04-16"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 16,
-      "row": {
-        "model": "gemini-2.5-pro (Google)",
-        "teleqna": [
-          81.8,
-          1.2208,
-          1000
-        ],
-        "telelogs": [
-          37,
-          4.8524,
-          100
-        ],
-        "telemath": [
-          75,
-          4.3519,
-          100
-        ],
-        "3gpp_tsg": [
-          58,
-          4.9604,
-          100
-        ],
-        "teletables": [
-          30,
-          4.6057,
-          100
-        ],
-        "tci": [
-          121.3,
-          1.61,
-          0
-        ],
-        "date": "2025-06-17"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 17,
-      "row": {
-        "model": "gpt-4.1 (OpenAI)",
-        "teleqna": [
-          81.7,
-          1.2234,
-          1000
-        ],
-        "telelogs": [
-          46,
-          5.0091,
-          100
-        ],
-        "telemath": [
-          64,
-          4.8242,
-          100
-        ],
-        "3gpp_tsg": [
-          53,
-          5.0161,
-          100
-        ],
-        "teletables": [
-          35,
-          4.7937,
-          100
-        ],
-        "tci": [
-          120.7,
-          1.61,
-          0
-        ],
-        "date": "2025-04-14"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 18,
-      "row": {
-        "model": "deepseek-v3p1 (DeepSeek)",
-        "teleqna": [
-          79.1,
-          1.2864,
-          1000
-        ],
-        "telelogs": [
-          49,
-          5.0242,
-          100
-        ],
-        "telemath": [
-          63,
-          4.8524,
-          100
-        ],
-        "3gpp_tsg": [
-          52,
-          5.0212,
-          100
-        ],
-        "teletables": [
-          31,
-          4.6482,
-          100
-        ],
-        "tci": [
-          119.9,
-          1.62,
-          0
-        ],
-        "date": "2025-08-21"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 19,
-      "row": {
-        "model": "gemini-2.5-flash (Google)",
-        "teleqna": [
-          78.8,
-          1.2931,
-          1000
-        ],
-        "telelogs": [
-          41,
-          4.9431,
-          100
-        ],
-        "telemath": [
-          64,
-          4.8242,
-          100
-        ],
-        "3gpp_tsg": [
-          54,
-          5.0091,
-          100
-        ],
-        "teletables": [
-          38,
-          4.8783,
-          100
-        ],
-        "tci": [
-          119.6,
-          1.62,
-          0
-        ],
-        "date": "2025-06-17"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 20,
-      "row": {
-        "model": "gpt-5.2 (OpenAI)",
-        "teleqna": [
-          82.7,
-          1.1967,
-          1000
-        ],
-        "telelogs": [
-          33,
-          4.7258,
-          100
-        ],
-        "telemath": [
-          71,
-          4.5605,
-          100
-        ],
-        "3gpp_tsg": [
-          53,
-          5.0161,
-          100
-        ],
-        "teletables": [
-          33,
-          4.7258,
-          100
-        ],
-        "tci": [
-          119.4,
-          1.63,
-          0
-        ],
-        "date": "2025-12-11"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 21,
-      "row": {
-        "model": "gpt-5-nano (OpenAI)",
-        "teleqna": [
-          76.8,
-          1.3355,
-          1000
-        ],
-        "telelogs": [
-          48,
-          5.0212,
-          100
-        ],
-        "telemath": [
-          67,
-          4.7258,
-          100
-        ],
-        "3gpp_tsg": [
-          32,
-          4.6883,
-          100
-        ],
-        "teletables": [
-          41,
-          4.9431,
-          100
-        ],
-        "tci": [
-          119,
-          1.63,
-          0
-        ],
-        "date": "2025-08-07"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 22,
-      "row": {
-        "model": "gemini-3-flash-preview (Google)",
-        "teleqna": [
-          83.6,
-          1.17,
-          1000
-        ],
-        "telelogs": [
-          53,
-          5.02,
-          100
-        ],
-        "telemath": [
-          38,
-          4.88,
-          100
-        ],
-        "3gpp_tsg": [
-          64,
-          4.82,
-          100
-        ],
-        "teletables": null,
-        "tci": [
-          118.5,
-          1.63,
-          0
-        ],
-        "date": "2025-12-17"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 23,
-      "row": {
-        "model": "llama-4-maverick (Meta)",
-        "teleqna": [
-          80.2,
-          1.2608,
-          1000
-        ],
-        "telelogs": [
-          35,
-          4.7937,
-          100
-        ],
-        "telemath": [
-          66,
-          4.761,
-          100
-        ],
-        "3gpp_tsg": [
-          50,
-          5.0252,
-          100
-        ],
-        "teletables": [
-          34,
-          4.761,
-          100
-        ],
-        "tci": [
-          118,
-          1.64,
-          0
-        ],
-        "date": "2025-04-05"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 24,
-      "row": {
-        "model": "gemini-2.0-flash-001 (Google)",
-        "teleqna": [
-          80.5,
-          1.2535,
-          1000
-        ],
-        "telelogs": [
-          34,
-          4.761,
-          100
-        ],
-        "telemath": [
-          61,
-          4.9021,
-          100
-        ],
-        "3gpp_tsg": [
-          56,
-          4.9889,
-          100
-        ],
-        "teletables": [
-          37,
-          4.8524,
-          100
-        ],
-        "tci": [
-          117.9,
-          1.64,
-          0
-        ],
-        "date": "2025-02-05"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 25,
-      "row": {
-        "model": "grok-3-mini (X-AI)",
-        "teleqna": [
-          80.6,
-          1.2511,
-          1000
-        ],
-        "telelogs": [
-          47,
-          5.0161,
-          100
-        ],
-        "telemath": [
-          48,
-          5.0212,
-          100
-        ],
-        "3gpp_tsg": [
-          51,
-          5.0242,
-          100
-        ],
-        "teletables": [
-          38,
-          4.8783,
-          100
-        ],
-        "tci": [
-          117.6,
-          1.64,
-          0
-        ],
-        "date": "2025-04-09"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 26,
-      "row": {
-        "model": "claude-3.5-sonnet (Anthropic)",
-        "teleqna": [
-          82.1,
-          1.2129,
-          1000
-        ],
-        "telelogs": [
-          41,
-          4.9431,
-          100
-        ],
-        "telemath": [
-          56,
-          4.9889,
-          100
-        ],
-        "3gpp_tsg": [
-          55,
-          5,
-          100
-        ],
-        "teletables": [
-          30,
-          4.6057,
-          100
-        ],
-        "tci": [
-          117.6,
-          1.64,
-          0
-        ],
-        "date": "2024-06-21"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 27,
-      "row": {
-        "model": "mimo-v2-flash (Xiaomi)",
-        "teleqna": [
-          78.6,
-          1.2976,
-          1000
-        ],
-        "telelogs": [
-          34,
-          4.761,
-          100
-        ],
-        "telemath": [
-          64,
-          4.8242,
-          100
-        ],
-        "3gpp_tsg": [
-          55,
-          5,
-          100
-        ],
-        "teletables": [
-          29,
-          4.5605,
-          100
-        ],
-        "tci": [
-          116.8,
-          1.65,
-          0
-        ],
-        "date": "2025-12-16"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 28,
-      "row": {
-        "model": "deepseek-v3-0324 (DeepSeek)",
-        "teleqna": [
-          81.6,
-          1.2259,
-          1000
-        ],
-        "telelogs": [
-          40,
-          4.9237,
-          100
-        ],
-        "telemath": [
-          57,
-          4.9757,
-          100
-        ],
-        "3gpp_tsg": [
-          49,
-          5.0242,
-          100
-        ],
-        "teletables": [
-          28,
-          4.5126,
-          100
-        ],
-        "tci": [
-          116.4,
-          1.65,
-          0
-        ],
-        "date": "2025-03-24"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 29,
-      "row": {
-        "model": "claude-haiku-4.5 (Anthropic)",
-        "teleqna": [
-          78.9,
-          1.2909,
-          1000
-        ],
-        "telelogs": [
-          34,
-          4.761,
-          100
-        ],
-        "telemath": [
-          63,
-          4.8524,
-          100
-        ],
-        "3gpp_tsg": [
-          52,
-          5.0212,
-          100
-        ],
-        "teletables": [
-          28,
-          4.5126,
-          100
-        ],
-        "tci": [
-          116.1,
-          1.66,
-          0
-        ],
-        "date": "2025-10-15"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 30,
-      "row": {
-        "model": "gpt-5-mini (OpenAI)",
-        "teleqna": [
-          44.7,
-          1.573,
-          1000
-        ],
-        "telelogs": [
-          52,
-          5.0212,
-          100
-        ],
-        "telemath": [
-          71,
-          4.5605,
-          100
-        ],
-        "3gpp_tsg": [
-          43,
-          4.9757,
-          100
-        ],
-        "teletables": [
-          28,
-          4.5126,
-          100
-        ],
-        "tci": [
-          115.5,
-          1.66,
-          0
-        ],
-        "date": "2025-08-07"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 31,
-      "row": {
-        "model": "gpt-4.1-mini (OpenAI)",
-        "teleqna": [
-          79.5,
-          1.2773,
-          1000
-        ],
-        "telelogs": [
-          40,
-          4.9237,
-          100
-        ],
-        "telemath": [
-          59,
-          4.9431,
-          100
-        ],
-        "3gpp_tsg": [
-          37,
-          4.8524,
-          100
-        ],
-        "teletables": [
-          30,
-          4.6057,
-          100
-        ],
-        "tci": [
-          115.2,
-          1.66,
-          0
-        ],
-        "date": "2025-04-14"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 32,
-      "row": {
-        "model": "deepseek-v3.2 (DeepSeek)",
-        "teleqna": [
-          80.1,
-          1.26,
-          1000
-        ],
-        "telelogs": [
-          53,
-          5.02,
-          100
-        ],
-        "telemath": [
-          34,
-          4.76,
-          100
-        ],
-        "3gpp_tsg": [
-          55,
-          5,
-          100
-        ],
-        "teletables": null,
-        "tci": [
-          115.2,
-          1.66,
-          0
-        ],
-        "date": "2025-12-01"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 33,
-      "row": {
-        "model": "gpt-5.1 (OpenAI)",
-        "teleqna": [
-          82.7,
-          1.1967,
-          1000
-        ],
-        "telelogs": [
-          16,
-          3.6845,
-          100
-        ],
-        "telemath": [
-          65,
-          4.7937,
-          100
-        ],
-        "3gpp_tsg": [
-          56,
-          4.9889,
-          100
-        ],
-        "teletables": [
-          36,
-          4.8242,
-          100
-        ],
-        "tci": [
-          113.9,
-          1.67,
-          0
-        ],
-        "date": "2025-11-12"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 34,
-      "row": {
-        "model": "gpt-oss-120b (OpenAI)",
-        "teleqna": [
-          78.6,
-          1.2976,
-          1000
-        ],
-        "telelogs": [
-          46,
-          5.0091,
-          100
-        ],
-        "telemath": [
-          30,
-          4.6057,
-          100
-        ],
-        "3gpp_tsg": [
-          37,
-          4.8524,
-          100
-        ],
-        "teletables": null,
-        "tci": [
-          109.3,
-          1.72,
-          0
-        ],
-        "date": "2025-08-05"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 35,
-      "row": {
-        "model": "command-a (Cohere)",
-        "teleqna": [
-          77.5,
-          1.3212,
-          1000
-        ],
-        "telelogs": [
-          28,
-          4.5126,
-          100
-        ],
-        "telemath": [
-          41,
-          4.9431,
-          100
-        ],
-        "3gpp_tsg": [
-          39,
-          4.9021,
-          100
-        ],
-        "teletables": [
-          29,
-          4.5605,
-          100
-        ],
-        "tci": [
-          108.4,
-          1.72,
-          0
-        ],
-        "date": "2025-03-13"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 36,
-      "row": {
-        "model": "llama-v3p3-70b-instruct (Meta)",
-        "teleqna": [
-          77.3,
-          1.3253,
-          1000
-        ],
-        "telelogs": [
-          18,
-          3.8612,
-          100
-        ],
-        "telemath": [
-          45,
-          5,
-          100
-        ],
-        "3gpp_tsg": [
-          52,
-          5.0212,
-          100
-        ],
-        "teletables": [
-          29,
-          4.5605,
-          100
-        ],
-        "tci": [
-          107.8,
-          1.73,
-          0
-        ],
-        "date": "2024-12-06"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 37,
-      "row": {
-        "model": "gpt-oss-20b (OpenAI)",
-        "teleqna": [
-          78.3,
-          1.3042,
-          1000
-        ],
-        "telelogs": [
-          38,
-          4.8783,
-          100
-        ],
-        "telemath": [
-          31,
-          4.6482,
-          100
-        ],
-        "3gpp_tsg": [
-          25,
-          4.3519,
-          100
-        ],
-        "teletables": null,
-        "tci": [
-          105.4,
-          1.75,
-          0
-        ],
-        "date": "2025-08-05"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 38,
-      "row": {
-        "model": "gpt-4o-mini (OpenAI)",
-        "teleqna": [
-          75.1,
-          1.3682,
-          1000
-        ],
-        "telelogs": [
-          13,
-          3.38,
-          100
-        ],
-        "telemath": [
-          39,
-          4.9021,
-          100
-        ],
-        "3gpp_tsg": [
-          38,
-          4.8783,
-          100
-        ],
-        "teletables": [
-          37,
-          4.8524,
-          100
-        ],
-        "tci": [
-          103.6,
-          1.77,
-          0
-        ],
-        "date": "2024-07-18"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 39,
-      "row": {
-        "model": "gpt-4.1-nano (OpenAI)",
-        "teleqna": [
-          72.6,
-          1.4111,
-          1000
-        ],
-        "telelogs": [
-          13,
-          3.38,
-          100
-        ],
-        "telemath": [
-          52,
-          5.0212,
-          100
-        ],
-        "3gpp_tsg": [
-          27,
-          4.462,
-          100
-        ],
-        "teletables": [
-          28,
-          4.5126,
-          100
-        ],
-        "tci": [
-          103,
-          1.77,
-          0
-        ],
-        "date": "2025-04-14"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 40,
-      "row": {
-        "model": "claude-3.5-haiku (Anthropic)",
-        "teleqna": [
-          74,
-          1.3878,
-          1000
-        ],
-        "telelogs": [
-          15,
-          3.5887,
-          100
-        ],
-        "telemath": [
-          36,
-          4.8242,
-          100
-        ],
-        "3gpp_tsg": [
-          44,
-          4.9889,
-          100
-        ],
-        "teletables": [
-          25,
-          4.3519,
-          100
-        ],
-        "tci": [
-          102.5,
-          1.78,
-          0
-        ],
-        "date": "2024-11-04"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 41,
-      "row": {
-        "model": "gpt-4 (OpenAI)",
-        "teleqna": [
-          76.7,
-          1.3375,
-          1000
-        ],
-        "telelogs": [
-          22,
-          4.1633,
-          100
-        ],
-        "telemath": [
-          19,
-          3.9428,
-          100
-        ],
-        "3gpp_tsg": [
-          53,
-          5.0161,
-          100
-        ],
-        "teletables": [
-          18,
-          3.8612,
-          100
-        ],
-        "tci": [
-          100.8,
-          1.79,
-          0
-        ],
-        "date": "2023-03-14"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 42,
-      "row": {
-        "model": "ministral-8b-2512 (Mistral)",
-        "teleqna": [
-          69.6,
-          1.4553,
-          1000
-        ],
-        "telelogs": [
-          19,
-          3.9428,
-          100
-        ],
-        "telemath": [
-          25,
-          4.3519,
-          100
-        ],
-        "3gpp_tsg": [
-          33,
-          4.7258,
-          100
-        ],
-        "teletables": null,
-        "tci": [
-          97.1,
-          1.83,
-          0
-        ],
-        "date": "2025-12-02"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 43,
-      "row": {
-        "model": "claude-3-haiku (Anthropic)",
-        "teleqna": [
-          72.2,
-          1.4175,
-          1000
-        ],
-        "telelogs": [
-          10,
-          3.0151,
-          100
-        ],
-        "telemath": [
-          21,
-          4.0936,
-          100
-        ],
-        "3gpp_tsg": [
-          40,
-          4.9237,
-          100
-        ],
-        "teletables": [
-          27,
-          4.462,
-          100
-        ],
-        "tci": [
-          95.9,
-          1.84,
-          0
-        ],
-        "date": "2024-03-13"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 44,
-      "row": {
-        "model": "gpt-3.5-turbo (OpenAI)",
-        "teleqna": [
-          71.3,
-          1.4312,
-          1000
-        ],
-        "telelogs": [
-          9,
-          2.8762,
-          100
-        ],
-        "telemath": [
-          17,
-          3.7753,
-          100
-        ],
-        "3gpp_tsg": [
-          40,
-          4.9237,
-          100
-        ],
-        "teletables": [
-          21,
-          4.0936,
-          100
-        ],
-        "tci": [
-          92.7,
-          1.87,
-          0
-        ],
-        "date": "2023-03-01"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 45,
-      "row": {
-        "model": "phi-4 (Microsoft)",
-        "teleqna": [
-          68.2,
-          1.4734,
-          1000
-        ],
-        "telelogs": [
-          4,
-          1.9695,
-          100
-        ],
-        "telemath": [
-          33,
-          4.7258,
-          100
-        ],
-        "3gpp_tsg": [
-          30,
-          4.6057,
-          100
-        ],
-        "teletables": [
-          21,
-          4.0936,
-          100
-        ],
-        "tci": [
-          90.8,
-          1.88,
-          0
-        ],
-        "date": "2024-12-12"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 46,
-      "row": {
-        "model": "command-r7b-12-2024 (Cohere)",
-        "teleqna": [
-          51.7,
-          1.581,
-          1000
-        ],
-        "telelogs": [
-          12,
-          3.266,
-          100
-        ],
-        "telemath": [
-          6,
-          2.3868,
-          100
-        ],
-        "3gpp_tsg": [
-          24,
-          4.2923,
-          100
-        ],
-        "teletables": [
-          20,
-          4.0202,
-          100
-        ],
-        "tci": [
-          83.2,
-          1.95,
-          0
-        ],
-        "date": "2024-12-13"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 47,
-      "row": {
-        "model": "deepseek-r1-0528 (DeepSeek)",
-        "teleqna": [
-          72.6,
-          1.4111,
-          1000
-        ],
-        "telelogs": [
-          0,
-          0,
-          100
-        ],
-        "telemath": [
-          12,
-          3.266,
-          100
-        ],
-        "3gpp_tsg": [
-          50,
-          5.0252,
-          100
-        ],
-        "teletables": [
-          11,
-          3.1447,
-          100
-        ],
-        "tci": [
-          77.6,
-          2,
-          0
-        ],
-        "date": "2025-05-28"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 48,
-      "row": {
-        "model": "qwen3-8b (Qwen)",
-        "teleqna": [
-          71.1,
-          1.4342,
-          1000
-        ],
-        "telelogs": [
-          0,
-          0,
-          100
-        ],
-        "telemath": [
-          9,
-          2.8762,
-          100
-        ],
-        "3gpp_tsg": [
-          34,
-          4.761,
-          100
-        ],
-        "teletables": [
-          21,
-          4.0936,
-          100
-        ],
-        "tci": [
-          76.3,
-          2.01,
-          0
-        ],
-        "date": "2025-04-29"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 49,
-      "row": {
-        "model": "deepseek-v3p2 (DeepSeek)",
-        "teleqna": [
-          71.3,
-          1.4312,
-          1000
-        ],
-        "telelogs": [
-          0,
-          0,
-          100
-        ],
-        "telemath": [
-          8,
-          2.7266,
-          100
-        ],
-        "3gpp_tsg": [
-          43,
-          4.9757,
-          100
-        ],
-        "teletables": [
-          8,
-          2.7266,
-          100
-        ],
-        "tci": [
-          73.1,
-          2.04,
-          0
-        ],
-        "date": "2025-12-01"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 50,
-      "row": {
-        "model": "glm-4p7 (Zhipu AI)",
-        "teleqna": [
-          65.6,
-          1.503,
-          1000
-        ],
-        "telelogs": [
-          0,
-          0,
-          100
-        ],
-        "telemath": [
-          9,
-          2.8762,
-          100
-        ],
-        "3gpp_tsg": [
-          48,
-          5.0212,
-          100
-        ],
-        "teletables": [
-          4,
-          1.9695,
-          100
-        ],
-        "tci": [
-          71.1,
-          2.06,
-          0
-        ],
-        "date": "2025-12-22"
-      },
-      "truncated_cells": []
-    },
-    {
-      "row_idx": 51,
       "row": {
         "model": "qwen3-235b-a22b-2507 (Qwen)",
         "teleqna": [
@@ -1928,69 +570,1453 @@
           1000
         ],
         "telelogs": [
-          61,
+          61.0,
           4.9021,
           100
         ],
         "telemath": [
-          64,
+          64.0,
           4.8242,
           100
         ],
         "3gpp_tsg": [
-          45,
-          5,
+          45.0,
+          5.0,
           100
         ],
         "teletables": [
-          37,
+          37.0,
           4.8524,
           100
         ],
         "tci": [
-          0,
-          0,
+          121.7,
+          1.6,
           0
         ],
-        "date": "2026-01-31"
+        "date": null,
+        "total_cost": 0.49,
+        "cost_efficiency": 68.7
       },
       "truncated_cells": []
     },
     {
-      "row_idx": 52,
+      "row_idx": 15,
       "row": {
-        "model": "zephyr (HuggingFace)",
+        "model": "claude-sonnet-4 (Anthropic)",
         "teleqna": [
-          45.3,
-          1.5749,
+          83.0,
+          1.1884,
           1000
         ],
         "telelogs": [
-          3,
-          1.7145,
+          47.0,
+          5.0161,
           100
         ],
         "telemath": [
-          4,
-          1.9695,
+          70.0,
+          4.6057,
           100
         ],
         "3gpp_tsg": [
-          26,
-          4.4084,
+          56.0,
+          4.9889,
           100
         ],
         "teletables": [
-          24,
-          4.2923,
+          31.0,
+          4.6482,
           100
         ],
         "tci": [
-          0,
-          0,
+          121.3,
+          1.61,
           0
         ],
-        "date": "2026-01-31"
+        "date": "2025-05-22",
+        "total_cost": 5.83,
+        "cost_efficiency": 36.2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 16,
+      "row": {
+        "model": "chatgpt-4o-latest (OpenAI)",
+        "teleqna": [
+          81.0,
+          1.2412,
+          1000
+        ],
+        "telelogs": [
+          52.0,
+          5.0212,
+          100
+        ],
+        "telemath": [
+          66.0,
+          4.761,
+          100
+        ],
+        "3gpp_tsg": [
+          58.0,
+          4.9604,
+          100
+        ],
+        "teletables": [
+          32.0,
+          4.6883,
+          100
+        ],
+        "tci": [
+          121.3,
+          1.61,
+          0
+        ],
+        "date": "2024-08-08",
+        "total_cost": 5.29,
+        "cost_efficiency": 37.5
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 17,
+      "row": {
+        "model": "o4-mini (OpenAI)",
+        "teleqna": [
+          80.8,
+          1.2462,
+          1000
+        ],
+        "telelogs": [
+          49.0,
+          5.0242,
+          100
+        ],
+        "telemath": [
+          68.0,
+          4.6883,
+          100
+        ],
+        "3gpp_tsg": [
+          45.0,
+          5.0,
+          100
+        ],
+        "teletables": [
+          40.0,
+          4.9237,
+          100
+        ],
+        "tci": [
+          120.7,
+          1.61,
+          0
+        ],
+        "date": "2025-04-16",
+        "total_cost": 5.3,
+        "cost_efficiency": 37.4
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 18,
+      "row": {
+        "model": "gemini-2.5-pro (Google)",
+        "teleqna": [
+          81.8,
+          1.2208,
+          1000
+        ],
+        "telelogs": [
+          37.0,
+          4.8524,
+          100
+        ],
+        "telemath": [
+          75.0,
+          4.3519,
+          100
+        ],
+        "3gpp_tsg": [
+          58.0,
+          4.9604,
+          100
+        ],
+        "teletables": [
+          30.0,
+          4.6057,
+          100
+        ],
+        "tci": [
+          120.2,
+          1.62,
+          0
+        ],
+        "date": "2025-06-17",
+        "total_cost": 33.39,
+        "cost_efficiency": 13.2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 19,
+      "row": {
+        "model": "deepseek-v3.2 (DeepSeek)",
+        "teleqna": null,
+        "telelogs": [
+          55.0,
+          5.0,
+          100
+        ],
+        "telemath": null,
+        "3gpp_tsg": [
+          54.0,
+          5.0091,
+          100
+        ],
+        "teletables": [
+          31.0,
+          4.6482,
+          100
+        ],
+        "tci": [
+          120.0,
+          1.62,
+          0
+        ],
+        "date": "2025-12-01",
+        "total_cost": 0.18,
+        "cost_efficiency": 81.9
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 20,
+      "row": {
+        "model": "gpt-4.1 (OpenAI)",
+        "teleqna": [
+          81.7,
+          1.2234,
+          1000
+        ],
+        "telelogs": [
+          46.0,
+          5.0091,
+          100
+        ],
+        "telemath": [
+          64.0,
+          4.8242,
+          100
+        ],
+        "3gpp_tsg": [
+          53.0,
+          5.0161,
+          100
+        ],
+        "teletables": [
+          35.0,
+          4.7937,
+          100
+        ],
+        "tci": [
+          119.7,
+          1.62,
+          0
+        ],
+        "date": "2025-04-14",
+        "total_cost": 2.57,
+        "cost_efficiency": 47.0
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 21,
+      "row": {
+        "model": "deepseek-v3p1 (DeepSeek)",
+        "teleqna": [
+          79.1,
+          1.2864,
+          1000
+        ],
+        "telelogs": [
+          49.0,
+          5.0242,
+          100
+        ],
+        "telemath": [
+          63.0,
+          4.8524,
+          100
+        ],
+        "3gpp_tsg": [
+          52.0,
+          5.0212,
+          100
+        ],
+        "teletables": [
+          31.0,
+          4.6482,
+          100
+        ],
+        "tci": [
+          118.8,
+          1.63,
+          0
+        ],
+        "date": "2025-08-21",
+        "total_cost": 0.47,
+        "cost_efficiency": 69.2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 22,
+      "row": {
+        "model": "gemini-2.5-flash (Google)",
+        "teleqna": [
+          78.8,
+          1.2931,
+          1000
+        ],
+        "telelogs": [
+          41.0,
+          4.9431,
+          100
+        ],
+        "telemath": [
+          64.0,
+          4.8242,
+          100
+        ],
+        "3gpp_tsg": [
+          54.0,
+          5.0091,
+          100
+        ],
+        "teletables": [
+          38.0,
+          4.8783,
+          100
+        ],
+        "tci": [
+          118.5,
+          1.63,
+          0
+        ],
+        "date": "2025-06-17",
+        "total_cost": 2.79,
+        "cost_efficiency": 45.9
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 23,
+      "row": {
+        "model": "gpt-5.2 (OpenAI)",
+        "teleqna": [
+          82.7,
+          1.1967,
+          1000
+        ],
+        "telelogs": [
+          33.0,
+          4.7258,
+          100
+        ],
+        "telemath": [
+          71.0,
+          4.5605,
+          100
+        ],
+        "3gpp_tsg": [
+          53.0,
+          5.0161,
+          100
+        ],
+        "teletables": [
+          33.0,
+          4.7258,
+          100
+        ],
+        "tci": [
+          118.3,
+          1.64,
+          0
+        ],
+        "date": "2025-12-11",
+        "total_cost": 1.98,
+        "cost_efficiency": 50.4
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 24,
+      "row": {
+        "model": "gpt-5-nano (OpenAI)",
+        "teleqna": [
+          76.8,
+          1.3355,
+          1000
+        ],
+        "telelogs": [
+          48.0,
+          5.0212,
+          100
+        ],
+        "telemath": [
+          67.0,
+          4.7258,
+          100
+        ],
+        "3gpp_tsg": [
+          32.0,
+          4.6883,
+          100
+        ],
+        "teletables": [
+          41.0,
+          4.9431,
+          100
+        ],
+        "tci": [
+          117.8,
+          1.64,
+          0
+        ],
+        "date": "2025-08-07",
+        "total_cost": 0.82,
+        "cost_efficiency": 62.0
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 25,
+      "row": {
+        "model": "gemini-2.0-flash-001 (Google)",
+        "teleqna": [
+          80.5,
+          1.2535,
+          1000
+        ],
+        "telelogs": [
+          34.0,
+          4.761,
+          100
+        ],
+        "telemath": [
+          61.0,
+          4.9021,
+          100
+        ],
+        "3gpp_tsg": [
+          56.0,
+          4.9889,
+          100
+        ],
+        "teletables": [
+          37.0,
+          4.8524,
+          100
+        ],
+        "tci": [
+          116.8,
+          1.65,
+          0
+        ],
+        "date": "2025-02-05",
+        "total_cost": 0.12,
+        "cost_efficiency": 87.5
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 26,
+      "row": {
+        "model": "llama-4-maverick (Meta)",
+        "teleqna": [
+          80.2,
+          1.2608,
+          1000
+        ],
+        "telelogs": [
+          35.0,
+          4.7937,
+          100
+        ],
+        "telemath": [
+          66.0,
+          4.761,
+          100
+        ],
+        "3gpp_tsg": [
+          50.0,
+          5.0252,
+          100
+        ],
+        "teletables": [
+          34.0,
+          4.761,
+          100
+        ],
+        "tci": [
+          116.8,
+          1.65,
+          0
+        ],
+        "date": "2025-04-05",
+        "total_cost": 0.37,
+        "cost_efficiency": 72.6
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 27,
+      "row": {
+        "model": "grok-3-mini (X-AI)",
+        "teleqna": [
+          80.6,
+          1.2511,
+          1000
+        ],
+        "telelogs": [
+          47.0,
+          5.0161,
+          100
+        ],
+        "telemath": [
+          48.0,
+          5.0212,
+          100
+        ],
+        "3gpp_tsg": [
+          51.0,
+          5.0242,
+          100
+        ],
+        "teletables": [
+          38.0,
+          4.8783,
+          100
+        ],
+        "tci": [
+          116.6,
+          1.65,
+          0
+        ],
+        "date": "2025-04-09",
+        "total_cost": 20.09,
+        "cost_efficiency": 19.9
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 28,
+      "row": {
+        "model": "claude-3.5-sonnet (Anthropic)",
+        "teleqna": [
+          82.1,
+          1.2129,
+          1000
+        ],
+        "telelogs": [
+          41.0,
+          4.9431,
+          100
+        ],
+        "telemath": [
+          56.0,
+          4.9889,
+          100
+        ],
+        "3gpp_tsg": [
+          55.0,
+          5.0,
+          100
+        ],
+        "teletables": [
+          30.0,
+          4.6057,
+          100
+        ],
+        "tci": [
+          116.5,
+          1.65,
+          0
+        ],
+        "date": "2024-06-21",
+        "total_cost": 1.26,
+        "cost_efficiency": 56.4
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 29,
+      "row": {
+        "model": "mimo-v2-flash (Xiaomi)",
+        "teleqna": [
+          78.6,
+          1.2976,
+          1000
+        ],
+        "telelogs": [
+          34.0,
+          4.761,
+          100
+        ],
+        "telemath": [
+          64.0,
+          4.8242,
+          100
+        ],
+        "3gpp_tsg": [
+          55.0,
+          5.0,
+          100
+        ],
+        "teletables": [
+          29.0,
+          4.5605,
+          100
+        ],
+        "tci": [
+          115.7,
+          1.66,
+          0
+        ],
+        "date": "2025-12-16",
+        "total_cost": 0.69,
+        "cost_efficiency": 64.3
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 30,
+      "row": {
+        "model": "deepseek-v3-0324 (DeepSeek)",
+        "teleqna": [
+          81.6,
+          1.2259,
+          1000
+        ],
+        "telelogs": [
+          40.0,
+          4.9237,
+          100
+        ],
+        "telemath": [
+          57.0,
+          4.9757,
+          100
+        ],
+        "3gpp_tsg": [
+          49.0,
+          5.0242,
+          100
+        ],
+        "teletables": [
+          28.0,
+          4.5126,
+          100
+        ],
+        "tci": [
+          115.3,
+          1.66,
+          0
+        ],
+        "date": "2025-03-24",
+        "total_cost": 0.48,
+        "cost_efficiency": 69.0
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 31,
+      "row": {
+        "model": "claude-haiku-4.5 (Anthropic)",
+        "teleqna": [
+          78.9,
+          1.2909,
+          1000
+        ],
+        "telelogs": [
+          34.0,
+          4.761,
+          100
+        ],
+        "telemath": [
+          63.0,
+          4.8524,
+          100
+        ],
+        "3gpp_tsg": [
+          52.0,
+          5.0212,
+          100
+        ],
+        "teletables": [
+          28.0,
+          4.5126,
+          100
+        ],
+        "tci": [
+          115.0,
+          1.66,
+          0
+        ],
+        "date": "2025-10-15",
+        "total_cost": 1.76,
+        "cost_efficiency": 51.9
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 32,
+      "row": {
+        "model": "gpt-5-mini (OpenAI)",
+        "teleqna": [
+          44.7,
+          1.573,
+          1000
+        ],
+        "telelogs": [
+          52.0,
+          5.0212,
+          100
+        ],
+        "telemath": [
+          71.0,
+          4.5605,
+          100
+        ],
+        "3gpp_tsg": [
+          43.0,
+          4.9757,
+          100
+        ],
+        "teletables": [
+          28.0,
+          4.5126,
+          100
+        ],
+        "tci": [
+          114.2,
+          1.67,
+          0
+        ],
+        "date": "2025-08-07",
+        "total_cost": 2.16,
+        "cost_efficiency": 49.2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 33,
+      "row": {
+        "model": "gpt-oss-120b (OpenAI)",
+        "teleqna": [
+          79.9,
+          1.2679,
+          1000
+        ],
+        "telelogs": [
+          45.0,
+          5.0,
+          100
+        ],
+        "telemath": [
+          57.0,
+          4.9757,
+          100
+        ],
+        "3gpp_tsg": [
+          32.0,
+          4.6883,
+          100
+        ],
+        "teletables": [
+          30.0,
+          4.6057,
+          100
+        ],
+        "tci": [
+          114.2,
+          1.67,
+          0
+        ],
+        "date": "2025-08-05",
+        "total_cost": 0.19,
+        "cost_efficiency": 81.6
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 34,
+      "row": {
+        "model": "gpt-4.1-mini (OpenAI)",
+        "teleqna": [
+          79.5,
+          1.2773,
+          1000
+        ],
+        "telelogs": [
+          40.0,
+          4.9237,
+          100
+        ],
+        "telemath": [
+          59.0,
+          4.9431,
+          100
+        ],
+        "3gpp_tsg": [
+          37.0,
+          4.8524,
+          100
+        ],
+        "teletables": [
+          30.0,
+          4.6057,
+          100
+        ],
+        "tci": [
+          114.1,
+          1.67,
+          0
+        ],
+        "date": "2025-04-14",
+        "total_cost": 0.42,
+        "cost_efficiency": 70.8
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 35,
+      "row": {
+        "model": "gpt-5.1 (OpenAI)",
+        "teleqna": [
+          82.7,
+          1.1967,
+          1000
+        ],
+        "telelogs": [
+          16.0,
+          3.6845,
+          100
+        ],
+        "telemath": [
+          65.0,
+          4.7937,
+          100
+        ],
+        "3gpp_tsg": [
+          56.0,
+          4.9889,
+          100
+        ],
+        "teletables": [
+          36.0,
+          4.8242,
+          100
+        ],
+        "tci": [
+          112.8,
+          1.68,
+          0
+        ],
+        "date": "2025-11-12",
+        "total_cost": 2.14,
+        "cost_efficiency": 49.3
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 36,
+      "row": {
+        "model": "gpt-oss-20b (OpenAI)",
+        "teleqna": null,
+        "telelogs": [
+          33.0,
+          4.7258,
+          100
+        ],
+        "telemath": [
+          63.0,
+          4.8524,
+          100
+        ],
+        "3gpp_tsg": [
+          29.0,
+          4.5605,
+          100
+        ],
+        "teletables": [
+          33.0,
+          4.7258,
+          100
+        ],
+        "tci": [
+          111.4,
+          1.7,
+          0
+        ],
+        "date": "2025-08-05",
+        "total_cost": 0.36,
+        "cost_efficiency": 72.7
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 37,
+      "row": {
+        "model": "qwen3-32b (Qwen)",
+        "teleqna": null,
+        "telelogs": [
+          40.0,
+          4.9237,
+          100
+        ],
+        "telemath": [
+          58.0,
+          4.9604,
+          100
+        ],
+        "3gpp_tsg": [
+          30.0,
+          4.6057,
+          100
+        ],
+        "teletables": null,
+        "tci": [
+          111.2,
+          1.7,
+          0
+        ],
+        "date": null,
+        "total_cost": null,
+        "cost_efficiency": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 38,
+      "row": {
+        "model": "command-a (Cohere)",
+        "teleqna": [
+          77.5,
+          1.3212,
+          1000
+        ],
+        "telelogs": [
+          28.0,
+          4.5126,
+          100
+        ],
+        "telemath": [
+          41.0,
+          4.9431,
+          100
+        ],
+        "3gpp_tsg": [
+          39.0,
+          4.9021,
+          100
+        ],
+        "teletables": [
+          29.0,
+          4.5605,
+          100
+        ],
+        "tci": [
+          107.4,
+          1.73,
+          0
+        ],
+        "date": "2025-03-13",
+        "total_cost": 3.03,
+        "cost_efficiency": 44.8
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 39,
+      "row": {
+        "model": "llama-v3p3-70b-instruct (Meta)",
+        "teleqna": [
+          77.3,
+          1.3253,
+          1000
+        ],
+        "telelogs": [
+          18.0,
+          3.8612,
+          100
+        ],
+        "telemath": [
+          45.0,
+          5.0,
+          100
+        ],
+        "3gpp_tsg": [
+          52.0,
+          5.0212,
+          100
+        ],
+        "teletables": [
+          29.0,
+          4.5605,
+          100
+        ],
+        "tci": [
+          106.8,
+          1.74,
+          0
+        ],
+        "date": "2024-12-06",
+        "total_cost": 0.1,
+        "cost_efficiency": 90.1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 40,
+      "row": {
+        "model": "gpt-4o-mini (OpenAI)",
+        "teleqna": [
+          75.1,
+          1.3682,
+          1000
+        ],
+        "telelogs": [
+          13.0,
+          3.38,
+          100
+        ],
+        "telemath": [
+          39.0,
+          4.9021,
+          100
+        ],
+        "3gpp_tsg": [
+          38.0,
+          4.8783,
+          100
+        ],
+        "teletables": [
+          37.0,
+          4.8524,
+          100
+        ],
+        "tci": [
+          102.6,
+          1.78,
+          0
+        ],
+        "date": "2024-07-18",
+        "total_cost": 0.17,
+        "cost_efficiency": 82.7
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 41,
+      "row": {
+        "model": "gpt-4.1-nano (OpenAI)",
+        "teleqna": [
+          72.6,
+          1.4111,
+          1000
+        ],
+        "telelogs": [
+          13.0,
+          3.38,
+          100
+        ],
+        "telemath": [
+          52.0,
+          5.0212,
+          100
+        ],
+        "3gpp_tsg": [
+          27.0,
+          4.462,
+          100
+        ],
+        "teletables": [
+          28.0,
+          4.5126,
+          100
+        ],
+        "tci": [
+          101.8,
+          1.78,
+          0
+        ],
+        "date": "2025-04-14",
+        "total_cost": 0.11,
+        "cost_efficiency": 88.9
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 42,
+      "row": {
+        "model": "claude-3.5-haiku (Anthropic)",
+        "teleqna": [
+          74.0,
+          1.3878,
+          1000
+        ],
+        "telelogs": [
+          15.0,
+          3.5887,
+          100
+        ],
+        "telemath": [
+          36.0,
+          4.8242,
+          100
+        ],
+        "3gpp_tsg": [
+          44.0,
+          4.9889,
+          100
+        ],
+        "teletables": [
+          25.0,
+          4.3519,
+          100
+        ],
+        "tci": [
+          101.5,
+          1.79,
+          0
+        ],
+        "date": "2024-11-04",
+        "total_cost": 0.71,
+        "cost_efficiency": 63.9
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 43,
+      "row": {
+        "model": "gpt-4 (OpenAI)",
+        "teleqna": [
+          76.7,
+          1.3375,
+          1000
+        ],
+        "telelogs": [
+          22.0,
+          4.1633,
+          100
+        ],
+        "telemath": [
+          19.0,
+          3.9428,
+          100
+        ],
+        "3gpp_tsg": [
+          53.0,
+          5.0161,
+          100
+        ],
+        "teletables": [
+          18.0,
+          3.8612,
+          100
+        ],
+        "tci": [
+          99.9,
+          1.8,
+          0
+        ],
+        "date": "2023-03-14",
+        "total_cost": 17.77,
+        "cost_efficiency": 21.5
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 44,
+      "row": {
+        "model": "claude-3-haiku (Anthropic)",
+        "teleqna": [
+          72.2,
+          1.4175,
+          1000
+        ],
+        "telelogs": [
+          10.0,
+          3.0151,
+          100
+        ],
+        "telemath": [
+          21.0,
+          4.0936,
+          100
+        ],
+        "3gpp_tsg": [
+          40.0,
+          4.9237,
+          100
+        ],
+        "teletables": [
+          27.0,
+          4.462,
+          100
+        ],
+        "tci": [
+          94.9,
+          1.85,
+          0
+        ],
+        "date": "2024-03-13",
+        "total_cost": 0.18,
+        "cost_efficiency": 82.2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 45,
+      "row": {
+        "model": "gpt-3.5-turbo (OpenAI)",
+        "teleqna": [
+          71.3,
+          1.4312,
+          1000
+        ],
+        "telelogs": [
+          9.0,
+          2.8762,
+          100
+        ],
+        "telemath": [
+          17.0,
+          3.7753,
+          100
+        ],
+        "3gpp_tsg": [
+          40.0,
+          4.9237,
+          100
+        ],
+        "teletables": [
+          21.0,
+          4.0936,
+          100
+        ],
+        "tci": [
+          91.8,
+          1.87,
+          0
+        ],
+        "date": "2023-03-01",
+        "total_cost": 0.32,
+        "cost_efficiency": 74.3
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 46,
+      "row": {
+        "model": "phi-4 (Microsoft)",
+        "teleqna": [
+          68.2,
+          1.4734,
+          1000
+        ],
+        "telelogs": [
+          4.0,
+          1.9695,
+          100
+        ],
+        "telemath": [
+          33.0,
+          4.7258,
+          100
+        ],
+        "3gpp_tsg": [
+          30.0,
+          4.6057,
+          100
+        ],
+        "teletables": [
+          21.0,
+          4.0936,
+          100
+        ],
+        "tci": [
+          89.7,
+          1.89,
+          0
+        ],
+        "date": "2024-12-12",
+        "total_cost": 0.06,
+        "cost_efficiency": 96.4
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 47,
+      "row": {
+        "model": "command-r7b-12-2024 (Cohere)",
+        "teleqna": [
+          51.7,
+          1.581,
+          1000
+        ],
+        "telelogs": [
+          12.0,
+          3.266,
+          100
+        ],
+        "telemath": [
+          6.0,
+          2.3868,
+          100
+        ],
+        "3gpp_tsg": [
+          24.0,
+          4.2923,
+          100
+        ],
+        "teletables": [
+          20.0,
+          4.0202,
+          100
+        ],
+        "tci": [
+          82.3,
+          1.96,
+          0
+        ],
+        "date": "2024-12-13",
+        "total_cost": 0.05,
+        "cost_efficiency": 100.0
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 48,
+      "row": {
+        "model": "deepseek-r1-0528 (DeepSeek)",
+        "teleqna": [
+          72.6,
+          1.4111,
+          1000
+        ],
+        "telelogs": [
+          0.0,
+          0,
+          100
+        ],
+        "telemath": [
+          12.0,
+          3.266,
+          100
+        ],
+        "3gpp_tsg": [
+          50.0,
+          5.0252,
+          100
+        ],
+        "teletables": [
+          11.0,
+          3.1447,
+          100
+        ],
+        "tci": [
+          76.9,
+          2.01,
+          0
+        ],
+        "date": "2025-05-28",
+        "total_cost": 3.41,
+        "cost_efficiency": 43.2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 49,
+      "row": {
+        "model": "qwen3-8b (Qwen)",
+        "teleqna": [
+          71.1,
+          1.4342,
+          1000
+        ],
+        "telelogs": [
+          0.0,
+          0,
+          100
+        ],
+        "telemath": [
+          9.0,
+          2.8762,
+          100
+        ],
+        "3gpp_tsg": [
+          34.0,
+          4.761,
+          100
+        ],
+        "teletables": [
+          21.0,
+          4.0936,
+          100
+        ],
+        "tci": [
+          75.5,
+          2.02,
+          0
+        ],
+        "date": "2025-04-29",
+        "total_cost": 0.4,
+        "cost_efficiency": 71.4
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 50,
+      "row": {
+        "model": "deepseek-v3p2 (DeepSeek)",
+        "teleqna": [
+          71.3,
+          1.4312,
+          1000
+        ],
+        "telelogs": [
+          0.0,
+          0,
+          100
+        ],
+        "telemath": [
+          8.0,
+          2.7266,
+          100
+        ],
+        "3gpp_tsg": [
+          43.0,
+          4.9757,
+          100
+        ],
+        "teletables": [
+          8.0,
+          2.7266,
+          100
+        ],
+        "tci": [
+          72.4,
+          2.05,
+          0
+        ],
+        "date": "2025-12-01",
+        "total_cost": 0.54,
+        "cost_efficiency": 67.5
       },
       "truncated_cells": []
     }

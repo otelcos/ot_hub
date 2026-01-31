@@ -45,6 +45,8 @@ export interface LeaderboardEntry {
   tci: number | null;
   tci_stderr: number | null;
   releaseDate?: string; // ISO date string from JSON (e.g., "2025-11-18")
+  total_cost: number | null; // Total cost in USD to run all evals
+  cost_efficiency: number | null; // 0-100 index (higher = cheaper/more efficient)
 }
 
 /**
@@ -87,6 +89,8 @@ export interface TCIDataPoint {
   tsg: number | null;
   teletables: number | null;
   releaseDate: number; // Unix timestamp for chart X-axis
+  totalCost: number | null; // Total cost in USD
+  costEfficiency: number | null; // 0-100 index (higher = cheaper)
 }
 
 /**

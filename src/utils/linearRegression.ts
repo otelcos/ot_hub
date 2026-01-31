@@ -28,6 +28,19 @@ export interface CombinedBandPoint {
   lowerPred: number;   // Prediction band lower
 }
 
+export interface ForecastBandPoint extends CombinedBandPoint {
+  isForecast: boolean; // true for projection, false for historical
+}
+
+export interface RegressionStats {
+  rSquared: number;
+  growthPerYear: number;     // TCI points per year
+  currentTCI: number;        // TCI at last data point
+  projectedTCI: number;      // TCI at forecast end
+  lastDataDate: number;      // timestamp of last data point
+  forecastEndDate: number;   // timestamp of forecast end
+}
+
 /**
  * Fit a linear regression line to the data using least squares.
  *
@@ -205,4 +218,125 @@ export function generateCombinedRegressionData(
   }
 
   return points;
+}
+
+/**
+ * Generate forecast data with historical trend and future projection.
+ *
+ * Key difference from generateCombinedRegressionData:
+ * - Historical portion uses confidence interval: SE = s * sqrt(1/n + (x-x̄)²/SSx)
+ * - Forecast portion uses prediction interval: SE = s * sqrt(1 + 1/n + (x-x̄)²/SSx)
+ *   The "1 +" term accounts for increased uncertainty when predicting future values.
+ *
+ * @see https://github.com/epoch-research/benchmark-stitching
+ */
+export function generateForecastData(
+  data: DataPoint[],
+  params: LinearParams,
+  forecastMonths: number = 12,
+  numHistoricalPoints: number = 50,
+  numForecastPoints: number = 30
+): { forecastData: ForecastBandPoint[]; stats: RegressionStats } {
+  const MS_PER_DAY = 24 * 60 * 60 * 1000;
+  const MS_PER_YEAR = 365 * MS_PER_DAY;
+
+  if (data.length < 3) {
+    return {
+      forecastData: [],
+      stats: {
+        rSquared: 0,
+        growthPerYear: 0,
+        currentTCI: 0,
+        projectedTCI: 0,
+        lastDataDate: 0,
+        forecastEndDate: 0,
+      },
+    };
+  }
+
+  const n = data.length;
+  const xValues = data.map(d => d.releaseDate);
+  const yValues = data.map(d => d.tci);
+
+  const xMean = xValues.reduce((sum, x) => sum + x, 0) / n;
+  const ssX = xValues.reduce((sum, x) => sum + Math.pow(x - xMean, 2), 0);
+
+  // Calculate residual standard deviation
+  const ssResidual = data.reduce((sum, point) => {
+    const predicted = params.slope * point.releaseDate + params.intercept;
+    return sum + Math.pow(point.tci - predicted, 2);
+  }, 0);
+  const stdResidual = Math.sqrt(ssResidual / (n - 2));
+
+  const zScore = 1.96; // 95% CI
+
+  // Date bounds
+  const minDate = Math.min(...xValues);
+  const lastDataDate = Math.max(...xValues);
+  const forecastEndDate = lastDataDate + forecastMonths * 30 * MS_PER_DAY;
+
+  const points: ForecastBandPoint[] = [];
+
+  // Generate HISTORICAL points (uses confidence interval - narrower)
+  const histStep = (lastDataDate - minDate) / (numHistoricalPoints - 1);
+  for (let i = 0; i < numHistoricalPoints; i++) {
+    const x = minDate + i * histStep;
+    const y = params.slope * x + params.intercept;
+
+    // Confidence interval formula (for mean prediction)
+    const se = stdResidual * Math.sqrt(1 / n + Math.pow(x - xMean, 2) / ssX);
+    const margin = zScore * se;
+
+    // Prediction interval formula (for individual prediction)
+    const pe = stdResidual * Math.sqrt(1 + 1 / n + Math.pow(x - xMean, 2) / ssX);
+    const predMargin = zScore * pe;
+
+    points.push({
+      releaseDate: x,
+      regressionTCI: y,
+      upper: y + margin,
+      lower: y - margin,
+      upperPred: y + predMargin,
+      lowerPred: y - predMargin,
+      isForecast: false,
+    });
+  }
+
+  // Generate FORECAST points (uses prediction interval - wider, grows over time)
+  const forecastStep = (forecastEndDate - lastDataDate) / numForecastPoints;
+  for (let i = 0; i <= numForecastPoints; i++) {
+    const x = lastDataDate + i * forecastStep;
+    const y = params.slope * x + params.intercept;
+
+    // Prediction interval formula - includes the "1 +" term that makes it widen
+    const se = stdResidual * Math.sqrt(1 + 1 / n + Math.pow(x - xMean, 2) / ssX);
+    const margin = zScore * se;
+
+    points.push({
+      releaseDate: x,
+      regressionTCI: y,
+      upper: y + margin,
+      lower: y - margin,
+      upperPred: y + margin, // Same as upper for forecast
+      lowerPred: y - margin, // Same as lower for forecast
+      isForecast: true,
+    });
+  }
+
+  // Calculate statistics
+  const currentTCI = params.slope * lastDataDate + params.intercept;
+  const projectedTCI = params.slope * forecastEndDate + params.intercept;
+  const growthPerYear = params.slope * MS_PER_YEAR;
+
+  return {
+    forecastData: points,
+    stats: {
+      rSquared: params.rSquared,
+      growthPerYear,
+      currentTCI,
+      projectedTCI,
+      lastDataDate,
+      forecastEndDate,
+    },
+  };
 }

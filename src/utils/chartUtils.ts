@@ -81,12 +81,12 @@ export function calculateQuarterBounds(dates: number[]): DateBounds {
 }
 
 /**
- * Generate quarterly tick values for X-axis.
- * Creates ticks at Jan, Apr, Jul, Oct for each year in the date range.
- * Only generates ticks within the actual data range (not the padded domain).
+ * Generate semi-annual tick values for X-axis (Q2 and Q4 only).
+ * Creates ticks at Apr and Oct for consistent 6-month intervals.
+ * This prevents uneven spacing when data ends mid-year.
  *
  * @param dates Array of timestamps from data points
- * @returns Array of timestamps for quarterly ticks
+ * @returns Array of timestamps for semi-annual ticks
  */
 export function generateQuarterlyTicks(dates: number[]): number[] {
   if (dates.length === 0) return [];
@@ -94,19 +94,17 @@ export function generateQuarterlyTicks(dates: number[]): number[] {
   const minDate = Math.min(...dates);
   const maxDate = Math.max(...dates);
 
-  // Use actual data bounds (not padded) for tick generation
-  // This ensures we don't show empty quarters beyond the data
   const startYear = new Date(minDate).getFullYear();
   const endYear = new Date(maxDate).getFullYear();
 
   const ticks: number[] = [];
-  const quarterMonths = [0, 3, 6, 9]; // Jan, Apr, Jul, Oct
+  // Only Q2 (Apr) and Q4 (Oct) for consistent 6-month intervals
+  const semiAnnualMonths = [3, 9]; // Apr, Oct
 
   for (let year = startYear; year <= endYear + 1; year++) {
-    for (const month of quarterMonths) {
+    for (const month of semiAnnualMonths) {
       const tickDate = new Date(year, month, 1).getTime();
-      // Only include ticks within the actual data range (with small buffer)
-      // Use 30-day buffer to ensure edge quarters are included
+      // Include ticks within data range plus small buffer
       const buffer = 30 * 24 * 60 * 60 * 1000; // 30 days
       if (tickDate >= minDate - buffer && tickDate <= maxDate + buffer) {
         ticks.push(tickDate);
@@ -121,9 +119,13 @@ export function generateQuarterlyTicks(dates: number[]): number[] {
  * Calculate X-axis domain with padding.
  *
  * @param dates Array of timestamps from data points
- * @returns Tuple of [min, max] timestamps with 60-day padding
+ * @param paddingMs Optional padding in milliseconds (defaults to DATE_PADDING_MS)
+ * @returns Tuple of [min, max] timestamps with padding
  */
-export function calculateXAxisDomain(dates: number[]): [number, number] {
+export function calculateXAxisDomain(
+  dates: number[],
+  paddingMs: number = DATE_PADDING_MS
+): [number, number] {
   if (dates.length === 0) {
     return [new Date('2023-01-01').getTime(), new Date('2026-01-01').getTime()];
   }
@@ -131,7 +133,7 @@ export function calculateXAxisDomain(dates: number[]): [number, number] {
   const minDate = Math.min(...dates);
   const maxDate = Math.max(...dates);
 
-  return [minDate - DATE_PADDING_MS, maxDate + DATE_PADDING_MS];
+  return [minDate - paddingMs, maxDate + paddingMs];
 }
 
 /**
