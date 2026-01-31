@@ -255,9 +255,10 @@ export default function TCIScatterPlot({
     hovermode: 'closest',
     plot_bgcolor: 'white',
     paper_bgcolor: 'white',
+    autosize: true,
     width: width,
     height: height,
-    margin: { l: 60, r: 40, t: 40, b: 80 },
+    margin: { l: 60, r: 20, t: 40, b: 80 },
     annotations: annotations as Annotations[],
   }), [width, height, annotations, initialRange, fullRange]);
 
@@ -279,6 +280,8 @@ export default function TCIScatterPlot({
               layout={layout}
               config={config}
               style={{ width: '100%', height: '100%' }}
+              useResizeHandler={true}
+              revision={width}
             />
           </Suspense>
         )}

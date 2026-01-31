@@ -11,21 +11,29 @@ import TCIScatterPlot from './TCIScatterPlot';
 export default function TelcoCapabilityIndex(): JSX.Element {
   const { data: leaderboardData, loading, error } = useLeaderboardData();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(900);
+  const [containerWidth, setContainerWidth] = useState(800); // Default width
 
   // Selection state for organization filter
   const [selectedOrgs, setSelectedOrgs] = useState<Set<string>>(new Set());
 
-  // Responsive width
+  // Responsive width with RAF to ensure DOM is ready
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
         const width = containerRef.current.clientWidth;
-        setContainerWidth(Math.max(400, width - 40)); // Account for padding
+        setContainerWidth(Math.max(400, width));
       }
     };
 
-    updateWidth();
+    // Use RAF to ensure DOM is painted before measuring
+    requestAnimationFrame(() => {
+      updateWidth();
+      // Force Plotly to recalculate by dispatching resize event
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 100);
+    });
+
     window.addEventListener('resize', updateWidth);
     return () => window.removeEventListener('resize', updateWidth);
   }, []);
